@@ -1,0 +1,4 @@
+require 'autotest/redgreen'
+require 'autotest/timestamp'
+require 'Win32/Console/ANSI'
+#require 'autotest/snarl'

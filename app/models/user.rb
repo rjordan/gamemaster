@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   validates_presence_of :email, :password_hash
+  has_many :campaigns
   
     #Returns a user if one matches the login/password combo user must be active
   def self.authenticate(email, password)

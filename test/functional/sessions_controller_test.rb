@@ -36,9 +36,8 @@ class SessionsControllerTest < Test::Unit::TestCase
         post :create, {:login=>'rjordan@pobox.com', :password=>'password'}
       end
 
-      #TODO ADD TESTS HERE
-      #should_redirect_to "issues_url"
-      #should_set_the_flash_to "Welcome back, bob!"
+      should_redirect_to "campaigns_url"
+      should_set_the_flash_to "Welcome back, rjordan@pobox.com!"
     end
   end
   
