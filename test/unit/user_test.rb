@@ -16,5 +16,4 @@ class UserTest < ActiveSupport::TestCase
     assert_equal users(:rjordan), User.authenticate('rjordan@pobox.com', 'password')
   end
   
-  
-end
+  end

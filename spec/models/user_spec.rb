@@ -22,7 +22,7 @@ describe User do
 end
 
 describe User, "with fixtures" do
-  fixtures :users
+  fixtures :users, :campaigns
   
   it "should have a non-empty collection of users" do
     User.find(:all).should_not be_empty
