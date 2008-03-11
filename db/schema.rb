@@ -9,12 +9,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 3) do
+ActiveRecord::Schema.define(:version => 4) do
 
   create_table "campaigns", :force => true do |t|
-    t.string  "name",      :null => false
-    t.integer "user_id",   :null => false
-    t.integer "system_id", :null => false
+    t.string   "name",                          :null => false
+    t.integer  "user_id",                       :null => false
+    t.integer  "system_id",                     :null => false
+    t.boolean  "public",     :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "version",    :default => 1,     :null => false
+  end
+
+  create_table "stories", :force => true do |t|
+    t.string   "name",                                   :null => false
+    t.integer  "campaign_id",                            :null => false
+    t.text     "public_description",                     :null => false
+    t.text     "private_description"
+    t.boolean  "public",              :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "version",             :default => 1,     :null => false
   end
 
   create_table "systems", :force => true do |t|
@@ -22,8 +37,11 @@ ActiveRecord::Schema.define(:version => 3) do
   end
 
   create_table "users", :force => true do |t|
-    t.string "email",         :null => false
-    t.string "password_hash", :null => false
+    t.string   "email",                        :null => false
+    t.string   "password_hash",                :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "version",       :default => 1, :null => false
   end
 
 end
