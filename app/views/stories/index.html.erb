@@ -1,0 +1,26 @@
+<div id="streamlined_list">
+  <table class="sl_list">
+    <thead>
+      <tr>
+        <td>Name</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @stories.empty? %>
+          <tr class="odd">
+            <td colspan="<%= list_columns.size + 1 %>">
+              <div class="sl_list_empty_message">
+                No records to display!
+              </div>
+            </td>
+          </tr>
+        <% end %>
+        <% for story in @stories %>
+          <tr class="<%= cycle "even", "odd" -%>">
+            <td><%= link_to story.name, campaign_story_url(story.campaign, story) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  
+  </div>

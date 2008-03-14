@@ -1,0 +1,23 @@
+<h1>Story</h1>
+
+<div id="content">
+<h3><%= @story.name %></h3>
+<p>
+This campaign is marked  
+<% if @story.public %>
+  <span style="color:green">PUBLIC</span>
+<% else %>
+  <span style="color:red">PRIVATE</span>
+<% end %>
+</p>
+<table class="sl_show_form">
+  <tr> 
+    <td class="sl_show_label">System:</td>
+    <td class="sl_show_value"><%= @story.name %></td>
+  </tr>
+  </table>
+<br/>
+
+</div>
+
+<%= link_to 'Edit', edit_campaign_story_url(@story.campaign, @story) %> 

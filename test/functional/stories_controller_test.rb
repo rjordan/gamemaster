@@ -1,25 +1,24 @@
 
 require File.dirname(__FILE__) + '/../test_helper'
 
-class CampaignsControllerTest < Test::Unit::TestCase
-  
+class StoriesControllerTest < Test::Unit::TestCase
+ 
   def setup
-    @controller = CampaignsController.new
+    @controller = StoriesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
-    @campaign   = Campaign.find(:first)
+    @story   = Story.find(:first)
   end
   
-  context "A CampaignsController" do
+  context "A StoriesController" do
 
 #    context "when a user is logged in" do
-      setup do
-      end
       
       should_be_restful do |resource|
+        resource.parent = :campaign
         resource.actions    = [:index, :show, :new, :edit, :update, :destroy, :create]
         resource.formats    = [:html, :xml]
-        resource.create.params = { :name=>'Unknown', :max_players=>5, :system_id=>1  }
+        resource.create.params = { :name=>'Unknown', :public_description=>'Nothing'}
         resource.update.params = { :name=> 'Unknown' }
       end 
 #    end

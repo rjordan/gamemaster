@@ -1,4 +1,6 @@
-SCORCHED:
+scorched:
   name: Scorched Earth
   user: rjordan
-  system: Exalted2
+  system: exalted2
+  public: false
+  max_players: 5

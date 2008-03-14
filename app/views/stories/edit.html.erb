@@ -1,14 +1,10 @@
-<h1>New Campaign</h1>
+<h1>Editing Story</h1>
 
-<% form_for :campaign do |form| %>
+<% form_for :story do |form| %>
 <fieldset>
   <p>
     <label for="name" class="required" >Name</label>
     <%= form.text_field :name %>
-  </p>
-  <p>
-    <label for="system" class="required" >System</label>
-    <%= form.text_field :system %>
   </p>
 </fieldset>
   <% form.submit 'Submit' %>
