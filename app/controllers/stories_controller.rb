@@ -1,5 +1,4 @@
 class StoriesController < ApplicationController
-  layout "streamlined"
 
   def index
     @stories = Story.find(:all)

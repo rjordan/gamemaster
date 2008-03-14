@@ -1,5 +1,4 @@
 class CampaignsController < ApplicationController
-  layout "streamlined"
   
   def index
     @campaigns = Campaign.find(:all)
