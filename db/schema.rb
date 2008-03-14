@@ -12,14 +12,29 @@
 ActiveRecord::Schema.define(:version => 4) do
 
   create_table "campaigns", :force => true do |t|
-    t.string   "name",                          :null => false
-    t.integer  "user_id",                       :null => false
-    t.integer  "system_id",                     :null => false
-    t.boolean  "public",     :default => false, :null => false
+    t.string   "name",                           :null => false
+    t.integer  "user_id",                        :null => false
+    t.integer  "system_id",                      :null => false
+    t.boolean  "public",      :default => false, :null => false
+    t.integer  "max_players", :default => 5,     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "version",    :default => 1,     :null => false
+    t.integer  "version",     :default => 1,     :null => false
   end
+
+  create_table "campaigns_invitations", :id => false, :force => true do |t|
+    t.integer "campaign_id", :null => false
+    t.string  "email",       :null => false
+  end
+
+  add_index "campaigns_invitations", ["campaign_id", "email"], :name => "index_campaigns_invitations_on_campaign_id_and_email", :unique => true
+
+  create_table "campaigns_players", :id => false, :force => true do |t|
+    t.integer "campaign_id", :null => false
+    t.integer "user_id",     :null => false
+  end
+
+  add_index "campaigns_players", ["campaign_id", "user_id"], :name => "index_campaigns_players_on_campaign_id_and_user_id", :unique => true
 
   create_table "stories", :force => true do |t|
     t.string   "name",                                   :null => false

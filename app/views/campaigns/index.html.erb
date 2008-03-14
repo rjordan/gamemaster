@@ -1,0 +1,30 @@
+<div id="streamlined_list">
+  <table class="sl_list">
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>System</td>
+        <td>Game Master</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @campaigns.empty? %>
+          <tr class="odd">
+            <td colspan="<%= list_columns.size + 1 %>">
+              <div class="sl_list_empty_message">
+                No records to display!
+              </div>
+            </td>
+          </tr>
+        <% end %>
+        <% for campaign in @campaigns %>
+          <tr class="<%= cycle "even", "odd" -%>">
+            <td><%= link_to campaign.name, campaign_url(campaign) %></td>
+            <td><%= campaign.system.name %></td>
+            <td><%= campaign.user.email %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  
+  </div>

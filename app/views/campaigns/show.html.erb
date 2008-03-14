@@ -1,0 +1,58 @@
+<h1>Campaign</h1>
+
+<div id="content">
+<h3><%= @campaign.name %></h3>
+<p>
+This campaign is marked  
+<% if @campaign.public %>
+  <span style="color:green">PUBLIC</span>
+<% else %>
+  <span style="color:red">PRIVATE</span>
+<% end %>
+</p>
+<table class="sl_show_form">
+  <tr>
+    <td class="sl_show_label">System:</td>
+    <td class="sl_show_value"><%= @campaign.system.name %></td>
+  </tr>
+  <tr>
+    <td class="sl_show_label">Game Master:</td>
+    <td class="sl_show_value"><%= @campaign.user.email %></td>
+  </tr>
+  <tr>
+    <td class="sl_show_label">Created At:</td>
+    <td class="sl_show_value"><%= @campaign.created_at %></td>
+  </tr>
+  <tr>
+    <td class="sl_show_label">Max Players:</td>
+    <td class="sl_show_value"><%= @campaign.max_players %></td>
+  </tr>  </table>
+<br/>
+
+<h4>Players</h4><%= link_to "invite player", :controller=>"users", :action=>:invite -%>
+<table class="sl_show_form">
+<% if @campaign.players %>
+<% for player in @campaign.players %>
+  <tr>
+    <td><%= player.email %></td><td>__Create Character__</td>
+  </tr>
+<% end %>
+<% end %>
+  </table>
+
+<h4>Stories</h4> <%= link_to "new", :controller=>"stories", :action=>:new -%>
+<table class="sl_show_form">
+<% if @campaign.stories %>
+<% for story in @campaign.stories %>
+  <tr>
+    <td><%= link_to story.name, :controller=>"stories", :action=>:show, :id=>story %></td>
+  </tr>
+<% end %>
+<% end %>
+  </table>
+
+<h4>NPCs</h4>
+<h4>Items</h4>
+</div>
+
+<%= link_to 'Edit', edit_campaign_url(@campaign) %> 
