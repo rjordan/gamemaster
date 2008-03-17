@@ -41,7 +41,7 @@ This campaign is marked
   </table>
 <br/>
 
-<div id="section_heading">Stories<%= link_to 'New', :controller=>"stories", :action=>:new -%></div>
+<div id="section_heading">Stories<%= link_to 'New', new_campaign_story_url(@campaign) -%></div>
 <hr/>
 <table class="show_form">
 <% if @campaign.stories %>
@@ -60,6 +60,12 @@ This campaign is marked
 
 <div id="section_heading">Items<%= link_to "New", :controller=>"stories", :action=>:new -%></div>
 <hr/>
+<br/>
+
+<div id="section_heading">Adventure Logs</div>
+<hr/>
+Public<br/>
+Private<br/>
 <br/>
 
 </div>

@@ -18,6 +18,7 @@ class StoriesController < ApplicationController
   
   def new
     @story = Story.new
+    @story.campaign = Campaign.find(params[:campaign_id])
   end
   
   def edit

@@ -1,6 +1,6 @@
 <h1>Editing Campaign</h1>
 
-<% form_for :campaign do |form| %>
+<% form_for(@campaign) do |form| %>
   <%= render :partial=>'form', :object=>form %>
   <%= form.submit 'Submit' %>
 <% end %>
