@@ -1,0 +1,13 @@
+  <fieldset>
+    <p>
+      <label for="name" class="required" >Name</label>
+      <%= form.text_field :name %>
+    </p>
+    <p>
+      <label for="system" class="required" >System</label>
+      <%=
+               items = System.find(:all, :order => "name")
+               form.collection_select(:system_id, items, :id, :name )
+      %>
+    </p>
+  </fieldset>

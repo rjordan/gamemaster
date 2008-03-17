@@ -1,23 +1,31 @@
-<h1>Story</h1>
-
 <div id="content">
-<h3><%= @story.name %></h3>
+<h2><%= link_to @story.campaign.name, campaign_url(@story.campaign) %>: <%= @story.name %></h2>
 <p>
-This campaign is marked  
 <% if @story.public %>
-  <span style="color:green">PUBLIC</span>
+  <span style="color:green">This storyline has been revealed.</span>
 <% else %>
-  <span style="color:red">PRIVATE</span>
+  <span style="color:red">This storyline is for the GM's eyes only!</span>
 <% end %>
 </p>
-<table class="sl_show_form">
-  <tr> 
-    <td class="sl_show_label">System:</td>
-    <td class="sl_show_value"><%= @story.name %></td>
-  </tr>
-  </table>
+
+<p>
+<div id="section_heading">Public Description</div>
+<hr/>
+<%= @story.public_description -%>
+</p>
+
+
+<% if @story.campaign.user_id == session[:user_id] %>
 <br/>
+<p>
+  <div id="section_heading">GM's Description</div>
+<hr/>
+<%= @story.private_description -%>
+</p>
+<% end %>
 
+<br/>
 </div>
-
+<p>
 <%= link_to 'Edit', edit_campaign_story_url(@story.campaign, @story) %> 
+</p>

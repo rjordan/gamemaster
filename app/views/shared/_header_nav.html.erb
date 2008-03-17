@@ -1,0 +1,10 @@
+<ul>
+  <li><%= link_to 'Home', root_url %></li>
+<% unless session[:user_id] %>
+  <li><%= link_to 'Login', new_session_url %></li>
+  <li><a href="http://localhost:3000">Signup</a></li>
+<% else %>
+  <li><a href="http://localhost:3000">Logout</a></li>
+<% end %>
+  
+</ul>

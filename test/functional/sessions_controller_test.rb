@@ -19,6 +19,11 @@ class SessionsControllerTest < Test::Unit::TestCase
       should_render_template :new
       should_render_a_form
       should_not_set_the_flash
+
+      should "be valid markup" do
+        assert_valid_markup
+      end
+
     end  
   
     context "on POST to :create" do

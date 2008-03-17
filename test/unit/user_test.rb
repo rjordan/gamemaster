@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class UserTest < ActiveSupport::TestCase
   
   context "A User" do
+    should_have_db_columns :email, :password_hash
     should_require_attributes :email, :password_hash
     should_require_unique_attributes :email
     should_protect_attributes :password_hash

@@ -1,7 +1,6 @@
-<h1>Campaign</h1>
 
 <div id="content">
-<h3><%= @campaign.name %></h3>
+<h1><%= @campaign.name %></h1>
 <p>
 This campaign is marked  
 <% if @campaign.public %>
@@ -10,27 +9,28 @@ This campaign is marked
   <span style="color:red">PRIVATE</span>
 <% end %>
 </p>
-<table class="sl_show_form">
+<table class="show_form">
   <tr> 
-    <td class="sl_show_label">System:</td>
-    <td class="sl_show_value"><%= @campaign.system.name %></td>
+    <td class="show_label">System:</td>
+    <td class="show_value"><%= @campaign.system.name %></td>
   </tr>
   <tr>
-    <td class="sl_show_label">Game Master:</td>
-    <td class="sl_show_value"><%= @campaign.user.email %></td>
+    <td class="show_label">Game Master:</td>
+    <td class="show_value"><%= @campaign.user.email %></td>
   </tr>
   <tr>
-    <td class="sl_show_label">Created At:</td>
-    <td class="sl_show_value"><%= @campaign.created_at %></td>
+    <td class="show_label">Created At:</td>
+    <td class="show_value"><%= @campaign.created_at %></td>
   </tr>
   <tr>
-    <td class="sl_show_label">Max Players:</td>
-    <td class="sl_show_value"><%= @campaign.max_players %></td>
+    <td class="show_label">Players:</td>
+    <td class="show_value"><%= @campaign.players.count %> / <%= @campaign.max_players %></td>
   </tr>  </table>
 <br/>
 
-<h4>Players</h4><%= link_to "invite player", :controller=>"users", :action=>:invite -%>
-<table class="sl_show_form">
+<div id="section_heading">Players<%= link_to "Invite Player", :controller=>"users", :action=>:invite -%></div>
+<hr/>
+<table class="show_form">
 <% if @campaign.players %>
 <% for player in @campaign.players %>
   <tr>
@@ -39,9 +39,11 @@ This campaign is marked
 <% end %>
 <% end %>
   </table>
+<br/>
 
-<h4>Stories</h4> <%= link_to "new", :controller=>"stories", :action=>:new -%>
-<table class="sl_show_form">
+<div id="section_heading">Stories<%= link_to 'New', :controller=>"stories", :action=>:new -%></div>
+<hr/>
+<table class="show_form">
 <% if @campaign.stories %>
 <% for story in @campaign.stories %>
   <tr>
@@ -50,9 +52,16 @@ This campaign is marked
 <% end %>
 <% end %>
   </table>
+<br/>
 
-<h4>NPCs</h4>
-<h4>Items</h4>
+<div id="section_heading">NPCs<%= link_to "New", :controller=>"stories", :action=>:new -%></div>
+<hr/>
+<br/>
+
+<div id="section_heading">Items<%= link_to "New", :controller=>"stories", :action=>:new -%></div>
+<hr/>
+<br/>
+
 </div>
 
 <%= link_to 'Edit', edit_campaign_url(@campaign) %> 
