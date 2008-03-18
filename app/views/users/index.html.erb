@@ -1,15 +1,13 @@
-<h2>Campaigns</h2>
+<h2>Users</h2>
 <div id="list_view">
   <table>
     <thead>
       <tr>
-        <td>Name</td>
-        <td>System</td>
-        <td>Game Master</td>
+        <td>Nickname</td>
         </tr>
       </thead>
       <tbody>
-        <% if @campaigns.empty? %>
+        <% if @users.empty? %>
           <tr class="odd">
             <td colspan="<%= list_columns.size + 1 %>">
               <div class="sl_list_empty_message">
@@ -18,11 +16,9 @@
             </td>
           </tr>
         <% end %>
-        <% for campaign in @campaigns %>
+        <% for user in @users %>
           <tr class="<%= cycle "even", "odd" -%>">
-            <td><%= link_to campaign.name, campaign_url(campaign) %></td>
-            <td><%= campaign.system.name %></td>
-            <td><%= campaign.user.nickname %></td>
+            <td><%= link_to user.nickname, user_url(user) %></td>
           </tr>
         <% end %>
       </tbody>

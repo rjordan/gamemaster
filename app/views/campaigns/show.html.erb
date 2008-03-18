@@ -16,11 +16,11 @@ This campaign is marked
   </tr>
   <tr>
     <td class="show_label">Game Master:</td>
-    <td class="show_value"><%= @campaign.user.email %></td>
+    <td class="show_value"><%= @campaign.user.nickname %></td>
   </tr>
   <tr>
     <td class="show_label">Created At:</td>
-    <td class="show_value"><%= @campaign.created_at %></td>
+    <td class="show_value"><%= @campaign.created_at.to_s(:cst) %></td>
   </tr>
   <tr>
     <td class="show_label">Players:</td>
@@ -28,6 +28,7 @@ This campaign is marked
   </tr>  </table>
 <br/>
 
+<!-- either an email or a nickname -->
 <div id="section_heading">Players<%= link_to "Invite Player", :controller=>"users", :action=>:invite -%></div>
 <hr/>
 <table class="show_form">
@@ -47,18 +48,18 @@ This campaign is marked
 <% if @campaign.stories %>
 <% for story in @campaign.stories %>
   <tr>
-    <td><%= link_to story.name, :controller=>"stories", :action=>:show, :id=>story %></td>
+    <td><%= link_to story.name, campaign_story_url(@campaign, story) %></td>
   </tr>
 <% end %>
 <% end %>
   </table>
 <br/>
 
-<div id="section_heading">NPCs<%= link_to "New", :controller=>"stories", :action=>:new -%></div>
+<div id="section_heading">NPCs<%= link_to "New" %></div>
 <hr/>
 <br/>
 
-<div id="section_heading">Items<%= link_to "New", :controller=>"stories", :action=>:new -%></div>
+<div id="section_heading">Items<%= link_to "New" %></div>
 <hr/>
 <br/>
 
@@ -70,4 +71,4 @@ Private<br/>
 
 </div>
 
-<%= link_to 'Edit', edit_campaign_url(@campaign) %> 
+<%= link_to_if (@campaign.user_id==session[:user_id]), 'Edit', edit_campaign_url(@campaign) %> 

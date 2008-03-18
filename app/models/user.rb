@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  validates_presence_of :email, :password_hash
-  validates_uniqueness_of :email
+  validates_presence_of :email, :password_hash, :nickname
+  validates_uniqueness_of :email, :nickname
   attr_protected :password_hash
   has_many :campaigns
   has_and_belongs_to_many :games, :join_table=>'campaigns_players', :class_name=>'Campaign'

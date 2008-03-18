@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 4) do
   create_table "users", :force => true do |t|
     t.string   "email",                        :null => false
     t.string   "password_hash",                :null => false
+    t.string   "nickname",                     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "version",       :default => 1, :null => false
