@@ -95,22 +95,26 @@ body {
   line-height: 1.2em;
 }
 
-.floatRIght {
+.floatRight {
   float: right;
 }
 
 #section_heading {
+  display: block;
+}
+
+#section_heading span {
+  float: left;
   font-size: 1.3em;
   font-weight: bold;
 }
 
 #section_heading a {
-  display: inline;
-  margin-left: 1em;
+  float: right;
 }
 
-#section_heading a:hover {
-  border: 2px solid #330022;
+#section_heading hr {
+  clear: both;
 }
 
 #errorExplanation {
@@ -148,4 +152,31 @@ body {
   background-color: red;
   display: table;
 }
+
+
+
+a.button {
+  color: black;
+  font-weight: bold;
+  font-size: 13pt;
+  text-decoration:none;
+  background-color:#CCCCCC;
+  padding-top:3px;
+  padding-bottom: 3px;
+  padding-left: 7px;
+  padding-right: 7px;
+  margin:2px; 
+  border-left: 3px solid #EDEDED;
+  border-right: 3px solid #999999;
+  border-top:3px solid #EDEDED;
+  border-bottom: 3px solid #999999;
+}
+
+a.button:hover {
+  border: 3px solid #ffff00;
+}
+
+
+
+
 

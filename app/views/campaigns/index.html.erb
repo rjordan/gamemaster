@@ -6,13 +6,14 @@
         <td>Name</td>
         <td>System</td>
         <td>Game Master</td>
+        <td>Players</td>
         </tr>
       </thead>
       <tbody>
         <% if @campaigns.empty? %>
           <tr class="odd">
-            <td colspan="<%= list_columns.size + 1 %>">
-              <div class="sl_list_empty_message">
+            <td colspan="3">
+              <div class="list_empty_message">
                 No records to display!
               </div>
             </td>
@@ -23,6 +24,7 @@
             <td><%= link_to campaign.name, campaign_url(campaign) %></td>
             <td><%= campaign.system.name %></td>
             <td><%= campaign.user.nickname %></td>
+            <td><%= campaign.players.count %> / <%= campaign.max_players %></td>
           </tr>
         <% end %>
       </tbody>

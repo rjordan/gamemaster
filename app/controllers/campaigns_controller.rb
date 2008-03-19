@@ -1,7 +1,7 @@
 class CampaignsController < ApplicationController
   
   def index
-    @campaigns = Campaign.find(:all)
+    @campaigns = Campaign.find(:all, :conditions=>{:public=>true},:order=>'name')
     respond_to do |format|
       format.html
       format.xml { render :xml => @campaigns }

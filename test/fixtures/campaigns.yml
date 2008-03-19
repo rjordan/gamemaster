@@ -4,3 +4,9 @@ scorched:
   system: exalted2
   public: false
   max_players: 5
+public:
+  name: A Public Campaign
+  user: rjordan
+  system: exalted2
+  public: true
+  max_players: 5

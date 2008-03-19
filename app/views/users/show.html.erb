@@ -11,15 +11,33 @@
   </table>
 <br/>
 
-<!-- either an email or a nickname -->
-<div id="section_heading">Running Campaigns<%= link_to "New Campaign", new_campaign_url -%></div>
+<div id="section_heading">
+  <span>Running Campaigns</span>
+  <%= link_to "New Campaign", new_campaign_url, :class=>'button' %>
 <hr/>
+</div>
 <table class="show_form">
 <% if @user.campaigns %>
 <% for campaign in @user.campaigns %>
   <tr>
     <td><%= link_to campaign.name, campaign_url(campaign) %></td>
     <td><%= campaign.system.name %></td>
+  </tr>
+<% end %>
+<% end %>
+  </table>
+<br/>
+
+<div id="section_heading">
+  <span>Playing Games</span>
+  <%= link_to "Find Game", root_url, :class=>'button' %>
+  <hr/>
+</div>
+<table class="show_form">
+<% if @user.games %>
+<% for game in @user.games %>
+  <tr>
+    <td><%= link_to game.name, campaign_url(game) %></td>
   </tr>
 <% end %>
 <% end %>
