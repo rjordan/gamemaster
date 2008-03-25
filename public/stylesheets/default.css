@@ -111,10 +111,11 @@ body {
 
 #section_heading a {
   float: right;
+  margin-top: -10px;
 }
 
 #section_heading hr {
-  clear: both;
+  clear: left;
 }
 
 #errorExplanation {
@@ -173,7 +174,11 @@ a.button {
 }
 
 a.button:hover {
-  border: 3px solid #ffff00;
+  border-top: 3px solid yellow;
+  border-left: 3px solid yellow;
+  border-bottom: 3px solid goldenrod;
+  border-right: 3px solid goldenrod;
+  background: yellow;
 }
 
 

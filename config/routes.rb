@@ -14,8 +14,13 @@ ActionController::Routing::Routes.draw do |map|
     map.resource :session
     map.resources :users
     map.resources :campaigns do |c|
-      c.resources :stories
+      c.resources :stories do |s|
+        s.resources :chapters
+      end
     end
+#    map.resources :stories do |s|
+#      s.resouces :chapters
+#    end
     
 
   # Sample resource route with options:

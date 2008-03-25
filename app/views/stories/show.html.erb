@@ -9,8 +9,10 @@
 </p>
 
 <p>
-<div id="section_heading">Public Description</div>
+<div id="section_heading">
+<span>Public Description</span>
 <hr/>
+</div>
 <%= @story.public_description -%>
 </p>
 
@@ -18,26 +20,39 @@
 <% if @story.campaign.user_id == session[:user_id] %>
 <br/>
 <p>
-  <div id="section_heading">GM's Description</div>
-<hr/>
+  <div id="section_heading">
+    <span>GM's Description</span>
+  <hr/>
+ </div>
 <%= @story.private_description -%>
 </p>
 <% end %>
 
 <p>
-<div id="section_heading">Scenes<%= link_to "New" %></div>
+<div id="section_heading">
+  <span>Chapters</span>
+  <%= link_to "New", new_campaign_story_chapter_url(@story.campaign, @story), :class=>'button' %>
 <hr/>
+  </div>
+<% for chapter in @story.chapters.find(:all, :order=>:position) %>
+<% link_text = "Chapter "+chapter.position.to_s+": "+chapter.name %>
+<%= link_to link_text, campaign_story_chapter_url(@story.campaign, @story, chapter) %>
+<% end %>
 </p>
 
 <p>
-<div id="section_heading">Actors (NPC's)</div>
+<div id="section_heading">
+  <span>Actors (NPC's)</span>
+  <%= link_to "New", {}, :class=>'button' %>
 <hr/>
-</p>
+  </div></p>
 
 <p>
-<div id="section_heading">Props (Items etc)</div>
+<div id="section_heading">
+  <span>Props (Items)</span>
+  <%= link_to "New", {}, :class=>'button' %>
 <hr/>
-</p>
+  </div></p>
 
 <br/>
 </div>

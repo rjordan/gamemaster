@@ -1,74 +1,88 @@
 
 <div id="content">
-<h1><%= @campaign.name %></h1>
-<p>
-This campaign is marked  
-<% if @campaign.public %>
-  <span style="color:green">PUBLIC</span>
-<% else %>
-  <span style="color:red">PRIVATE</span>
-<% end %>
-</p>
-<table class="show_form">
-  <tr> 
-    <td class="show_label">System:</td>
-    <td class="show_value"><%= @campaign.system.name %></td>
-  </tr>
-  <tr>
-    <td class="show_label">Game Master:</td>
-    <td class="show_value"><%= @campaign.user.nickname %></td>
-  </tr>
-  <tr>
-    <td class="show_label">Created At:</td>
-    <td class="show_value"><%= @campaign.created_at.to_s(:cst) %></td>
-  </tr>
-  <tr>
-    <td class="show_label">Players:</td>
-    <td class="show_value"><%= @campaign.players.count %> / <%= @campaign.max_players %></td>
+  <h1><%= @campaign.name %></h1>
+  <p>
+    This campaign is marked  
+    <% if @campaign.public %>
+      <span style="color:green">PUBLIC</span>
+    <% else %>
+      <span style="color:red">PRIVATE</span>
+    <% end %>
+  </p>
+  <table class="show_form">
+    <tr> 
+      <td class="show_label">System:</td>
+      <td class="show_value"><%= @campaign.system.name %></td>
+    </tr>
+    <tr>
+      <td class="show_label">Game Master:</td>
+      <td class="show_value"><%= @campaign.user.nickname %></td>
+    </tr>
+    <tr>
+      <td class="show_label">Created At:</td>
+      <td class="show_value"><%= @campaign.created_at.to_s(:cst) %></td>
+    </tr>
+    <tr>
+      <td class="show_label">Players:</td>
+      <td class="show_value"><%= @campaign.players.count %> / <%= @campaign.max_players %></td>
   </tr>  </table>
-<br/>
-
-<!-- either an email or a nickname -->
-<div id="section_heading">Players<%= link_to "Invite Player", :controller=>"users", :action=>:invite -%></div>
-<hr/>
-<table class="show_form">
-<% if @campaign.players %>
-<% for player in @campaign.players %>
-  <tr>
-    <td><%= player.email %></td><td>__Create Character__</td>
-  </tr>
-<% end %>
-<% end %>
+  <br/>
+  
+  <!-- either an email or a nickname -->
+  <div id="section_heading">
+    <span>Players</span>
+    <%= link_to "Invite Player", {:controller=>"users", :action=>:invite}, :class=>'button' -%>
+    <hr/>
+  </div>
+  <table class="show_form">
+    <% if @campaign.players %>
+        <% for player in @campaign.players %>
+        <tr>
+          <td><%= player.email %></td><td>__Create Character__</td>
+        </tr>
+      <% end %>
+  <% end %>
   </table>
-<br/>
-
-<div id="section_heading">Stories<%= link_to 'New', new_campaign_story_url(@campaign) -%></div>
-<hr/>
-<table class="show_form">
-<% if @campaign.stories %>
-<% for story in @campaign.stories %>
-  <tr>
-    <td><%= link_to story.name, campaign_story_url(@campaign, story) %></td>
-  </tr>
-<% end %>
-<% end %>
+  <br/>
+  
+  <div id="section_heading">
+    <span>Stories</span>
+    <%= link_to 'New', new_campaign_story_url(@campaign), :class=>'button' -%>
+    <hr/>
+  </div>
+  <table class="show_form">
+    <% if @campaign.stories %>
+        <% for story in @campaign.stories %>
+        <tr>
+          <td><%= link_to story.name, campaign_story_url(@campaign, story) %></td>
+        </tr>
+      <% end %>
+  <% end %>
   </table>
-<br/>
-
-<div id="section_heading">NPCs<%= link_to "New" %></div>
-<hr/>
-<br/>
-
-<div id="section_heading">Items<%= link_to "New" %></div>
-<hr/>
-<br/>
-
-<div id="section_heading">Adventure Logs</div>
-<hr/>
-Public<br/>
-Private<br/>
-<br/>
-
+  <br/>
+  
+  <div id="section_heading">
+    <span>Actors (NPCs)</span>
+    <%= link_to "New", {}, :class=>'button' %>
+    <hr/>
+  </div>
+  <br/>
+  
+  <div id="section_heading">
+    <span>Props (Items)</span>
+    <%= link_to "New", {}, :class=>'button' %>
+    <hr/>
+  </div>
+  <br/>
+  
+  <div id="section_heading">
+    <span>Adventure Logs</span>
+    <hr/>
+  </div>
+  Public<br/>
+  Private<br/>
+  <br/>
+  
 </div>
 
 <%= link_to_if (@campaign.user_id==session[:user_id]), 'Edit', edit_campaign_url(@campaign) %> 

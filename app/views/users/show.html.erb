@@ -1,49 +1,49 @@
 
 <div id="content">
-<h1><%= @user.nickname %></h1>
-<p>
-</p>
-<table class="show_form">
-  <tr>
-    <td class="show_label">Signup Date:</td>
-    <td class="show_value"><%= @user.created_at.to_s(:cst) %></td>
-  </tr>
+  <h1><%= @user.nickname %></h1>
+  <p>
+  </p>
+  <table class="show_form">
+    <tr>
+      <td class="show_label">Signup Date:</td>
+      <td class="show_value"><%= @user.created_at.to_s(:cst) %></td>
+    </tr>
   </table>
-<br/>
-
-<div id="section_heading">
-  <span>Running Campaigns</span>
-  <%= link_to "New Campaign", new_campaign_url, :class=>'button' %>
-<hr/>
-</div>
-<table class="show_form">
-<% if @user.campaigns %>
-<% for campaign in @user.campaigns %>
-  <tr>
-    <td><%= link_to campaign.name, campaign_url(campaign) %></td>
-    <td><%= campaign.system.name %></td>
-  </tr>
-<% end %>
-<% end %>
+  <br/>
+  
+  <div id="section_heading">
+    <span>Running Campaigns</span>
+    <%= link_to "New Campaign", new_campaign_url, :class=>'button' %>
+    <hr/>
+  </div>
+  <table class="show_form">
+    <% if @user.campaigns %>
+      <% for campaign in @user.campaigns %>
+        <tr>
+          <td><%= link_to campaign.name, campaign_url(campaign) %></td>
+          <td><%= campaign.system.name %></td>
+        </tr>
+      <% end %>
+    <% end %>
   </table>
-<br/>
-
-<div id="section_heading">
-  <span>Playing Games</span>
-  <%= link_to "Find Game", root_url, :class=>'button' %>
-  <hr/>
-</div>
-<table class="show_form">
-<% if @user.games %>
-<% for game in @user.games %>
-  <tr>
-    <td><%= link_to game.name, campaign_url(game) %></td>
-  </tr>
-<% end %>
-<% end %>
+  <br/>
+  
+  <div id="section_heading">
+    <span>Playing Games</span>
+    <%= link_to "Find Game", campaigns_url, :class=>'button' %>
+    <hr/>
+  </div>
+  <table class="show_form">
+    <% if @user.games %>
+      <% for game in @user.games %>
+        <tr>
+          <td><%= link_to game.name, campaign_url(game) %></td>
+        </tr>
+      <% end %>
+    <% end %>
   </table>
-<br/>
-
+  <br/>
+  
 </div>
 
 <%= link_to_if (@user==session[:user_id]), 'Edit', edit_user_url(@user) %> 
