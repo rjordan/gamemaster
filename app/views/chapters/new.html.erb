@@ -1,6 +1,6 @@
 <h1>New Chapter</h1>
 
-<% form_for([@chapter.story.campaign, @chapter.story, @chapter]) do |form| %>
+<% form_for([@chapter.story, @chapter]) do |form| %>
   <%= render :partial=>'form', :object=>form %>
   <%= form.submit 'Submit' %>
 <% end %>

@@ -17,7 +17,7 @@
         <% end %>
         <% for chapter in @chapters %>
           <tr class="<%= cycle "even", "odd" -%>">
-            <td><%= link_to chapter.name, campaign_story_chapter_url(chapter.story.campaign, chapter.story, chapter) %></td>
+            <td><%= link_to chapter.name, story_chapter_url(chapter.story, chapter) %></td>
           </tr>
         <% end %>
       </tbody>

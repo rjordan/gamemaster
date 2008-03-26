@@ -54,7 +54,7 @@
     <% if @campaign.stories %>
         <% for story in @campaign.stories %>
         <tr>
-          <td><%= link_to story.name, campaign_story_url(@campaign, story) %></td>
+          <td><%=story.position %>) <%= link_to story.name, campaign_story_url(@campaign, story) %></td>
         </tr>
       <% end %>
   <% end %>

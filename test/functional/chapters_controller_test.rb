@@ -19,10 +19,10 @@ class ChaptersControllerTest < Test::Unit::TestCase
         resource.actions    = [:index, :show, :new, :edit, :update, :destroy, :create]
         resource.formats    = [:html, :xml]
         resource.create.params = { :name=>'Unknown', :public_description=>'Nothing'}
-        resource.create.redirect  ="campaign_story_chapter_url(@chapter.story.campaign, @chapter.story, @chapter)"
-        resource.update.redirect = "campaign_story_chapter_url(@chapter.story.campaign, @chapter.story, @chapter)"
-        resource.destroy.redirect = "campaign_story_chapters_url(@chapter.story.campaign, @chapter.story)"
         resource.update.params = { :name=> 'Unknown' }
+        #resource.create.redirect  ="campaign_story_chapter_url(@chapter.story.campaign, @chapter.story, @chapter)"
+        #resource.update.redirect = "campaign_story_chapter_url(@chapter.story.campaign, @chapter.story, @chapter)"
+        #resource.destroy.redirect = "campaign_story_chapters_url(@chapter.story.campaign, @chapter.story)"
       end 
 #    end
 

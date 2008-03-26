@@ -12,15 +12,18 @@ ActionController::Routing::Routes.draw do |map|
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   map.resources :products
     map.resource :session
+    
     map.resources :users
+    
     map.resources :campaigns do |c|
-      c.resources :stories do |s|
-        s.resources :chapters
-      end
+      c.resources :stories #do |s|
+        #s.resources :chapters
+     # end
     end
-#    map.resources :stories do |s|
-#      s.resouces :chapters
-#    end
+    
+    map.resources :stories do |s|
+        s.resources :chapters
+    end
     
 
   # Sample resource route with options:

@@ -31,12 +31,12 @@
 <p>
 <div id="section_heading">
   <span>Chapters</span>
-  <%= link_to "New", new_campaign_story_chapter_url(@story.campaign, @story), :class=>'button' %>
+  <%= link_to "New", new_story_chapter_url(@story), :class=>'button' %>
 <hr/>
   </div>
 <% for chapter in @story.chapters.find(:all, :order=>:position) %>
 <% link_text = "Chapter "+chapter.position.to_s+": "+chapter.name %>
-<%= link_to link_text, campaign_story_chapter_url(@story.campaign, @story, chapter) %>
+<%= link_to link_text, story_chapter_url(@story, chapter) %>
 <% end %>
 </p>
 
