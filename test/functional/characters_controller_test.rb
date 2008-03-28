@@ -1,25 +1,26 @@
 
 require File.dirname(__FILE__) + '/../test_helper'
 
-class ChaptersControllerTest < Test::Unit::TestCase
+class CharactersControllerTest < Test::Unit::TestCase
  
   def setup
-    @controller = ChaptersController.new
+    @controller = CharactersController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
-    @chapter   = Chapter.find(:first)
+    @character   = Character.find(:first)
   end
   
-  context "A ChaptersController" do
+  context "A CharactersController" do
 
 #    context "when a user is logged in" do
       
       should_be_restful do |resource|
-        resource.parent = :story
+        resource.parent = :campaign
         resource.actions    = [:index, :show, :new, :edit, :update, :destroy, :create]
         resource.formats    = [:html, :xml]
-        resource.create.params = { :name=>'Unknown', :public_description=>'Nothing'}
+        resource.create.params = { :name=>'Unknown', :public_description=>'Nothing', :statistics=>'None'}
         resource.update.params = { :name=> 'Unknown' }
+        resource.destroy.redirect = "campaign_url(@character.campaign)"
       end 
 #    end
 

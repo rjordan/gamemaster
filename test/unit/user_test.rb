@@ -8,7 +8,7 @@ class UserTest < ActiveSupport::TestCase
     should_require_unique_attributes :email, :nickname
     should_protect_attributes :password_hash
     should_have_many :campaigns
-    should_have_and_belong_to_many :games
+    should_have_many :games
   
     should "authenticate a valid user" do
       assert_equal users(:rjordan), User.authenticate('rjordan@pobox.com', 'password')

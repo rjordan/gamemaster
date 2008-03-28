@@ -2,11 +2,6 @@ class CampaignsController < ApplicationController
   
   def index
     @campaigns = Campaign.find(:all, :conditions=>{:public=>true},:order=>'name')
-#    if session[:user_id]
-#      @campaigns += Campaign.find(:all, :conditions=>{:user_id=>session[:user_id]},:order=>'name')
-#    end
-#    @campaigns.uniq!
-    #need to add those we are running or playing
     respond_to do |format|
       format.html
       format.xml { render :xml => @campaigns }
@@ -14,7 +9,8 @@ class CampaignsController < ApplicationController
   end
   
   def show
-    @campaign = Campaign.find(params[:id])
+    @campaign = Campaign.find(params[:id], :include=>[:players, :stories, :characters])
+    @npcs = @campaign.characters.find(:all, :conditions=>{:user_id=>nil}, :order=>:name)
     respond_to do |format|
       format.html
       format.xml { render :xml => @campaign }

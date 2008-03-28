@@ -36,9 +36,12 @@
   </div>
   <table class="show_form">
     <% if @campaign.players %>
+        <thead><td>Player Name</td><td>Character Name</td></thead>
         <% for player in @campaign.players %>
+        <% character = @campaign.characters.find(:first, :conditions=>{:user_id=>player}) %>
         <tr>
-          <td><%= player.email %></td><td>__Create Character__</td>
+          <td><%= link_to player.nickname, user_url(player) %></td>
+          <td><%= link_to character.name, campaign_character_url(@campaign, character) %></td>
         </tr>
       <% end %>
   <% end %>
@@ -63,9 +66,18 @@
   
   <div id="section_heading">
     <span>Actors (NPCs)</span>
-    <%= link_to "New", {}, :class=>'button' %>
+    <%= link_to "New", new_campaign_character_url(@campaign), :class=>'button' %>
     <hr/>
   </div>
+  <table class="show_form">
+    <% if @npcs %>
+        <% for npc in @npcs %>
+        <tr>
+          <td><%= link_to npc.name, campaign_character_url(@campaign, npc) %></td>
+        </tr>
+      <% end %>
+  <% end %>
+  </table>
   <br/>
   
   <div id="section_heading">

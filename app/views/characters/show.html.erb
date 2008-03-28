@@ -1,0 +1,37 @@
+<div id="content">
+<h2><%= @character.name %></h2>
+
+<p>
+<div id="section_heading">
+<span>Statistics</span>
+<hr/>
+</div>
+<%= @character.statistics -%>
+</p>
+
+<p>
+<div id="section_heading">
+<span>Public Description</span>
+<hr/>
+</div>
+<%= @character.public_description -%>
+</p>
+
+
+<% if @character.campaign.user_id == session[:user_id] %>
+<br/>
+<p>
+  <div id="section_heading">
+    <span>GM's Description</span>
+  <hr/>
+ </div>
+<%= @character.private_description -%>
+</p>
+<% end %>
+
+
+<br/>
+</div>
+<p>
+<%= link_to 'Edit', edit_campaign_character_url(@character.campaign, @character) %> 
+</p>

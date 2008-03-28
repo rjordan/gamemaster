@@ -7,7 +7,7 @@ class CampaignTest < ActiveSupport::TestCase
     should_belong_to :user
     should_belong_to :system
     should_have_many :stories
-    should_have_and_belong_to_many :players
+    should_have_many :players
     should_only_allow_numeric_values_for :max_players
   end
 end

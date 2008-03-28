@@ -2,3 +2,7 @@ rjordan:
   nickname: CountZero
   email: "rjordan@pobox.com"
   password_hash: password
+a_player:
+  nickname: jschmoe
+  email: "noone@nowhere.org"
+  password_hash: password

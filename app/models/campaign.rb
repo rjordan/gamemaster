@@ -4,5 +4,6 @@ class Campaign < ActiveRecord::Base
   belongs_to :user
   belongs_to :system
   has_many :stories
-  has_and_belongs_to_many :players, :join_table=>'campaigns_players', :class_name=>'User'
+  has_many :characters
+  has_many :players, :through=>:characters, :source=>:user
 end

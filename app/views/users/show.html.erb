@@ -5,6 +5,10 @@
   </p>
   <table class="show_form">
     <tr>
+      <td class="show_label">ID:</td>
+      <td class="show_value"><%= @user.id %></td>
+    </tr>
+    <tr>
       <td class="show_label">Signup Date:</td>
       <td class="show_value"><%= @user.created_at.to_s(:cst) %></td>
     </tr>
@@ -13,7 +17,9 @@
   
   <div id="section_heading">
     <span>Running Campaigns</span>
-    <%= link_to "New Campaign", new_campaign_url, :class=>'button' %>
+    <% if session[:user_id]==@user %>
+      <%= link_to "New Campaign", new_campaign_url, :class=>'button' %>
+    <% end %>
     <hr/>
   </div>
   <table class="show_form">
@@ -30,7 +36,9 @@
   
   <div id="section_heading">
     <span>Playing Games</span>
+    <% if session[:user_id]==@user %>
     <%= link_to "Find Game", campaigns_url, :class=>'button' %>
+    <% end %>
     <hr/>
   </div>
   <table class="show_form">
@@ -46,4 +54,6 @@
   
 </div>
 
-<%= link_to_if (@user==session[:user_id]), 'Edit', edit_user_url(@user) %> 
+<% if session[:user_id]==@user %>
+  <%= link_to 'Edit', edit_user_url(@user) %> 
+<% end %>

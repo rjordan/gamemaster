@@ -1,0 +1,7 @@
+<h1>Editing Character</h1>
+
+<% form_for([@character.campaign, @character]) do |form| %>
+  <%= render :partial=>'form', :object=>form %>
+  <%= form.submit 'Submit' %>
+<% end %>
+

@@ -1,0 +1,13 @@
+player:
+  name: Joe Schmoe
+  campaign: scorched
+  user: a_player
+  statistics: stats
+  public_description: Like superman only tougher
+  private_description: Pretty lame player
+npc:
+  name: Joe NPC
+  campaign: scorched
+  statistics: None
+  public_description: A basic NPC.
+  private_description: A really nasty NPC

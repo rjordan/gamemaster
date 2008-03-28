@@ -2,3 +2,10 @@ require 'autotest/redgreen'
 require 'autotest/timestamp'
 require 'Win32/Console/ANSI'
 #require 'autotest/snarl'
+$VERBOSE=false
+#ENV['VERBOSE']="false"
+
+Autotest.add_hook :initialize do |at|
+  %w{.hg .git stories tmtags Rakefile Capfile README spec/spec.opts .svn nbproject .autotest
+   spec/rcov.opts}.each { |exception| at.add_exception(exception) }
+end

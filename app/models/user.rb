@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :nickname
   attr_protected :password_hash
   has_many :campaigns
-  has_and_belongs_to_many :games, :join_table=>'campaigns_players', :class_name=>'Campaign'
+  has_many :characters
+  has_many :games, :through=>:characters, :source=>:campaign
   
     #Returns a user if one matches the login/password combo user must be active
   def self.authenticate(email, password)
