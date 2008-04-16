@@ -41,7 +41,7 @@ body {
 #header_navigation a {
   color: #fff;
   font-weight: bold; 
-  text-decoration: none
+  text-decoration: none;
 }
 
 #header_navigation a:visited {

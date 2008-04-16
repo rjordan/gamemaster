@@ -1,8 +1,8 @@
 rjordan:
   nickname: CountZero
   email: "rjordan@pobox.com"
-  password_hash: password
+  password_hash: <%= User.encrypt_password('rjordan@pobox.com', 'password') %>
 a_player:
   nickname: jschmoe
   email: "noone@nowhere.org"
-  password_hash: password
+  password_hash: <%= User.encrypt_password('noone@nowhere.org', 'password') %>

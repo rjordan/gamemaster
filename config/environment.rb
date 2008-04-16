@@ -37,7 +37,7 @@ Rails::Initializer.run do |config|
   # Make sure the secret is at least 30 characters and all random, 
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
-    :session_key => '_lifebackup_session',
+    :session_key => '_gamemaster_session',
     :secret      => '88f2d31d7173d71598bc7545c562333ed7aeca36909947e1a7e1db3e9024972720d241162f2b76eb2fbaebcd31001f14aa2446459ce843aed06c382105f976af'
   }
 
@@ -56,4 +56,13 @@ Rails::Initializer.run do |config|
 
   # Make Active Record use UTC-base instead of local time
   # config.active_record.default_timezone = :utc
+end
+
+#http://pivots.pivotallabs.com/users/nick/blog/articles/284-hasfinder-it-s-now-easier-than-ever-to-create-complex-re-usable-sql-queries
+#has_finder :published, :conditions => {:published => true}
+gem 'has_finder'
+require 'has_finder'
+
+if RAILS_ENV=='production'
+  ActionController::AbstractRequest.relative_url_root='/gamemaster'
 end
