@@ -4,7 +4,6 @@ module ThoughtBot # :nodoc:
       def self.included(other) # :nodoc:
         other.class_eval do
           extend ThoughtBot::Shoulda::General::ClassMethods
-          # include ThoughtBot::Shoulda::General::InstanceMethods
         end
       end
       
@@ -45,7 +44,7 @@ module ThoughtBot # :nodoc:
       #   assert_contains(['a', '1'], /not there/) => fails
       def assert_contains(collection, x, extra_msg = "")
         collection = [collection] unless collection.is_a?(Array)
-        msg = "#{x.inspect} not found in #{collection.to_a.inspect} " + extra_msg
+        msg = "#{x.inspect} not found in #{collection.to_a.inspect} #{extra_msg}"
         case x
         when Regexp: assert(collection.detect { |e| e =~ x }, msg)
         else         assert(collection.include?(x), msg)
@@ -97,7 +96,7 @@ module ThoughtBot # :nodoc:
       end
 
       def pretty_error_messages(obj)
-        obj.errors.map { |a, m| "#{m} (#{obj.send(a).inspect})" }
+        obj.errors.map { |a, m| "#{a} #{m} (#{obj.send(a).inspect})" }
       end
       
     end

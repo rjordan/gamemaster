@@ -21,7 +21,6 @@ module ThoughtBot # :nodoc:
     #
     module ActiveRecord
       # Ensures that the model cannot be saved if one of the attributes listed is not present.
-      # Requires an existing record.
       #
       # Options:
       # * <tt>:message</tt> - value the test expects to find in <tt>errors.on(:attribute)</tt>.  
@@ -78,9 +77,13 @@ module ThoughtBot # :nodoc:
             
             assert_contains(object.errors.on(attribute), message)
             
+            # Now test that the object is valid when changing the scoped attribute
+            # TODO:  There is a chance that we could change the scoped field
+            # to a value that's already taken.  An alternative implementation
+            # could actually find all values for scope and create a unique
+            # one.  
             if scope
-              # Now test that the object is valid when changing the scoped attribute
-              # TODO:  actually find all values for scope and create a unique one.
+              # Assume the scope is a foreign key if the field is nil
               object.send(:"#{scope}=", existing.send(scope).nil? ? 1 : existing.send(scope).next)
               object.errors.clear
               object.valid?
@@ -91,24 +94,21 @@ module ThoughtBot # :nodoc:
         end
       end
 
-      # Ensures that the attribute cannot be set on update
-      # Requires an existing record
+      # Ensures that the attribute cannot be set on mass update.
+      # Requires an existing record.
       #
       #   should_protect_attributes :password, :admin_flag
       #
       def should_protect_attributes(*attributes)
         get_options!(attributes)
         klass = model_class
+
         attributes.each do |attribute|
           attribute = attribute.to_sym
-          should "not allow #{attribute} to be changed by update" do
-            assert object = klass.find(:first), "Can't find first #{klass}"
-            value = object[attribute]
-            # TODO:  1 may not be a valid value for the attribute (due to validations)
-            assert object.update_attributes({ attribute => 1 }),
-                   "Cannot update #{klass} with { :#{attribute} => 1 }, #{object.errors.full_messages.to_sentence}"
-            assert object.valid?, "#{klass} isn't valid after changing #{attribute}"
-            assert_equal value, object[attribute], "Was able to change #{klass}##{attribute}"
+          should "protect #{attribute} from mass updates" do
+            protected_attributes = klass.protected_attributes || []
+            assert protected_attributes.include?(attribute.to_s), 
+                   "#{klass} is protecting #{protected_attributes.to_a.to_sentence}, but not #{attribute}."
           end
         end
       end
@@ -141,23 +141,18 @@ module ThoughtBot # :nodoc:
       # Ensures that the attribute can be set to the given values.
       # Requires an existing record
       #
-      # Options:
-      # * <tt>:message</tt> - value the test expects to find in <tt>errors.on(:attribute)</tt>.  
-      #   Regexp or string.  Default = <tt>/invalid/</tt>
-      #
       # Example:
       #   should_allow_values_for :isbn, "isbn 1 2345 6789 0", "ISBN 1-2345-6789-0"
       #
       def should_allow_values_for(attribute, *good_values)
-        message = get_options!(good_values, :message)
-        message ||= /invalid/
+        get_options!(good_values)
         klass = model_class
         good_values.each do |v|
           should "allow #{attribute} to be set to \"#{v}\"" do
             assert object = klass.find(:first), "Can't find first #{klass}"
             object.send("#{attribute}=", v)
             object.save
-            assert_does_not_contain(object.errors.on(attribute), message, "when set to \"#{v}\"")
+            assert_nil object.errors.on(attribute)
           end
         end
       end
@@ -182,7 +177,67 @@ module ThoughtBot # :nodoc:
         klass = model_class
         min_length = range.first
         max_length = range.last
+        same_length = (min_length == max_length)
 
+        if min_length > 0
+          should "not allow #{attribute} to be less than #{min_length} chars long" do
+            min_value = "x" * (min_length - 1)
+            assert object = klass.find(:first), "Can't find first #{klass}"
+            object.send("#{attribute}=", min_value)
+            assert !object.save, "Saved #{klass} with #{attribute} set to \"#{min_value}\""
+            assert object.errors.on(attribute), 
+                   "There are no errors set on #{attribute} after being set to \"#{min_value}\""
+            assert_contains(object.errors.on(attribute), short_message, "when set to \"#{min_value}\"")
+          end
+        end
+
+        if min_length > 0
+          should "allow #{attribute} to be exactly #{min_length} chars long" do
+            min_value = "x" * min_length
+            assert object = klass.find(:first), "Can't find first #{klass}"
+            object.send("#{attribute}=", min_value)
+            object.save
+            assert_does_not_contain(object.errors.on(attribute), short_message, "when set to \"#{min_value}\"")
+          end
+        end
+    
+        should "not allow #{attribute} to be more than #{max_length} chars long" do
+          max_value = "x" * (max_length + 1)
+          assert object = klass.find(:first), "Can't find first #{klass}"
+          object.send("#{attribute}=", max_value)
+          assert !object.save, "Saved #{klass} with #{attribute} set to \"#{max_value}\""
+          assert object.errors.on(attribute), 
+                 "There are no errors set on #{attribute} after being set to \"#{max_value}\""
+          assert_contains(object.errors.on(attribute), long_message, "when set to \"#{max_value}\"")
+        end
+
+        unless same_length
+          should "allow #{attribute} to be exactly #{max_length} chars long" do
+            max_value = "x" * max_length
+            assert object = klass.find(:first), "Can't find first #{klass}"
+            object.send("#{attribute}=", max_value)
+            object.save
+            assert_does_not_contain(object.errors.on(attribute), long_message, "when set to \"#{max_value}\"")
+          end
+        end
+      end  
+      
+     # Ensures that the length of the attribute is at least a certain length
+     # Requires an existing record
+     #
+     # Options:
+     # * <tt>:short_message</tt> - value the test expects to find in <tt>errors.on(:attribute)</tt>.  
+     #   Regexp or string.  Default = <tt>/short/</tt>
+     #
+     # Example:
+     #   should_ensure_length_at_least :name, 3
+     #
+     def should_ensure_length_at_least(attribute, min_length, opts = {})
+        short_message = get_options!([opts], :short_message)
+        short_message ||= /short/
+     
+        klass = model_class
+     
         if min_length > 0
           min_value = "x" * (min_length - 1)
           should "not allow #{attribute} to be less than #{min_length} chars long" do
@@ -193,16 +248,13 @@ module ThoughtBot # :nodoc:
             assert_contains(object.errors.on(attribute), short_message, "when set to \"#{min_value}\"")
           end
         end
-    
-        max_value = "x" * (max_length + 1)
-        should "not allow #{attribute} to be more than #{max_length} chars long" do
+        should "allow #{attribute} to be at least #{min_length} chars long" do
+          valid_value = "x" * (min_length)
           assert object = klass.find(:first), "Can't find first #{klass}"
-          object.send("#{attribute}=", max_value)
-          assert !object.save, "Saved #{klass} with #{attribute} set to \"#{max_value}\""
-          assert object.errors.on(attribute), "There are no errors set on #{attribute} after being set to \"#{max_value}\""
-          assert_contains(object.errors.on(attribute), long_message, "when set to \"#{max_value}\"")
+          object.send("#{attribute}=", valid_value)
+          assert object.save, "Could not save #{klass} with #{attribute} set to \"#{valid_value}\""
         end
-      end    
+      end
 
       # Ensure that the attribute is in the range specified
       # Requires an existing record
@@ -285,7 +337,9 @@ module ThoughtBot # :nodoc:
         end
       end
 
-      # Ensures that the has_many relationship exists.
+      # Ensures that the has_many relationship exists.  Will also test that the
+      # associated table has the required columns.  Works with polymorphic
+      # associations.
       # 
       # Options:
       # * <tt>:through</tt> - association name for <tt>has_many :through</tt>
@@ -327,23 +381,11 @@ module ThoughtBot # :nodoc:
         end
       end
 
-      # Ensures that the has_and_belongs_to_many relationship exists.  
+      # Ensure that the has_one relationship exists.  Will also test that the
+      # associated table has the required columns.  Works with polymorphic
+      # associations.
       #
-      #   should_have_and_belong_to_many :posts, :cars
-      #
-      def should_have_and_belong_to_many(*associations)
-        get_options!(associations)
-        klass = model_class
-        associations.each do |association|
-          should "should have and belong to many #{association}" do
-            assert klass.reflect_on_association(association), "#{klass.name} does not have any relationship to #{association}"
-            assert_equal :has_and_belongs_to_many, klass.reflect_on_association(association).macro
-          end
-        end
-      end
-  
-      # Ensure that the has_one relationship exists.
-      #
+      # Example:
       #   should_have_one :god # unless hindu
       #
       def should_have_one(*associations)
@@ -355,15 +397,41 @@ module ThoughtBot # :nodoc:
             assert reflection, "#{klass.name} does not have any relationship to #{association}"
             assert_equal :has_one, reflection.macro
             
+            associated_klass = (reflection.options[:class_name] || association.to_s.camelize).constantize
+
             if reflection.options[:foreign_key]
               fk = reflection.options[:foreign_key]
             elsif reflection.options[:as]
               fk = reflection.options[:as].to_s.foreign_key
+              fk_type = fk.gsub(/_id$/, '_type')
+              assert associated_klass.column_names.include?(fk_type), 
+                     "#{associated_klass.name} does not have a #{fk_type} column."            
             else
               fk = klass.name.foreign_key
             end
-            associated_klass = (reflection.options[:class_name] || association.to_s.classify).constantize
-            assert associated_klass.column_names.include?(fk.to_s), "#{associated_klass.name} does not have a #{fk} foreign key."            
+            assert associated_klass.column_names.include?(fk.to_s), 
+                   "#{associated_klass.name} does not have a #{fk} foreign key."            
+          end
+        end
+      end
+  
+      # Ensures that the has_and_belongs_to_many relationship exists.  
+      #
+      #   should_have_and_belong_to_many :posts, :cars
+      #
+      # NOTE:  One thing this macro should test, but doesn't is that the join
+      # table exists in the DB.  Please contact the author if you know of a DB
+      # agnostic way of introspecting on the current schema.
+      def should_have_and_belong_to_many(*associations)
+        get_options!(associations)
+        klass = model_class
+
+        associations.each do |association|
+          should "should have and belong to many #{association}" do
+            assert klass.reflect_on_association(association), 
+                   "#{klass.name} does not have any relationship to #{association}"
+            assert_equal :has_and_belongs_to_many, 
+                         klass.reflect_on_association(association).macro
           end
         end
       end

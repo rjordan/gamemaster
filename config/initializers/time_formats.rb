@@ -1,6 +1,6 @@
 
 my_formats = {
-  :cst => '%m/%d/%Y %I:%M%p CST',
+  :cst => '%m/%d/%Y %I:%M%p UTC',
 }
 
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(my_formats)

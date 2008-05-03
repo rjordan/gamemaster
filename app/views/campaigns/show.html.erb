@@ -91,8 +91,8 @@
     <span>Adventure Logs</span>
     <hr/>
   </div>
-  Public<br/>
-  Private<br/>
+  <%= link_to @campaign.public_forum.name, campaign_forum_url(@campaign, @campaign.public_forum) %><br/>
+  <%= link_to @campaign.private_forum.name, campaign_forum_url(@campaign, @campaign.private_forum) %><br/>
   <br/>
   
 </div>

@@ -55,7 +55,7 @@ Rails::Initializer.run do |config|
   # config.active_record.observers = :cacher, :garbage_collector
 
   # Make Active Record use UTC-base instead of local time
-  # config.active_record.default_timezone = :utc
+  config.active_record.default_timezone = :utc
 end
 
 #http://pivots.pivotallabs.com/users/nick/blog/articles/284-hasfinder-it-s-now-easier-than-ever-to-create-complex-re-usable-sql-queries

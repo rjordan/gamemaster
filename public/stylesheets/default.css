@@ -154,6 +154,23 @@ body {
   display: table;
 }
 
+.post {
+  display: block;
+  border: solid black 1px;
+}
+
+.header_image {
+  width: 90px;
+  text-align: center;
+  border: solid black 1px;
+}
+
+.post .timestamp {
+  background: #330022;
+  color: white;
+  width: 100%;
+}
+
 
 
 a.button {

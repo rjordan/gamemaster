@@ -17,9 +17,14 @@ ActionController::Routing::Routes.draw do |map|
     
     map.resources :campaigns do |c|
       c.resources :stories
-      c.resources :characters      
+      c.resources :characters
+      c.resources :forums
     end
     
+  map.resources :forums do |f|
+    f.resources :posts
+  end
+  
     map.resources :stories do |s|
         s.resources :chapters
     end

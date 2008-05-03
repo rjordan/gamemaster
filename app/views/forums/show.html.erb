@@ -1,0 +1,11 @@
+
+<div id="content">
+  
+  <h1><%= @forum.name %></h1>
+  <% if @forum.campaign %>
+    Back to: <%= link_to @forum.campaign.name, campaign_url(@forum.campaign) %>   
+  <% end %>
+  <%= link_to "New Post", new_forum_post_url(@forum) %>
+</div>
+
+

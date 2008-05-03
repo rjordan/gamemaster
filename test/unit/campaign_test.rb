@@ -6,6 +6,8 @@ class CampaignTest < ActiveSupport::TestCase
     should_require_attributes :name, :user_id, :system_id, :max_players
     should_belong_to :user
     should_belong_to :system
+    should_have_one :private_forum
+    should_have_one :public_forum
     should_have_many :stories
     should_have_many :players
     should_only_allow_numeric_values_for :max_players
