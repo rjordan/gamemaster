@@ -159,11 +159,21 @@ body {
   border: solid black 1px;
 }
 
+#post_contents {
+    width: 29em;
+    font-size: 14pt;
+}
+
+.post_body {
+  vertical-align: top;
+}
+
 .header_image {
   width: 90px;
   text-align: center;
   border: solid black 1px;
 }
+
 
 .post .timestamp {
   background: #330022;

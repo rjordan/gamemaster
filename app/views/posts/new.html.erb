@@ -1,10 +1,14 @@
 <h1>New Post</h1>
 
 <% form_for([@post.forum,@post]) do |form| %>
-  <fieldset>
+  <fieldset> 
     <p>
       <label for="title" class="required" >Title</label>
       <%= form.text_field :title %>
+    </p>
+    <p>
+      <label for="contents" class="required" >Contents</label>
+      <%= form.text_area :contents -%>
     </p>
   </fieldset>
   <%= form.submit 'Submit' %>

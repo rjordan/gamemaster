@@ -1,21 +1,27 @@
 <div class="post">
-  <div class="post_header">
-      
+
+    <table>
+    <tr>
+      <td colspan="2">
       <div class="timestamp">
        <%=show_short.created_at %>
-       <%= image_tag( "page_edit.png") %><%= image_tag("page_remove.png") %>
+       <%=link_to(image_tag( "page_edit.png"), edit_forum_post_url(show_short.forum, show_short)) %><%= image_tag("page_remove.png") %>
       </div>
-      
-        <div class="header_image">
+    </td>
+    </tr>
+    <tr>
+      <td class="header_image">
             <%= render_gravatar show_short.user %>
             <%= show_short.user.nickname %>
-        </div>
-        <div>
+      </td>
+      <td class="post_body">
           <%= link_to show_short.title, forum_post_url(show_short.forum, show_short) %>
-        </div>
+          <p>
+          <%= show_short.contents %>
+        </p>
+      </td>
+    </tr>
+    </table>
 
-  </div>
-  <div class="post_body">
-    <%= show_short.contents %>
-  </div>
+
 </div>

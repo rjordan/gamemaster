@@ -1,7 +1,15 @@
 class PostsController < ApplicationController
+  uses_tiny_mce(:options=>{:theme => 'advanced',
+                           :theme_advanced_toolbar_location => "top",
+                           #:theme_advanced_resizing => true,
+                           #:theme_advanced_resize_horizontal => true,                           
+                           :theme_advanced_buttons1 => %w{formatselect fontselect fontsizeselect bold italic underline strikethrough separator indent outdent separator bullist numlist separator link unlink image undo redo},
+                           :theme_advanced_buttons2 => [],
+                           :theme_advanced_buttons3 => [],
+                           :plugins => %w{contextmenu paste}})  
   
   def index
-    @forum = Forum.find(:first, params[:forum_id], :include=>:posts)
+    @forum = Forum.find(params[:forum_id], :include=>:posts)
     @posts = @forum.posts
     respond_to do |format|
       format.html
@@ -45,7 +53,8 @@ class PostsController < ApplicationController
   
   def create
     @post = Post.new(params[:post])
-    #@post.user_id = User.find(:first).id
+    @post.forum = Forum.find(params[:forum_id])
+    @post.user =  User.find(:first) #TODO current_user
     if @post.save
       flash[:notice] = "The post was created successfully!"
       redirect_to forum_post_url(@post.forum, @post) and return
