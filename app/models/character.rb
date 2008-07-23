@@ -4,4 +4,8 @@ class Character < ActiveRecord::Base
   validates_numericality_of :user_id, :allow_nil=>true
   belongs_to :campaign
   belongs_to :user
+
+  def player_name
+    user.nickname if user
+  end
 end

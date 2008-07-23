@@ -128,7 +128,7 @@ module ThoughtBot # :nodoc:
         message ||= /invalid/
         klass = model_class
         bad_values.each do |v|
-          should "not allow #{attribute} to be set to \"#{v}\"" do
+          should "not allow #{attribute} to be set to #{v.inspect}" do
             assert object = klass.find(:first), "Can't find first #{klass}"
             object.send("#{attribute}=", v)
             assert !object.save, "Saved #{klass} with #{attribute} set to \"#{v}\""
@@ -148,7 +148,7 @@ module ThoughtBot # :nodoc:
         get_options!(good_values)
         klass = model_class
         good_values.each do |v|
-          should "allow #{attribute} to be set to \"#{v}\"" do
+          should "allow #{attribute} to be set to #{v.inspect}" do
             assert object = klass.find(:first), "Can't find first #{klass}"
             object.send("#{attribute}=", v)
             object.save
@@ -415,23 +415,22 @@ module ThoughtBot # :nodoc:
         end
       end
   
-      # Ensures that the has_and_belongs_to_many relationship exists.  
+      # Ensures that the has_and_belongs_to_many relationship exists, and that the join
+      # table is in place.
       #
       #   should_have_and_belong_to_many :posts, :cars
       #
-      # NOTE:  One thing this macro should test, but doesn't is that the join
-      # table exists in the DB.  Please contact the author if you know of a DB
-      # agnostic way of introspecting on the current schema.
       def should_have_and_belong_to_many(*associations)
         get_options!(associations)
         klass = model_class
 
         associations.each do |association|
           should "should have and belong to many #{association}" do
-            assert klass.reflect_on_association(association), 
-                   "#{klass.name} does not have any relationship to #{association}"
-            assert_equal :has_and_belongs_to_many, 
-                         klass.reflect_on_association(association).macro
+            reflection = klass.reflect_on_association(association)
+            assert reflection, "#{klass.name} does not have any relationship to #{association}"
+            assert_equal :has_and_belongs_to_many, reflection.macro
+            table = reflection.options[:join_table]
+            assert ::ActiveRecord::Base.connection.tables.include?(table), "table #{table} doesn't exist"
           end
         end
       end
@@ -466,7 +465,7 @@ module ThoughtBot # :nodoc:
         get_options!(methods)
         klass = model_class
         methods.each do |method|
-          should "respond to class method #{method}" do
+          should "respond to class method ##{method}" do
             assert_respond_to klass, method, "#{klass.name} does not have class method #{method}"
           end
         end
@@ -480,7 +479,7 @@ module ThoughtBot # :nodoc:
         get_options!(methods)
         klass = model_class
         methods.each do |method|
-          should "respond to instance method #{method}" do
+          should "respond to instance method ##{method}" do
             assert_respond_to klass.new, method, "#{klass.name} does not have instance method #{method}"
           end
         end
@@ -522,6 +521,26 @@ module ThoughtBot # :nodoc:
           end
         end
       end
+
+      # Ensures that there are DB indices on the given columns or tuples of columns.
+      # Also aliased to should_have_index for readability
+      #   
+      #   should_have_indices :email, :name, [:commentable_type, :commentable_id]
+      #   should_have_index :age
+      #
+      def should_have_indices(*columns)
+        table = model_class.name.tableize
+        indices = ::ActiveRecord::Base.connection.indexes(table).map(&:columns)
+
+        columns.each do |column|
+          should "have index on #{table} for #{column.inspect}" do
+            columns = [column].flatten.map(&:to_s)
+            assert_contains(indices, columns)
+          end
+        end
+      end
+
+      alias_method :should_have_index, :should_have_indices
       
       # Ensures that the model cannot be saved if one of the attributes listed is not accepted.
       #

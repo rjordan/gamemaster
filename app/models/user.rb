@@ -6,8 +6,15 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :nickname
   attr_protected :password_hash
   has_many :campaigns
+  
   has_many :characters
   has_many :games, :through=>:characters, :source=>:campaign
+  
+  #def characters
+  #  Characters.pc.find(:all, :conditions=>{:user_id=>id})
+  #end
+  
+  #named_scope :games,
   
     #Returns a user if one matches the login/password combo user must be active
   def self.authenticate(email, password)

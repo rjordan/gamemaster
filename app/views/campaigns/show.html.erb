@@ -37,10 +37,10 @@
   <table class="show_form">
     <% if @campaign.players %>
         <thead><td>Player Name</td><td>Character Name</td></thead>
-        <% for player in @campaign.players %>
+       <% for player in @campaign.players %>
         <% character = @campaign.characters.find(:first, :conditions=>{:user_id=>player}) %>
         <tr>
-          <td><%= link_to player.nickname, user_url(player) %></td>
+          <td><%= link_to character.player_name, user_url(character.user) %></td>
           <td><%= link_to character.name, campaign_character_url(@campaign, character) %></td>
         </tr>
       <% end %>

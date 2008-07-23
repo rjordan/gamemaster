@@ -7,5 +7,10 @@ class Campaign < ActiveRecord::Base
   has_one :private_forum, :class_name=>"Forum", :conditions=>{:public=>false}, :dependent=>:destroy
   has_many :stories
   has_many :characters
+  
   has_many :players, :through=>:characters, :source=>:user 
+  
+  #def players
+  #  characters.find(:all, :conditions=>'user_id is not null')
+  #end
 end
