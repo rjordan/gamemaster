@@ -1,7 +1,6 @@
+require 'test_helper'
 
-require File.dirname(__FILE__) + '/../test_helper'
-
-class UsersControllerTest < Test::Unit::TestCase
+class UsersControllerTest < ActionController::TestCase
   
     def setup
       @controller = UsersController.new
@@ -21,7 +20,6 @@ class UsersControllerTest < Test::Unit::TestCase
       resource.create.params[:password_hash]='password'
       resource.update.params = { :nickname=> 'Unknown' }
     end 
-
-
   end
+  
 end 

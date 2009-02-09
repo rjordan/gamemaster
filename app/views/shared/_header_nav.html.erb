@@ -1,14 +1,18 @@
+<% user_id = session[:user_id] %>
 <ul>
-  <% if session[:user_id] %>
-  <li><%= link_to 'Home', user_url(session[:user_id]) %></li>
- <% else %>
-  <li><%= link_to 'Home', root_url %></li>
- <% end %>
-<% unless session[:user_id] %>
-  <li><%= link_to 'Login', new_session_url %></li>
-  <li><a href="http://localhost:3000">Signup</a></li>
-<% else %>
-  <li><%= link_to 'Logout', session_url, :method=>:delete %></li>
-<% end %>
-  <li><%= link_to 'Forums', forums_url %></li>  
+
+  <% if user_id %>
+    <li><%= link_to 'Home', user_url(user_id) %></li>
+  <% else %>
+    <li><%= link_to 'Home', root_url %></li>
+  <% end %>
+
+  <% unless user_id %>
+    <li><%= link_to 'Login', new_session_url %></li>
+    <li><a href="http://localhost:3000">Signup</a></li>
+  <% else %>
+    <li><%= link_to 'Logout', session_url, :method=>:delete %></li>
+  <% end %>
+
+  <li><%= link_to 'Forums', forums_url %></li>
 </ul>

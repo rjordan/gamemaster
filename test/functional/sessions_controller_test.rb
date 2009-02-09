@@ -1,7 +1,6 @@
+require 'test_helper'
 
-require File.dirname(__FILE__) + '/../test_helper'
-
-class SessionsControllerTest < Test::Unit::TestCase
+class SessionsControllerTest < ActionController::TestCase
   
   def setup
     @controller = SessionsController.new
