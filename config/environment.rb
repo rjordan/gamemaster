@@ -41,6 +41,10 @@ Rails::Initializer.run do |config|
     :secret      => '88f2d31d7173d71598bc7545c562333ed7aeca36909947e1a7e1db3e9024972720d241162f2b76eb2fbaebcd31001f14aa2446459ce843aed06c382105f976af'
   }
 
+  gem "sqlite3-ruby"
+  gem "RedCloth"
+  gem "mocha"
+
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
   # (create the session table with 'rake db:sessions:create')

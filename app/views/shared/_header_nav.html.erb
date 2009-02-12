@@ -2,17 +2,17 @@
 <ul>
 
   <% if user_id %>
-    <li><%= link_to 'Home', user_url(user_id) %></li>
+    <li><%= link_to 'Home', user_path(user_id) %></li>
   <% else %>
-    <li><%= link_to 'Home', root_url %></li>
+    <li><%= link_to 'Home', root_path %></li>
   <% end %>
 
   <% unless user_id %>
-    <li><%= link_to 'Login', new_session_url %></li>
+    <li><%= link_to 'Login', new_session_path %></li>
     <li><a href="http://localhost:3000">Signup</a></li>
   <% else %>
-    <li><%= link_to 'Logout', session_url, :method=>:delete %></li>
+    <li><%= link_to 'Logout', session_path, :method=>:delete %></li>
   <% end %>
 
-  <li><%= link_to 'Forums', forums_url %></li>
+  <li><%= link_to 'Forums', forums_path %></li>
 </ul>

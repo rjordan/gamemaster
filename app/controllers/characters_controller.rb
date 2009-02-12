@@ -30,7 +30,7 @@ class CharactersController < ApplicationController
     
     character.destroy
     flash[:notice] = "The specified character has been removed!"
-    redirect_to campaign_url(character.campaign)
+    redirect_to campaign_path(character.campaign)
   end
   
   def update
@@ -38,17 +38,17 @@ class CharactersController < ApplicationController
     @character.update_attributes(params[:character])
     if @character.save
       flash[:notice] = "The character was updated successfully!"
-      redirect_to campaign_character_url(@character.campaign, @character) and return
+      redirect_to character_path(@character) and return
     end
     render :action=>:edit
   end
   
   def create
     @character = Character.new(params[:character])
-    @character.campaign_id = params[:campaign_id]
+    @character.campaign = Campaign.find(params[:campaign_id])
     if @character.save
       flash[:notice] = "The character was created successfully!"
-      redirect_to campaign_character_url(@character.campaign, @character) and return
+      redirect_to character_path(@character) and return
     end
     render :action=>:new
   end

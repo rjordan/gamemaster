@@ -13,22 +13,19 @@ ActionController::Routing::Routes.draw do |map|
   #   map.resources :products
     map.resource :session
     
-    map.resources :users
+    map.resources :users, :collection=>{ :invite=>:post }
     
-    map.resources :campaigns do |c|
-      c.resources :stories
+    map.resources :campaigns, :shallow=>true do |c|
+      c.resources :stories do |s|
+        s.resources :chapters
+      end
       c.resources :characters
       c.resources :forums
     end
-    
-  map.resources :forums do |f|
-    f.resources :posts
-  end
-  
-    map.resources :stories do |s|
-        s.resources :chapters
+
+    map.resources :forums, :shallow=>true do |f|
+      f.resources :posts
     end
-    
 
   # Sample resource route with options:
   #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
@@ -49,6 +46,6 @@ ActionController::Routing::Routes.draw do |map|
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  #map.connect ':controller/:action/:id'
+  #map.connect ':controller/:action/:id.:format'
 end

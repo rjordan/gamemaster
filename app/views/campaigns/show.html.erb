@@ -38,10 +38,10 @@
     <% if @campaign.players %>
         <thead><td>Player Name</td><td>Character Name</td></thead>
        <% for player in @campaign.players %>
-        <% character = @campaign.characters.find(:first, :conditions=>{:user_id=>player}) %>
+        <% character = @campaign.player_characters.find(:first, :conditions=>{:user_id=>player}) %>
         <tr>
-          <td><%= link_to character.player_name, user_url(character.user) %></td>
-          <td><%= link_to character.name, campaign_character_url(@campaign, character) %></td>
+          <td><%= link_to character.player_name, user_path(character.user) %></td>
+          <td><%= link_to character.name, character_path(character) %></td>
         </tr>
       <% end %>
   <% end %>
@@ -50,14 +50,14 @@
   
   <div id="section_heading">
     <span>Stories</span>
-    <%= link_to 'New', new_campaign_story_url(@campaign), :class=>'button' -%>
+    <%= link_to 'New', new_campaign_story_path(@campaign), :class=>'button' -%>
     <hr/>
   </div>
   <table class="show_form">
     <% if @campaign.stories %>
         <% for story in @campaign.stories %>
         <tr>
-          <td><%=story.position %>) <%= link_to story.name, campaign_story_url(@campaign, story) %></td>
+          <td><%=story.position %>) <%= link_to story.name, story_path(story) %></td>
         </tr>
       <% end %>
   <% end %>
@@ -66,14 +66,14 @@
   
   <div id="section_heading">
     <span>Actors (NPCs)</span>
-    <%= link_to "New", new_campaign_character_url(@campaign), :class=>'button' %>
+    <%= link_to "New", new_campaign_character_path(@campaign), :class=>'button' %>
     <hr/>
   </div>
   <table class="show_form">
     <% if @npcs %>
         <% for npc in @npcs %>
         <tr>
-          <td><%= link_to npc.name, campaign_character_url(@campaign, npc) %></td>
+          <td><%= link_to npc.name, character_path(npc) %></td>
         </tr>
       <% end %>
   <% end %>
@@ -91,10 +91,10 @@
     <span>Adventure Logs</span>
     <hr/>
   </div>
-  <%= link_to @campaign.public_forum.name, forum_posts_url(@campaign.public_forum) %><br/>
-  <%= link_to @campaign.private_forum.name, forum_posts_url(@campaign.private_forum) %><br/>
+  <%= link_to @campaign.public_forum.name, forum_posts_path(@campaign.public_forum) %><br/>
+  <%= link_to @campaign.private_forum.name, forum_posts_path(@campaign.private_forum) %><br/>
   <br/>
   
 </div>
 
-<%= link_to_if (@campaign.user_id==session[:user_id]), 'Edit', edit_campaign_url(@campaign) %> 
+<%= link_to_if (@campaign.user_id==session[:user_id]), 'Edit', edit_campaign_path(@campaign) %>

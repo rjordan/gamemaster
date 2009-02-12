@@ -1,9 +1,9 @@
 <h1>Edit Post</h1>
 
-<% form_for([@post.forum,@post]) do |form| %>
+<% form_for(@post) do |form| %>
   <fieldset>
     <p>
-      <label for="title" class="required">Title</label>
+      <%= form.label :title, :class=>'required' %>
       <%= form.text_field :title %>
     </p>
     <p>

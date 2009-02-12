@@ -3,9 +3,9 @@
   
   <h1><%= @forum.name %></h1>
   <% if @forum.campaign %>
-    Back to: <%= link_to @forum.campaign.name, campaign_url(@forum.campaign) %>   
+    Back to: <%= link_to @forum.campaign.name, campaign_path(@forum.campaign) %>
   <% end %>
-  <%= link_to "New Post", new_forum_post_url(@forum) %>
+  <%= link_to "New Post", new_forum_post_path(@forum) %>
 </div>
 
 

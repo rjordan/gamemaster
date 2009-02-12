@@ -4,11 +4,13 @@ class UserTest < ActiveSupport::TestCase
   
   context "A User" do
     should_have_db_columns :email, :password_hash, :nickname
-    should_require_attributes :email, :password_hash, :nickname
-    should_require_unique_attributes :email, :nickname
-    should_protect_attributes :password_hash
+    should_validate_presence_of :email, :password_hash, :nickname
+    should_validate_uniqueness_of :email, :nickname
+    should_not_allow_mass_assignment_of :password_hash
     should_have_many :campaigns
     should_have_many :games
+    #should_validate_confirmation_of :password
+    should_ensure_length_at_least :password, 8
   
     should "authenticate a valid user" do
       assert_equal users(:rjordan), User.authenticate('rjordan@pobox.com', 'password')

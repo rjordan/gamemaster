@@ -9,8 +9,8 @@ class CampaignsController < ApplicationController
   end
   
   def show
-    @campaign = Campaign.find(params[:id], :include=>[:players, :stories, :characters])
-    @npcs = @campaign.characters.find(:all, :conditions=>{:user_id=>nil}, :order=>:name)
+    @campaign = Campaign.find(params[:id], :include=>[:players, :stories, :player_characters, :nonplayer_characters])
+    @npcs = @campaign.nonplayer_characters.find(:all, :order=>:name)
     respond_to do |format|
       format.html
       format.xml { render :xml => @campaign }
@@ -29,7 +29,7 @@ class CampaignsController < ApplicationController
     campaign = Campaign.find(params[:id])
     campaign.destroy
     flash[:notice] = "The specified campaign has been removed!"
-    redirect_to campaigns_url
+    redirect_to campaigns_path
   end
   
   def update
@@ -37,7 +37,7 @@ class CampaignsController < ApplicationController
     @campaign.update_attributes(params[:campaign])
     if @campaign.save
       flash[:notice] = "The campaign was updated successfully!"
-      redirect_to campaign_url(@campaign) and return
+      redirect_to campaign_path(@campaign) and return
     end
     render :action=>:edit
   end
@@ -47,7 +47,7 @@ class CampaignsController < ApplicationController
     @campaign.user_id = User.find(:first).id
     if @campaign.save
       flash[:notice] = "The campaign was created successfully!"
-      redirect_to campaign_url(@campaign) and return
+      redirect_to campaign_path(@campaign) and return
     end
     render :action=>:new
   end

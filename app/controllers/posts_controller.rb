@@ -38,7 +38,7 @@ class PostsController < ApplicationController
     post = Post.find(params[:id])
     post.destroy
     flash[:notice] = "The specified post has been removed!"
-    redirect_to forum_posts_url(post.forum)
+    redirect_to forum_posts_path(post.forum)
   end
   
   def update
@@ -46,7 +46,7 @@ class PostsController < ApplicationController
     @post.update_attributes(params[:post])
     if @post.save
       flash[:notice] = "The post was updated successfully!"
-      redirect_to forum_post_url(@post.forum, @post) and return
+      redirect_to post_path(@post) and return
     end
     render :action=>:edit
   end
@@ -57,7 +57,7 @@ class PostsController < ApplicationController
     @post.user =  User.find(:first) #TODO current_user
     if @post.save
       flash[:notice] = "The post was created successfully!"
-      redirect_to forum_post_url(@post.forum, @post) and return
+      redirect_to post_path(@post) and return
     end
     render :action=>:new
   end

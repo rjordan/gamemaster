@@ -19,7 +19,7 @@
   <div id="section_heading">
     <span>Running Campaigns</span>
     <% if session[:user_id]==@user %>
-      <%= link_to "New Campaign", new_campaign_url, :class=>'button' %>
+      <%= link_to "New Campaign", new_campaign_path, :class=>'button' %>
     <% end %>
     <hr/>
   </div>
@@ -27,7 +27,7 @@
     <% if @user.campaigns %>
       <% for campaign in @user.campaigns %>
         <tr>
-          <td><%= link_to campaign.name, campaign_url(campaign) %></td>
+          <td><%= link_to campaign.name, campaign_path(campaign) %></td>
           <td><%= campaign.system.name %></td>
         </tr>
       <% end %>
@@ -38,7 +38,7 @@
   <div id="section_heading">
     <span>Playing Games</span>
     <% if session[:user_id]==@user %>
-    <%= link_to "Find Game", campaigns_url, :class=>'button' %>
+    <%= link_to "Find Game", campaigns_path, :class=>'button' %>
     <% end %>
     <hr/>
   </div>
@@ -46,7 +46,7 @@
     <% if @user.games %>
       <% for game in @user.games %>
         <tr>
-          <td><%= link_to game.name, campaign_url(game) %></td>
+          <td><%= link_to game.name, campaign_path(game) %></td>
         </tr>
       <% end %>
     <% end %>
@@ -56,5 +56,5 @@
 </div>
 
 <% if session[:user_id]==@user %>
-  <%= link_to 'Edit', edit_user_url(@user) %> 
+  <%= link_to 'Edit', edit_user_path(@user) %>
 <% end %>

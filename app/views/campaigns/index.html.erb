@@ -21,7 +21,7 @@
         <% end %>
         <% for campaign in @campaigns %>
           <tr class="<%= cycle "even", "odd" -%>">
-            <td><%= link_to campaign.name, campaign_url(campaign) %></td>
+            <td><%= link_to campaign.name, campaign_path(campaign) %></td>
             <td><%= campaign.system.name %></td>
             <td><%= campaign.user.nickname %></td>
             <td><%= campaign.players.count %> / <%= campaign.max_players %></td>

@@ -5,7 +5,7 @@
       <td colspan="2">
       <div class="timestamp">
        <%=show_short.created_at %>
-       <%=link_to(image_tag( "page_edit.png"), edit_forum_post_url(show_short.forum, show_short)) %><%= image_tag("page_remove.png") %>
+       <%=link_to(image_tag( "page_edit.png"), edit_post_path(show_short)) %><%= image_tag("page_remove.png") %>
       </div>
     </td>
     </tr>
@@ -15,7 +15,7 @@
             <%= show_short.user.nickname %>
       </td>
       <td class="post_body">
-          <%= link_to show_short.title, forum_post_url(show_short.forum, show_short) %>
+          <%= link_to show_short.title, post_path(show_short) %>
           <p>
           <%= show_short.contents %>
         </p>

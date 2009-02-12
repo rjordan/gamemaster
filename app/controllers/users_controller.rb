@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     user.destroy
     flash[:notice] = "The specified user has been removed!"
-    redirect_to users_url
+    redirect_to users_path
   end
   
   def update
@@ -36,16 +36,17 @@ class UsersController < ApplicationController
     @user.update_attributes(params[:story])
     if @user.save
       flash[:notice] = "The user was updated successfully!"
-      redirect_to user_url(@user) and return
+      redirect_to user_path(@user) and return
     end
     render :action=>:edit
   end
   
   def create
     @user = User.new(params[:user])
+    @user.change_password(@user.password, @user.password_confirmation)
     if @user.save
       flash[:notice] = "The user was created successfully!"
-      redirect_to user_url(@user) and return
+      redirect_to user_path(@user) and return
     end
     render :action=>:new
   end

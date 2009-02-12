@@ -28,7 +28,7 @@ class ForumsController < ApplicationController
     forum = Forum.find(params[:id])
     forum.destroy
     flash[:notice] = "The specified forum has been removed!"
-    redirect_to forums_url
+    redirect_to forums_path
   end
   
   def update
@@ -36,7 +36,7 @@ class ForumsController < ApplicationController
     @forum.update_attributes(params[:forum])
     if @forum.save
       flash[:notice] = "The forum was updated successfully!"
-      redirect_to forum_url(@forum) and return
+      redirect_to forum_path(@forum) and return
     end
     render :action=>:edit
   end
@@ -46,7 +46,7 @@ class ForumsController < ApplicationController
     #@forum.user_id = User.find(:first).id
     if @forum.save
       flash[:notice] = "The forum was created successfully!"
-      redirect_to forum_url(@forum) and return
+      redirect_to forum_path(@forum) and return
     end
     render :action=>:new
   end

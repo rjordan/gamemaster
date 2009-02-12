@@ -18,7 +18,7 @@
         <% end %>
         <% for user in @users %>
           <tr class="<%= cycle "even", "odd" -%>">
-            <td><%= link_to user.nickname, user_url(user) %></td>
+            <td><%= link_to user.nickname, user_path(user) %></td>
           </tr>
         <% end %>
       </tbody>

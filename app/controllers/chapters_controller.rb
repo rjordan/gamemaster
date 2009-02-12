@@ -30,7 +30,7 @@ class ChaptersController < ApplicationController
     
     chapter.destroy
     flash[:notice] = "The specified chapter has been removed!"
-    redirect_to story_chapters_url(chapter.story)
+    redirect_to story_chapters_path(chapter.story)
   end
   
   def update
@@ -38,7 +38,7 @@ class ChaptersController < ApplicationController
     @chapter.update_attributes(params[:chapter])
     if @chapter.save
       flash[:notice] = "The chapter was updated successfully!"
-      redirect_to story_chapter_url(@chapter.story, @chapter) and return
+      redirect_to chapter_path(@chapter) and return
     end
     render :action=>:edit
   end
@@ -48,7 +48,7 @@ class ChaptersController < ApplicationController
     @chapter.story_id = params[:story_id]
     if @chapter.save
       flash[:notice] = "The chapter was created successfully!"
-      redirect_to story_chapter_url(@chapter.story, @chapter) and return
+      redirect_to chapter_path(@chapter) and return
     end
     render :action=>:new
   end
