@@ -35,11 +35,11 @@ class ChaptersControllerTest < ActionController::TestCase
       setup do
         get :index, :format=>'xml', :story_id=>@chapter.story
       end
-      should_respond_with_content_type 'application/xml'
+      should_respond_with_content_type :xml
       should_not_set_the_flash
       should_render_without_layout
       should_respond_with :success
-      should_respond_with_xml_for :chapters
+      #should_respond_with_xml_for :chapters
     end
 
     #SHOW TESTS
@@ -58,11 +58,11 @@ class ChaptersControllerTest < ActionController::TestCase
         get :show, :id=>@chapter, :format=>'xml'
       end
       should_assign_to :chapter
-      should_respond_with_content_type 'application/xml'
+      should_respond_with_content_type :xml
       should_not_set_the_flash
       should_render_without_layout
       should_respond_with :success
-      should_respond_with_xml_for :chapter
+      #should_respond_with_xml_for :chapter
     end
 
     #NEW TESTS
@@ -98,7 +98,7 @@ class ChaptersControllerTest < ActionController::TestCase
       end
       should_assign_to :chapter
       should_set_the_flash_to(/created/i)
-      should_redirect_to "chapter_url(@chapter)"
+      should_redirect_to("the chapter view") { chapter_url(assigns(:chapter)) }
     end
 
     #UPDATE TESTS
@@ -108,7 +108,7 @@ class ChaptersControllerTest < ActionController::TestCase
       end
       should_assign_to :chapter
       should_set_the_flash_to(/updated/i)
-      should_redirect_to "chapter_url(@chapter)"
+      should_redirect_to("the chapter view") { chapter_url(@chapter) }
     end
 
     #DELETE tests
@@ -117,7 +117,7 @@ class ChaptersControllerTest < ActionController::TestCase
         delete :destroy, :id=>@chapter
       end
       should_set_the_flash_to(/removed/i)
-      should_redirect_to "story_chapters_url(@chapter.story)"
+      should_redirect_to("the chapters list for a story") { story_chapters_url(@chapter.story) }
     end
 
   end

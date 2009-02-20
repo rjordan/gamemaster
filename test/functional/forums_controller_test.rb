@@ -41,11 +41,11 @@ class ForumsControllerTest < ActionController::TestCase
       setup do
         get :index, :format=>'xml'
       end
-      should_respond_with_content_type 'application/xml'
+      should_respond_with_content_type :xml
       should_not_set_the_flash
       should_render_without_layout
       should_respond_with :success
-      should_respond_with_xml_for :forums
+      #should_respond_with_xml_for :forums
     end
 
     #SHOW TESTS
@@ -64,11 +64,11 @@ class ForumsControllerTest < ActionController::TestCase
         get :show, :id=>@forum, :format=>'xml'
       end
       should_assign_to :forum
-      should_respond_with_content_type 'application/xml'
+      should_respond_with_content_type :xml
       should_not_set_the_flash
       should_render_without_layout
       should_respond_with :success
-      should_respond_with_xml_for :forum
+      #should_respond_with_xml_for :forum
     end
 
     #NEW TESTS
@@ -95,6 +95,7 @@ class ForumsControllerTest < ActionController::TestCase
       should_render_a_form
     end
 
+    #TODO Implement
     #CREATE TESTS
 #    context "on POST to :create" do
 #      setup do
@@ -102,7 +103,7 @@ class ForumsControllerTest < ActionController::TestCase
 #      end
 #      should_assign_to :forum
 #      should_set_the_flash_to(/created/i)
-#      should_redirect_to "forum_path(@forum)"
+#      should_redirect_to("the forum view") { forum_url( assigns(:forum) ) }
 #    end
 
     #UPDATE TESTS
@@ -112,7 +113,7 @@ class ForumsControllerTest < ActionController::TestCase
       end
       should_assign_to :forum
       should_set_the_flash_to(/updated/i)
-      should_redirect_to "forum_url(@forum)"
+      should_redirect_to("the forum view") { forum_url( assigns(:forum) ) }
     end
 
     #DELETE tests
@@ -121,7 +122,7 @@ class ForumsControllerTest < ActionController::TestCase
         delete :destroy, :id=>@forum
       end
       should_set_the_flash_to(/removed/i)
-      should_redirect_to "forums_url"
+      should_redirect_to("the forums list") { forums_url }
     end
 
   end

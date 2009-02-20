@@ -35,11 +35,11 @@ class CampaignsControllerTest < ActionController::TestCase
       setup do
         get :index, :format=>'xml'
       end
-      should_respond_with_content_type 'application/xml'
+      should_respond_with_content_type :xml
       should_not_set_the_flash
       should_render_without_layout
       should_respond_with :success
-      should_respond_with_xml_for :campaigns
+      #should_respond_with_xml_for :campaigns
     end
 
     #SHOW TESTS
@@ -58,11 +58,11 @@ class CampaignsControllerTest < ActionController::TestCase
         get :show, :id=>@campaign, :format=>'xml'
       end
       should_assign_to :campaign
-      should_respond_with_content_type 'application/xml'
+      should_respond_with_content_type :xml
       should_not_set_the_flash
       should_render_without_layout
       should_respond_with :success
-      should_respond_with_xml_for :campaign
+      #should_respond_with_xml_for :campaign
     end
 
     #NEW TESTS
@@ -96,7 +96,7 @@ class CampaignsControllerTest < ActionController::TestCase
       end
       should_assign_to :campaign
       should_set_the_flash_to(/created/i)
-      should_redirect_to "campaign_url(@campaign)"
+      should_redirect_to("the campaign view") { campaign_url(assigns(:campaign)) }
     end
 
     #UPDATE TESTS
@@ -106,7 +106,7 @@ class CampaignsControllerTest < ActionController::TestCase
       end
       should_assign_to :campaign
       should_set_the_flash_to(/updated/i)
-      should_redirect_to "campaign_url(@campaign)"
+      should_redirect_to("the campaign view") { campaign_url(@campaign) }
     end
 
     #DELETE tests
@@ -115,7 +115,7 @@ class CampaignsControllerTest < ActionController::TestCase
         delete :destroy, :id=>@campaign
       end
       should_set_the_flash_to(/removed/i)
-      should_redirect_to "campaigns_url"
+      should_redirect_to("the campaigns list") { campaigns_url }
     end
 
 end

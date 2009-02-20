@@ -19,6 +19,7 @@ class SessionsControllerTest < ActionController::TestCase
       should_render_a_form
       should_not_set_the_flash
 
+      #TODO add these lots of places
       should "be valid markup" do
         assert_valid_markup
       end
@@ -51,7 +52,7 @@ class SessionsControllerTest < ActionController::TestCase
         delete :destroy
       end
 
-      should_redirect_to "new_session_url"
+      should_redirect_to("back to the login page") { new_session_url }
       should_set_the_flash_to "You've been logged out."
     end
   end 

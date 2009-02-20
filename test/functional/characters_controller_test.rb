@@ -34,11 +34,11 @@ class CharactersControllerTest < ActionController::TestCase
       setup do
         get :index, :format=>'xml', :campaign_id=>@character.campaign
       end
-      should_respond_with_content_type 'application/xml'
+      should_respond_with_content_type :xml
       should_not_set_the_flash
       should_render_without_layout
       should_respond_with :success
-      should_respond_with_xml_for :characters
+      #should_respond_with_xml_for :characters
     end
 
     #SHOW TESTS
@@ -57,11 +57,11 @@ class CharactersControllerTest < ActionController::TestCase
         get :show, :id=>@character, :format=>'xml'
       end
       should_assign_to :character
-      should_respond_with_content_type 'application/xml'
+      should_respond_with_content_type :xml
       should_not_set_the_flash
       should_render_without_layout
       should_respond_with :success
-      should_respond_with_xml_for :character
+      #should_respond_with_xml_for :character
     end
 
     #NEW TESTS
@@ -95,7 +95,7 @@ class CharactersControllerTest < ActionController::TestCase
       end
       should_assign_to :character
       should_set_the_flash_to(/created/i)
-      should_redirect_to "character_path(@character)"
+      should_redirect_to("the character view") { character_url(assigns(:character)) }
     end
 
     #UPDATE TESTS
@@ -105,7 +105,7 @@ class CharactersControllerTest < ActionController::TestCase
       end
       should_assign_to :character
       should_set_the_flash_to(/updated/i)
-      should_redirect_to "character_url(@character)"
+      should_redirect_to("the character view") { character_url(@character) }
     end
 
     #DELETE tests
@@ -114,7 +114,7 @@ class CharactersControllerTest < ActionController::TestCase
         delete :destroy, :id=>@character
       end
       should_set_the_flash_to(/removed/i)
-      should_redirect_to "campaign_url(@character.campaign)"
+      should_redirect_to("the campaign view") { campaign_url(@character.campaign) }
     end
 
   end

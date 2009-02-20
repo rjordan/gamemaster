@@ -10,16 +10,6 @@ class PostsControllerTest < ActionController::TestCase
       @post = Post.find(:first)
     end
 
-#      should_be_restful do |resource|
-#        resource.parent = :forum
-#        resource.actions    = [:index, :show, :new, :edit, :update, :destroy, :create]
-#        resource.formats    = [:html, :xml]
-#        resource.create.params = { :title=>'A General Forum', :contents=>"Another post!!!"  }
-#        resource.create.params[:user_id]=User.find(:first)
-#        resource.create.params[:forum_id]=Forum.find(:first)
-#        resource.update.params = { :title=>'A General Forum'  }
-#      end
-
     should_route :get, '/forums/1/posts', :action=>:index, :forum_id=>1
     should_route :get, '/forums/1/posts.xml', :action=>:index, :forum_id=>1, :format=>:xml
     should_route :get, '/posts/1', :action => :show, :id=>1
@@ -44,11 +34,11 @@ class PostsControllerTest < ActionController::TestCase
       setup do
         get :index, :forum_id=>@post.forum, :format=>'xml'
       end
-      should_respond_with_content_type 'application/xml'
+      should_respond_with_content_type :xml
       should_not_set_the_flash
       should_render_without_layout
       should_respond_with :success
-      should_respond_with_xml_for :posts
+      #should_respond_with_xml_for :posts
     end
 
     #SHOW TESTS
@@ -67,11 +57,11 @@ class PostsControllerTest < ActionController::TestCase
         get :show, :id=>@post, :forum_id=>@post.forum, :format=>'xml'
       end
       should_assign_to :post
-      should_respond_with_content_type 'application/xml'
+      should_respond_with_content_type :xml
       should_not_set_the_flash
       should_render_without_layout
       should_respond_with :success
-      should_respond_with_xml_for :post
+      #should_respond_with_xml_for :post
     end
 
     #NEW TESTS
@@ -107,7 +97,7 @@ class PostsControllerTest < ActionController::TestCase
       end
       should_assign_to :post
       should_set_the_flash_to(/created/i)
-      should_redirect_to "post_path(@post)"
+      should_redirect_to("the post view") { post_path( assigns(:post) ) }
     end
 
     #UPDATE TESTS
@@ -117,7 +107,7 @@ class PostsControllerTest < ActionController::TestCase
       end
       should_assign_to :post
       should_set_the_flash_to(/updated/i)
-      should_redirect_to "post_url(@post)"
+      should_redirect_to("the post view") { post_path( assigns(:post) ) }
     end
 
     #DELETE tests
@@ -126,7 +116,7 @@ class PostsControllerTest < ActionController::TestCase
         delete :destroy, :id=>@post
       end
       should_set_the_flash_to(/removed/i)
-      should_redirect_to "forum_posts_url(@post.forum)"
+      should_redirect_to("the forum posts list") { forum_posts_url(@post.forum) }
     end
 
   end

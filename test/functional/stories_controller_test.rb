@@ -35,11 +35,11 @@ class StoriesControllerTest < ActionController::TestCase
       setup do
         get :index, :campaign_id=>@story.campaign, :format=>'xml'
       end
-      should_respond_with_content_type 'application/xml'
+      should_respond_with_content_type :xml
       should_not_set_the_flash
       should_render_without_layout
       should_respond_with :success
-      should_respond_with_xml_for :stories
+      #should_respond_with_xml_for :stories
     end
 
     #SHOW TESTS
@@ -58,11 +58,11 @@ class StoriesControllerTest < ActionController::TestCase
         get :show, :id=>@story, :campaign_id=>@story.campaign, :format=>'xml'
       end
       should_assign_to :story
-      should_respond_with_content_type 'application/xml'
+      should_respond_with_content_type :xml
       should_not_set_the_flash
       should_render_without_layout
       should_respond_with :success
-      should_respond_with_xml_for :story
+      #should_respond_with_xml_for :story
     end
 
     #NEW TESTS
@@ -96,7 +96,7 @@ class StoriesControllerTest < ActionController::TestCase
       end
       should_assign_to :story
       should_set_the_flash_to(/created/i)
-      should_redirect_to "story_path(@story)"
+      should_redirect_to("the story view") { story_path( assigns(:story) ) }
     end
 
     #UPDATE TESTS
@@ -106,7 +106,7 @@ class StoriesControllerTest < ActionController::TestCase
       end
       should_assign_to :story
       should_set_the_flash_to(/updated/i)
-      should_redirect_to "story_url(@story)"
+      should_redirect_to("the story view") { story_path( assigns(:story) ) }
     end
 
     #DELETE tests
@@ -115,7 +115,7 @@ class StoriesControllerTest < ActionController::TestCase
         delete :destroy, :id=>@story
       end
       should_set_the_flash_to(/removed/i)
-      should_redirect_to "campaign_stories_url(@story.campaign)"
+      should_redirect_to("the list of stories for a campaign") { campaign_stories_path( @story.campaign ) }
     end
 
   end

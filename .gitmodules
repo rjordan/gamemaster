@@ -1,6 +1,0 @@
-[submodule "vendor/plugins/shoulda"]
-	path = vendor/plugins/shoulda
-	url = git://github.com/thoughtbot/shoulda.git
-[submodule "vendor\\plugins\\acts_as_textiled"]
-	path = vendor\\plugins\\acts_as_textiled
-	url = git://github.com/defunkt/acts_as_textiled.git
