@@ -8,4 +8,9 @@ class Character < ActiveRecord::Base
   def player_name
     user.nickname if user
   end
+
+  def npc?
+    return true if user.nil?
+    false
+  end
 end

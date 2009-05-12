@@ -10,8 +10,9 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:login], params[:password])
     if user
       session[:user_id] = user.id
+      current_user = user
       flash[:notice] = "Welcome back, #{user.email}!"
-      redirect_to campaigns_path
+      redirect_to user_path(current_user)
     else
       flash[:error] = "Invalid user/password combination!"
       render :action => 'new'

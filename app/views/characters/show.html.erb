@@ -1,6 +1,7 @@
 <div id="content">
-<h2><%= @character.name %></h2>
+<h2><%= link_to @character.campaign.name, campaign_path(@character.campaign) %> : <%= @character.name %></h2>
 
+<% if not @character.npc? %>
 <p>
 <div id="section_heading">
 <span>Statistics</span>
@@ -8,6 +9,7 @@
 </div>
 <%= @character.statistics -%>
 </p>
+<% end %>
 
 <p>
 <div id="section_heading">
@@ -17,9 +19,19 @@
 <%= @character.public_description -%>
 </p>
 
-
 <% if @character.campaign.user_id == session[:user_id] %>
+  <% if @character.npc? %>
+    <p>
+    <div id="section_heading">
+    <span>Statistics</span>
+    <hr/>
+    </div>
+    <%= @character.statistics -%>
+    </p>
+  <% end %>
+
 <br/>
+
 <p>
   <div id="section_heading">
     <span>GM's Description</span>
