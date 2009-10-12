@@ -35,16 +35,16 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-    def assert_working_associations(m=nil)
-    m ||= self.class.to_s.sub(/Test$/, '').constantize
-    @m = m.new
-    m.reflect_on_all_associations.each do |assoc|
-      assert_nothing_raised("#{assoc.name} caused an error") do
-        @m.send(assoc.name, true)
-      end
-    end
-    true
-  end
+  #def assert_working_associations(m=nil)
+  #  m ||= self.class.to_s.sub(/Test$/, '').constantize
+  #  @m = m.new
+  #  m.reflect_on_all_associations.each do |assoc|
+  #    assert_nothing_raised("#{assoc.name} caused an error") do
+  #      @m.send(assoc.name, true)
+  #    end
+  #  end
+  #  true
+  #end
   
 
 end

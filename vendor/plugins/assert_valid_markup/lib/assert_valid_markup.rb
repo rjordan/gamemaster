@@ -2,7 +2,7 @@ require 'test/unit'
 require 'net/http'
 require 'digest/md5'
 
-class Test::Unit::TestCase
+class ActiveSupport::TestCase
 
   # Assert that markup (html/xhtml) is valid according the W3C validator web service.
   # By default, it validates the contents of @response.body, which is set after calling

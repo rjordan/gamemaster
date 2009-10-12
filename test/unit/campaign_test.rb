@@ -6,8 +6,8 @@ class CampaignTest < ActiveSupport::TestCase
     should_validate_presence_of :name, :user_id, :system_id, :max_players
     should_belong_to :user
     should_belong_to :system
-    should_have_one :private_forum
-    should_have_one :public_forum
+    should_have_one :private_forum, :dependent=>:destroy
+    should_have_one :public_forum, :dependent=>:destroy
     should_have_many :stories
     should_have_many :players
     should_have_many :player_characters

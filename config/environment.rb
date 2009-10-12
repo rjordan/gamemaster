@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -41,9 +41,12 @@ Rails::Initializer.run do |config|
     :secret      => '88f2d31d7173d71598bc7545c562333ed7aeca36909947e1a7e1db3e9024972720d241162f2b76eb2fbaebcd31001f14aa2446459ce843aed06c382105f976af'
   }
 
-  gem "sqlite3-ruby"
-  gem "RedCloth"
-  gem "mocha"
+
+  #config.gem 'jscruggs-metric_fu', :version => '1.1.1', :lib => 'metric_fu', :source => 'http://gems.github.com'  
+  #config.gem "sqlite3-ruby", :lib => false
+  #config.gem "RedCloth"
+  #config.gem "mocha"
+  config.gem 'thoughtbot-shoulda', :lib => 'shoulda/rails', :source => "http://gems.github.com"
 
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
@@ -60,9 +63,5 @@ Rails::Initializer.run do |config|
 
   # Make Active Record use UTC-base instead of local time
   config.active_record.default_timezone = :utc
-  config.time_zone = "Central Time (US & Canada)"
-end
-
-if RAILS_ENV=='production'
-  ActionController::AbstractRequest.relative_url_root='/gamemaster'
+  config.time_zone = :utc
 end

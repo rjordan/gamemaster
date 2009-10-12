@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
   validates_length_of :password, :minimum=>8, :allow_nil=>true
 
+  attr_accessor :auth_token #put this in the table
+  before_create :generate_auth_token
+
   #Returns a user if one matches the login/password combo user must be active
   def self.authenticate(email, password)
     enc_pwd = encrypt_password(email, password)
@@ -28,7 +31,11 @@ class User < ActiveRecord::Base
     self.password_hash = User.encrypt_password(email, password)
     true
   end
-  
+
+  def generate_auth_token
+    self.auth_token = Digest::SHA1.hexdigest([Time.now,rand].join)
+  end
+
   #Encrypts the users password using the login and a salt
   def self.encrypt_password(email, password)
     Digest::SHA1.hexdigest("#{@@salt}:#{email}:#{password}")

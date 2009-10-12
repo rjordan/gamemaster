@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/abstract_unit'
 require File.dirname(__FILE__) + '/../lib/textile_editor_helper'
 require 'ostruct'
 
-class TextileEditorHelperTest < Test::Unit::TestCase
+class TextileEditorHelperTest < ActiveSupport::TestCase
   include ActionView::Helpers::TextHelper
   include ActionView::Helpers::AssetTagHelper
   include ActionView::Helpers::TagHelper
