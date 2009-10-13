@@ -46,7 +46,23 @@ Rails::Initializer.run do |config|
   #config.gem "sqlite3-ruby", :lib => false
   #config.gem "RedCloth"
   #config.gem "mocha"
-  config.gem 'thoughtbot-shoulda', :lib => 'shoulda/rails', :source => "http://gems.github.com"
+  config.gem 'rails', :lib=>false, :version => RAILS_GEM_VERSION
+  config.gem 'sqlite3-ruby', :lib => false
+  config.gem 'ruby-openid', :lib => 'openid'
+  config.gem 'authlogic'
+  config.gem 'authlogic-oid', :lib => 'authlogic_openid'
+  config.gem 'thoughtbot-shoulda', :lib => 'shoulda/rails', :source => 'http://gems.github.com'
+  config.gem 'mocha'
+  #config.gem "RedCloth"
+
+#The Metric-Fu suite
+  #config.gem 'jscruggs-metric_fu', :lib => 'metric_fu', :source => 'http://gems.github.com'
+  #config.gem 'reek', :lib=>false
+  #config.gem 'roodi', :lib=>false
+  #config.gem 'rcov', :lib=>false
+  #config.gem 'topfunky-gruff', :lib=>false
+  #config.gem 'rmagick', :lib=>false
+
 
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
@@ -62,6 +78,6 @@ Rails::Initializer.run do |config|
   # config.active_record.observers = :cacher, :garbage_collector
 
   # Make Active Record use UTC-base instead of local time
-  config.active_record.default_timezone = :utc
-  config.time_zone = :utc
+  #config.active_record.default_timezone = :utc
+  config.time_zone = 'UTC'
 end

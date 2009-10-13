@@ -96,12 +96,20 @@ ActiveRecord::Schema.define(:version => 7) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                        :null => false
-    t.string   "password_hash",                :null => false
-    t.string   "nickname",                     :null => false
+    t.string   "nickname",                          :null => false
+    t.string   "email",                             :null => false
+    t.string   "password_hash",                     :null => false
+    t.string   "password_salt"
+    t.integer  "failed_login_count", :default => 0, :null => false
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string   "current_login_ip"
+    t.string   "openid_identifier"
+    t.string   "persistence_token",                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "version",       :default => 1, :null => false
+    t.integer  "version",            :default => 1, :null => false
   end
 
 end

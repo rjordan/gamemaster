@@ -16,7 +16,6 @@ class SessionsControllerTest < ActionController::TestCase
 
       should_respond_with :success
       should_render_template :new
-      should_render_a_form
       should_not_set_the_flash
 
       #TODO add these lots of places
@@ -34,7 +33,6 @@ class SessionsControllerTest < ActionController::TestCase
       
         should_respond_with :success
         should_render_template :new
-        should_render_a_form
         should_set_the_flash_to "Invalid user/password combination!"
       end
       context "with valid login" do

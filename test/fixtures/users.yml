@@ -1,8 +1,12 @@
 rjordan:
   nickname: CountZero
   email: "rjordan@pobox.com"
-  password_hash: <%= User.encrypt_password('rjordan@pobox.com', 'password') %>
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  password_hash: <%= Authlogic::CryptoProviders::Sha512.encrypt("password" + salt) %>
+  persistence_token: 6cde0674657a8a313ce952df979de2830309aa4c11ca65805dd00bfdc65dbcc2f5e36718660a1d2e68c1a08c276d996763985d2f06fd3d076eb7bc4d97b1e317
 a_player:
   nickname: jschmoe
   email: "noone@nowhere.org"
-  password_hash: <%= User.encrypt_password('noone@nowhere.org', 'password') %>
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  password_hash: <%= Authlogic::CryptoProviders::Sha512.encrypt("password" + salt) %>
+  persistence_token: 6cde0674657a8a313ce952df979de2830309aa4c11ca65805dd00bfdc65dbcc2f5e36718660a1d2e68c1a08c276d996763985d2f06fd3d076eb7bc4d97b1e318

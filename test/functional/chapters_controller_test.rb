@@ -74,7 +74,6 @@ class ChaptersControllerTest < ActionController::TestCase
       should_not_set_the_flash
       should_render_template :new
       should_respond_with :success
-      should_render_a_form
     end
 
     #EDIT TESTS
@@ -86,7 +85,6 @@ class ChaptersControllerTest < ActionController::TestCase
       should_not_set_the_flash
       should_render_template :edit
       should_respond_with :success
-      should_render_a_form
     end
 
     #CREATE TESTS

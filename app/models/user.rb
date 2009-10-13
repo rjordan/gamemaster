@@ -1,43 +1,17 @@
-require 'digest/sha1'
-
 class User < ActiveRecord::Base
-  @@salt ='7173d715c562333e909947e1902497272f2b76eb2fbaebcd31001f14aa244645'
-  attr_accessor :password, :password_confirmation
-  validates_presence_of :email, :password_hash, :nickname
-  validates_uniqueness_of :email, :nickname
-  attr_protected :password_hash
+  acts_as_authentic do |c|
+    c.openid_required_fields = [:nickname, :email]
+  end
+  validates_presence_of :email, :nickname
+  validates_uniqueness_of :email, :nickname, :case_sensitive=>false
   has_many :campaigns
-  
   has_many :characters
   has_many :games, :through=>:characters, :source=>:campaign
 
-  validates_confirmation_of :password
-  validates_length_of :password, :minimum=>8, :allow_nil=>true
+  private
 
-  attr_accessor :auth_token #put this in the table
-  before_create :generate_auth_token
-
-  #Returns a user if one matches the login/password combo user must be active
-  def self.authenticate(email, password)
-    enc_pwd = encrypt_password(email, password)
-    self.find(:first, :conditions => ["email = ? and password_hash = ?", email, enc_pwd])
-  end
-
-  def change_password(password, password_confirmation)
-    if password != password_confirmation
-      errors.add :password_confirmation, "did not match password"
-    end
-    return false if errors.count > 0
-    self.password_hash = User.encrypt_password(email, password)
-    true
-  end
-
-  def generate_auth_token
-    self.auth_token = Digest::SHA1.hexdigest([Time.now,rand].join)
-  end
-
-  #Encrypts the users password using the login and a salt
-  def self.encrypt_password(email, password)
-    Digest::SHA1.hexdigest("#{@@salt}:#{email}:#{password}")
+  def map_openid_registration(registration)
+    self.email = registration["email"] if email.blank?
+    self.nickname = registration["nickname"] if nickname.blank?
   end
 end
