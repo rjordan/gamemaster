@@ -13,5 +13,6 @@ class CampaignTest < ActiveSupport::TestCase
     should_have_many :player_characters
     should_have_many :nonplayer_characters
     should_validate_numericality_of :max_players
+    should_have_many :locations
   end
 end

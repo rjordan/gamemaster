@@ -27,6 +27,7 @@ ActionController::Routing::Routes.draw do |map|
       end
       c.resources :characters
       c.resources :forums
+      c.resources :locations
     end
 
     map.resources :forums, :shallow=>true do |f|

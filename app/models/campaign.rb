@@ -10,6 +10,7 @@ class Campaign < ActiveRecord::Base
   has_many :nonplayer_characters, :conditions=>"user_id is null", :class_name=>'Character'
 
   has_many :players, :through=>:player_characters, :source=>:user
+  has_many :locations
 
   #def players
   #  characters.find(:all, :conditions=>'user_id is not null')
