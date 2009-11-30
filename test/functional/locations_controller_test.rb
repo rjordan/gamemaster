@@ -72,45 +72,45 @@ class LocationsControllerTest < ActionController::TestCase
       should_respond_with :success
     end
 
-#    #EDIT TESTS
-#    context "on GET to :edit" do
-#      setup do
-#        get :edit, :id=>@character
-#      end
-#      should_assign_to :character
-#      should_not_set_the_flash
-#      should_render_template :edit
-#      should_respond_with :success
-#    end
-#
-#    #CREATE TESTS
-#    context "on POST to :create" do
-#      setup do
-#        post :create, :character=>{ :campaign_id=>@character.campaign.id, :name=>'Unknown', :public_description=>'Nothing', :statistics=>'None' }, :campaign_id=>@character.campaign
-#      end
-#      should_assign_to :character
-#      should_set_the_flash_to(/created/i)
-#      should_redirect_to("the character view") { character_url(assigns(:character)) }
-#    end
-#
-#    #UPDATE TESTS
-#    context "on PUT to :update" do
-#      setup do
-#        put :update, :character=>{:name=> 'Unknown'}, :id=>@character
-#      end
-#      should_assign_to :character
-#      should_set_the_flash_to(/updated/i)
-#      should_redirect_to("the character view") { character_url(@character) }
-#    end
-#
-#    #DELETE tests
-#    context "on DELETE to :destroy" do
-#      setup do
-#        delete :destroy, :id=>@character
-#      end
-#      should_set_the_flash_to(/removed/i)
-#      should_redirect_to("the campaign view") { campaign_url(@character.campaign) }
-#    end
-#
+    #EDIT TESTS
+    context "on GET to :edit" do
+      setup do
+        get :edit, :id=>@location
+      end
+      should_assign_to :location
+      should_not_set_the_flash
+      should_render_template :edit
+      should_respond_with :success
+    end
+
+    #CREATE TESTS
+    context "on POST to :create" do
+      setup do
+        post :create, :location=>{ :campaign_id=>@location.campaign.id, :name=>'Unknown', :public_description=>'Nothing' }, :campaign_id=>@location.campaign
+      end
+      should_assign_to :location
+      should_set_the_flash_to(/created/i)
+      should_redirect_to("the location view") { location_url(assigns(:location)) }
+    end
+
+    #UPDATE TESTS
+    context "on PUT to :update" do
+      setup do
+        put :update, :location=>{:name=> 'Unknown'}, :id=>@location
+      end
+      should_assign_to :location
+      should_set_the_flash_to(/updated/i)
+      should_redirect_to("the location view") { location_url(@location) }
+    end
+
+    #DELETE tests
+    context "on DELETE to :destroy" do
+      setup do
+        delete :destroy, :id=>@location
+      end
+      should_set_the_flash_to(/removed/i)
+      should_redirect_to("the campaign view") { campaign_url(@location.campaign) }
+    end
+
   end
 end
