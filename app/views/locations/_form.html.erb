@@ -1,0 +1,18 @@
+<fieldset>
+  <legend></legend>
+  <%= form.hidden_field :campaign_id %>
+  <p>
+    <label for="name" class="required" >Name</label>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <label for="public_description" class="required">Public Description</label><br/>
+    <%= form.text_area :public_description %>
+  </p>
+  <% if @location.campaign.user_id == session[:user_id] %>
+  <p>
+    <label for="private_description">Private Description</label><br/>
+    <%= form.text_area :private_description %>
+  </p>
+  <% end %>
+</fieldset>

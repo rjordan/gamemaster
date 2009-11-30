@@ -21,56 +21,57 @@ class LocationsControllerTest < ActionController::TestCase
       setup do
         get :index, :campaign_id=>@location.campaign
       end
+      should_assign_to :locations
       should_not_set_the_flash
       should_render_template :index
       should_respond_with :success
     end
 
-#    context "on GET to :index as xml" do
-#      setup do
-#        get :index, :format=>'xml', :campaign_id=>@character.campaign
-#      end
-#      should_respond_with_content_type :xml
-#      should_not_set_the_flash
-#      should_render_without_layout
-#      should_respond_with :success
-#      #should_respond_with_xml_for :characters
-#    end
-#
-#    #SHOW TESTS
-#    context "on GET to :show" do
-#      setup do
-#        get :show, :id=>@character
-#      end
-#      should_assign_to :character
-#      should_not_set_the_flash
-#      should_render_template :show
-#      should_respond_with :success
-#    end
-#
-#    context "on GET to :show as xml" do
-#      setup do
-#        get :show, :id=>@character, :format=>'xml'
-#      end
-#      should_assign_to :character
-#      should_respond_with_content_type :xml
-#      should_not_set_the_flash
-#      should_render_without_layout
-#      should_respond_with :success
-#      #should_respond_with_xml_for :character
-#    end
-#
-#    #NEW TESTS
-#    context "on GET to :new" do
-#      setup do
-#        get :new, :campaign_id=>@character.campaign
-#      end
-#      should_assign_to :character
-#      should_not_set_the_flash
-#      should_render_template :new
-#      should_respond_with :success
-#    end
-#
+    context "on GET to :index as xml" do
+      setup do
+        get :index, :format=>'xml', :campaign_id=>@location.campaign
+      end
+      should_respond_with_content_type :xml
+      should_not_set_the_flash
+      should_render_without_layout
+      should_respond_with :success
+      #should_respond_with_xml_for :characters
+    end
+
+    #SHOW TESTS
+    context "on GET to :show" do
+      setup do
+        get :show, :id=>@location
+      end
+      should_assign_to :location
+      should_not_set_the_flash
+      should_render_template :show
+      should_respond_with :success
+    end
+
+    context "on GET to :show as xml" do
+      setup do
+        get :show, :id=>@location, :format=>'xml'
+      end
+      should_assign_to :location
+      should_respond_with_content_type :xml
+      should_not_set_the_flash
+      should_render_without_layout
+      should_respond_with :success
+      #should_respond_with_xml_for :character
+    end
+
+    #NEW TESTS
+    context "on GET to :new" do
+      setup do
+        get :new, :campaign_id=>@location.campaign
+      end
+      should_assign_to :location
+      should_not_set_the_flash
+      should_render_template :new
+      should_respond_with :success
+    end
+
 #    #EDIT TESTS
 #    context "on GET to :edit" do
 #      setup do
