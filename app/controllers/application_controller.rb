@@ -3,6 +3,7 @@
 
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
+  before_filter :set_time_zone
   helper :all # include all helpers, all the time
   layout 'default'
 

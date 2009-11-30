@@ -20,7 +20,7 @@
     </tr>
     <tr>
       <td class="show_label">Created At:</td>
-      <td class="show_value"><%= @campaign.created_at.to_s(:cst) %></td>
+      <td class="show_value"><%= l @campaign.created_at %></td>
     </tr>
     <tr>
       <td class="show_label">Players:</td>
@@ -31,12 +31,14 @@
   <!-- either an email or a nickname -->
   <div id="section_heading">
     <span>Players</span>
+    <% if (@campaign.user==current_user) %>
     <%= link_to "Invite Player", {:controller=>"users", :action=>:invite}, :class=>'button' -%>
+    <% end %>
     <hr/>
   </div>
   <table class="show_form">
     <% if @campaign.players %>
-        <thead><td>Player Name</td><td>Character Name</td></thead>
+        <thead><tr><th>Player Name</th><th>Character Name</th></tr></thead>
        <% for player in @campaign.players %>
         <% character = @campaign.player_characters.find(:first, :conditions=>{:user_id=>player}) %>
         <tr>
@@ -50,7 +52,9 @@
   
   <div id="section_heading">
     <span>Stories</span>
+    <% if (@campaign.user==current_user) %>
     <%= link_to 'New', new_campaign_story_path(@campaign), :class=>'button' -%>
+    <% end %>
     <hr/>
   </div>
   <table class="show_form">
@@ -66,7 +70,9 @@
   
   <div id="section_heading">
     <span>Actors (NPCs)</span>
+    <% if (@campaign.user==current_user) %>
     <%= link_to "New", new_campaign_character_path(@campaign), :class=>'button' %>
+    <% end %>
     <hr/>
   </div>
   <table class="show_form">
@@ -82,11 +88,31 @@
   
   <div id="section_heading">
     <span>Props (Items)</span>
+    <% if (@campaign.user==current_user) %>
     <%= link_to "New", {}, :class=>'button' %>
+    <% end %>
     <hr/>
   </div>
   <br/>
-  
+
+  <div id="section_heading">
+    <span>Locations</span>
+    <% if (@campaign.user==current_user) %>
+    <%= link_to "New", new_campaign_location_path(@campaign), :class=>'button' %>
+    <% end %>
+    <hr/>
+  </div>
+  <table class="show_form">
+    <% if @campaign.locations %>
+        <% for location in @campaign.locations %>
+        <tr>
+          <td><%= link_to location.name, location_url(location) %></td>
+        </tr>
+      <% end %>
+  <% end %>
+  </table>
+  <br/>
+
   <div id="section_heading">
     <span>Adventure Logs</span>
     <hr/>
@@ -97,4 +123,6 @@
   
 </div>
 
-<%= link_to_if (@campaign.user_id==session[:user_id]), 'Edit', edit_campaign_path(@campaign) %>
+<% if (@campaign.user==current_user) %>
+<%= link_to 'Edit', edit_campaign_path(@campaign) %>
+<% end %>
