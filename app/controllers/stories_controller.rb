@@ -1,4 +1,5 @@
 class StoriesController < ApplicationController
+  before_filter :require_user
 
   def index
     @stories = Story.find(:all)

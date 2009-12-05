@@ -1,16 +1,22 @@
 <div class="post">
 
   <table>
-    <tr class="timestamp">
-      <td class="header_image">
+    <tr class="post_header"> 
+      <td class="post_image">
         <%= render_gravatar show_short.user %>
       </td>
-      <td>
-        <div >
-          <%= link_to show_short.title, post_path(show_short) %><br/>
+      <td class="post_byline">
+          <div class="post_title">
+            <%= show_short.title %>
+          <span class="post_icons">
+          <% if current_user == show_short.user %>
+            <%=link_to(image_tag( "page_edit.png"), edit_post_path(show_short)) %><%= image_tag("page_remove.png") %>
+          <% end %>
+            </span>
+          </div>
+          <div class="post_timestamp">
           <%= show_short.user.nickname %> said at <%= l show_short.created_at %>
-          <%=link_to(image_tag( "page_edit.png"), edit_post_path(show_short)) %><%= image_tag("page_remove.png") %>
-        </div>
+          </div>
       </td>
     </tr>
     <tr>

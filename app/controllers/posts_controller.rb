@@ -54,7 +54,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.forum = Forum.find(params[:forum_id])
-    @post.user =  User.find(:first) #TODO current_user
+    @post.user =  current_user
     if @post.save
       flash[:notice] = "The post was created successfully!"
       redirect_to post_path(@post) and return
