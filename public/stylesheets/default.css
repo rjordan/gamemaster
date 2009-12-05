@@ -1,13 +1,17 @@
 html {
   margin: 0; 
-  padding: 0
+  padding: 0;
 }
 
 body {
   background: #330022; 
   /* color: #fff;  */
   margin: 0 auto; 
-  padding: 0
+  padding: 0;
+}
+
+textarea {
+  width: 99%;
 }
 
 #container {
@@ -15,7 +19,7 @@ body {
   background-color: #FFF; 
   margin: 0 auto; 
   padding: 0; 
-  width: 990px
+  width: 990px;
 }
 
 #header {
@@ -29,13 +33,13 @@ body {
 
 #header_navigation {
   float: right;
-  margin-top: 30px
+  margin-top: 30px;
 }
 
 #header_navigation ul li {
   display: inline; 
   list-style-type: none; 
-  padding: 2px
+  padding: 2px;
 }
 
 #header_navigation a {

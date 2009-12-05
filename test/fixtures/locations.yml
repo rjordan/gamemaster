@@ -1,6 +1,11 @@
 players_house:
   name: The players House
   campaign: scorched
-  user: rjordan
+  public_description: A typical house.
+  private_description: Not much special here.
+players_house:
+  name: The players House
+  campaign: scorched
+  parent_id: players_house
   public_description: A typical house.
   private_description: Not much special here.

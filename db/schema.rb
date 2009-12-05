@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(:version => 20091129200317) do
   create_table "locations", :force => true do |t|
     t.string   "name",                               :null => false
     t.integer  "campaign_id",                        :null => false
-    t.integer  "user_id"
+    t.integer  "parent_id"
     t.text     "public_description",                 :null => false
     t.text     "private_description"
     t.datetime "created_at"

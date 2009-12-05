@@ -6,5 +6,5 @@ feature_post:
 public_post_1:
   forum: scorched_public
   user: a_player
-  title: This game rocks
-  contents: I love this game,it rocks!  
+  title: This site rocks
+  contents: I love this site,it rocks!

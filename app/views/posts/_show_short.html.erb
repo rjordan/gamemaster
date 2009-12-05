@@ -1,27 +1,25 @@
 <div class="post">
 
-    <table>
-    <tr>
-      <td colspan="2">
-      <div class="timestamp">
-       <%=show_short.created_at %>
-       <%=link_to(image_tag( "page_edit.png"), edit_post_path(show_short)) %><%= image_tag("page_remove.png") %>
-      </div>
-    </td>
+  <table>
+    <tr class="timestamp">
+      <td class="header_image">
+        <%= render_gravatar show_short.user %>
+      </td>
+      <td>
+        <div >
+          <%= link_to show_short.title, post_path(show_short) %><br/>
+          <%= show_short.user.nickname %> said at <%= l show_short.created_at %>
+          <%=link_to(image_tag( "page_edit.png"), edit_post_path(show_short)) %><%= image_tag("page_remove.png") %>
+        </div>
+      </td>
     </tr>
     <tr>
-      <td class="header_image">
-            <%= render_gravatar show_short.user %>
-            <%= show_short.user.nickname %>
-      </td>
-      <td class="post_body">
-          <%= link_to show_short.title, post_path(show_short) %>
-          <p>
+      <td class="post_body" colspan="2">
+        <p>
           <%= show_short.contents %>
         </p>
       </td>
     </tr>
-    </table>
-
+  </table>
 
 </div>
