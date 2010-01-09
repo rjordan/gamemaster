@@ -53,7 +53,7 @@ Rails::Initializer.run do |config|
   config.gem 'authlogic-oid', :lib => 'authlogic_openid'
   config.gem 'shoulda', :lib => 'shoulda/rails'
   config.gem 'mocha'
-  config.gem "RedCloth"
+  #config.gem "RedCloth"
 
 #The Metric-Fu suite
   #config.gem 'jscruggs-metric_fu', :lib => 'metric_fu', :source => 'http://gems.github.com'
