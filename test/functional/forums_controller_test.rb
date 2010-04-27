@@ -37,46 +37,46 @@ class ForumsControllerTest < ActionController::TestCase
       should_respond_with :success
     end
 
-    context "on GET to :index as xml" do
-      setup do
-        get :index, :format=>'xml'
-      end
-      should_respond_with_content_type :xml
-      should_not_set_the_flash
-      should_render_without_layout
-      should_respond_with :success
-      #should_respond_with_xml_for :forums
-    end
+    # context "on GET to :index as xml" do
+      # setup do
+        # get :index, :format=>'xml'
+      # end
+      # should_respond_with_content_type :xml
+      # should_not_set_the_flash
+      # should_render_without_layout
+      # should_respond_with :success
+      # should_respond_with_xml_for :forums
+    # end
 
     #SHOW TESTS
     context "on GET to :show" do
       setup do
         get :show, :id=>@forum
       end
-      should_assign_to :forum
+      #should_assign_to :forum
       should_not_set_the_flash
       should_render_template :show
       should_respond_with :success
     end
 
-    context "on GET to :show as xml" do
-      setup do
-        get :show, :id=>@forum, :format=>'xml'
-      end
-      should_assign_to :forum
-      should_respond_with_content_type :xml
-      should_not_set_the_flash
-      should_render_without_layout
-      should_respond_with :success
-      #should_respond_with_xml_for :forum
-    end
+    # context "on GET to :show as xml" do
+      # setup do
+        # get :show, :id=>@forum, :format=>'xml'
+      # end
+      # should_assign_to :forum
+      # should_respond_with_content_type :xml
+      # should_not_set_the_flash
+      # should_render_without_layout
+      # should_respond_with :success
+      # should_respond_with_xml_for :forum
+    # end
 
     #NEW TESTS
     context "on GET to :new" do
       setup do
         get :new
       end
-      should_assign_to :forum
+      #should_assign_to :forum
       should_not_set_the_flash
       should_render_template :new
       should_respond_with :success
@@ -87,7 +87,7 @@ class ForumsControllerTest < ActionController::TestCase
       setup do
         get :edit, :id=>@forum
       end
-      should_assign_to :forum
+      #should_assign_to :forum
       should_not_set_the_flash
       should_render_template :edit
       should_respond_with :success
@@ -109,7 +109,7 @@ class ForumsControllerTest < ActionController::TestCase
       setup do
         put :update, :forum=>{:name=>'A General Forum'}, :id=>@forum
       end
-      should_assign_to :forum
+      #should_assign_to :forum
       should_set_the_flash_to(/updated/i)
       should_redirect_to("the forum view") { forum_url( assigns(:forum) ) }
     end

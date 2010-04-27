@@ -2,7 +2,7 @@
 
 <%= link_to 'Dashboard', user_dashboard_url(:current) %>
 
-<% form_for @user do |f| %>
+<%= form_for @user do |f| %>
   <%= f.error_messages %>
   <p>
     <b>Current IP: </b> <%= @user.current_login_ip %>

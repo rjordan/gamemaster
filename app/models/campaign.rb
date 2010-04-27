@@ -15,4 +15,13 @@ class Campaign < ActiveRecord::Base
   #def players
   #  characters.find(:all, :conditions=>'user_id is not null')
   #end
+  
+  def is_game_master?(user)
+    self.user==user
+  end
+  
+  def is_player?(user)
+    self.players.include?(user)
+  end
+  
 end

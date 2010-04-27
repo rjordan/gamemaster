@@ -1,7 +1,16 @@
 <h1>Editing User</h1>
 
-<% form_for(@user) do |form| %>
-  <%= render :partial=>'form', :object=>form %>
-  <%= form.submit 'Submit' %>
+<%= form_for(@user) do |form| %>
+  <fieldset>
+    <p>
+      <%= form.label :nickname, :class=>'required' %>
+      <%= form.text_field :nickname %>
+    </p>
+    <p>
+      <%= form.label :email, :class=>'required' %>
+      <%= form.text_field :email %>
+    </p>
+    </fieldset>
+    <%= form.submit 'Submit' %>
 <% end %>
 

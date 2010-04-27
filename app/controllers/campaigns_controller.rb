@@ -1,16 +1,14 @@
 class CampaignsController < ApplicationController
+  respond_to :html, :xml, :json
   
   def index
-    @campaigns = Campaign.find(:all, :conditions=>{:public=>true},:order=>'name')
-    respond_to do |format|
-      format.html
-      format.xml { render :xml => @campaigns }
-    end
+    @campaigns = Campaign.where(:public=>true).order('name').all
+    respond_with @campaigns 
   end
   
   def show
-    @campaign = Campaign.find(params[:id], :include=>[:players, :stories, :player_characters, :nonplayer_characters])
-    @npcs = @campaign.nonplayer_characters.find(:all, :order=>:name)
+    @campaign = Campaign.find(params[:id]) #, :include=>[:players, :stories, :player_characters, :nonplayer_characters])
+    @npcs = @campaign.nonplayer_characters
     respond_to do |format|
       format.html
       format.xml { render :xml => @campaign }

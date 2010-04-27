@@ -1,13 +1,5 @@
 class PostsController < ApplicationController
-  uses_tiny_mce(:options=>{:theme => 'advanced',
-                           :theme_advanced_toolbar_location => "top",
-                           #:theme_advanced_resizing => true,
-                           #:theme_advanced_resize_horizontal => true,                           
-                           :theme_advanced_buttons1 => %w{formatselect fontselect fontsizeselect bold italic underline strikethrough separator indent outdent separator bullist numlist separator link unlink image undo redo},
-                           :theme_advanced_buttons2 => [],
-                           :theme_advanced_buttons3 => [],
-                           :plugins => %w{contextmenu paste}})  
-  
+ 
   def index
     @forum = Forum.find(params[:forum_id], :include=>:posts)
     @posts = @forum.posts

@@ -107,20 +107,26 @@ ActiveRecord::Schema.define(:version => 20091129200317) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "nickname",                          :null => false
-    t.string   "email",                             :null => false
-    t.string   "password_hash",                     :null => false
-    t.string   "password_salt"
-    t.integer  "failed_login_count", :default => 0, :null => false
-    t.datetime "last_request_at"
-    t.datetime "current_login_at"
-    t.datetime "last_login_at"
-    t.string   "current_login_ip"
-    t.string   "openid_identifier"
-    t.string   "persistence_token",                 :null => false
+    t.string   "nickname",                                            :null => false
+    t.string   "email",                               :default => "", :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                       :default => "", :null => false
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "reset_password_token"
+    t.string   "remember_token"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                       :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.integer  "failed_attempts",                     :default => 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "version",            :default => 1, :null => false
   end
 
 end

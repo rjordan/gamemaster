@@ -31,8 +31,8 @@
   <!-- either an email or a nickname -->
   <div id="section_heading">
     <span>Players</span>
-    <% if (@campaign.user==current_user) %>
-    <%= link_to "Invite Player", {:controller=>"users", :action=>:invite}, :class=>'button' -%>
+    <% if @campaign.is_game_master?(current_user) %>
+	  <%= link_to "Invite Player", nil, :class=>'button' %>
     <% end %>
     <hr/>
   </div>

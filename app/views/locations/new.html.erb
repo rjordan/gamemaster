@@ -1,6 +1,6 @@
 <h1>New Location</h1>
 
-<% form_for([@location.campaign, @location]) do |form| %>
+<%= form_for([@location.campaign, @location]) do |form| %>
   <%= render :partial=>'form', :object=>form %>
   <%= form.submit 'Submit' %>
 <% end %>

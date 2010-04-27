@@ -1,12 +1,16 @@
 rjordan:
   nickname: CountZero
-  email: "rjordan@pobox.com"
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  password_hash: <%= Authlogic::CryptoProviders::Sha512.encrypt("password" + salt) %>
-  persistence_token: 6cde0674657a8a313ce952df979de2830309aa4c11ca65805dd00bfdc65dbcc2f5e36718660a1d2e68c1a08c276d996763985d2f06fd3d076eb7bc4d97b1e317
+  email: rjordan@pobox.com
+  password_salt: QlT0erCBqGOvFPr2fjAe
+  encrypted_password: 74c3fc69c31b55a62e4dcb3d74a967afc6d7fb1fe4cca32fdd6d16effbc5d35fbf85e7fee851b1c6dc8d511e246d89d313c69baf7a82e6cbf18cf90a34f0cac5
+  confirmation_sent_at: <%= 10.minutes.ago %>
+  confirmation_token: v_2MCqdxyNEvZ_yn9CqJ
+  confirmed_at: <%= DateTime.now %>  
 a_player:
   nickname: jschmoe
-  email: "noone@nowhere.org"
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  password_hash: <%= Authlogic::CryptoProviders::Sha512.encrypt("password" + salt) %>
-  persistence_token: 6cde0674657a8a313ce952df979de2830309aa4c11ca65805dd00bfdc65dbcc2f5e36718660a1d2e68c1a08c276d996763985d2f06fd3d076eb7bc4d97b1e318
+  email: bob@nowhere.com
+  password_salt: 99dnmwuwHIY7RhLwv6UB
+  encrypted_password: 991d53132c39224358f444cf850cbf80fdd609d143faf6be119d9d72908488744f4c63a964f704bd8658481541f0ee04bdedee50645b66b5587211cf7b92c2d1
+  confirmation_sent_at: <%= 10.minutes.ago %>
+  confirmation_token: lLMduUWgsStaAnemuyWE
+  confirmed_at: <%= DateTime.now %>  
