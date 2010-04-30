@@ -1,13 +1,19 @@
-  <fieldset>
+<fieldset>
+    <%= form.hidden_field :user_id %>
     <p>
       <label for="name" class="required" >Name</label>
       <%= form.text_field :name %>
     </p>
     <p>
-      <label for="system" class="required" >System</label>
-      <%=
-               items = System.find(:all, :order => "name")
-               form.collection_select(:system_id, items, :id, :name )
-      %>
+      <%= form.label :system_id, 'System', :class=>'required' %>
+      <%= form.collection_select(:system_id, System.find(:all, :order => "name"), :id, :name )  %>
     </p>
-  </fieldset>
+    <p>
+      <%= form.label :max_players, 'Max Players', :class=>'required' %>
+      <%= form.text_field :max_players %>
+    </p>
+    <p>
+      <%= form.label :description, 'Description', :class=>'required' %>
+      <%= form.text_field :description %>
+    </p>
+</fieldset>

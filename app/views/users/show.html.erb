@@ -11,14 +11,14 @@
     </tr>
     <tr>
       <td class="show_label">Signup Date:</td>
-      <td class="show_value"><%= @user.created_at.to_s(:cst) %></td>
+      <td class="show_value"><%= l(@user.created_at) %></td>
     </tr>
   </table>
   <br/>
   
   <div id="section_heading">
     <span>Running Campaigns</span>
-    <% if session[:user_id]==@user %>
+    <% if current_user==@user %>
       <%= link_to "New Campaign", new_campaign_path, :class=>'button' %>
     <% end %>
     <hr/>

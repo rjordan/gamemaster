@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class CampaignsControllerTest < ActionController::TestCase
   
@@ -7,8 +7,8 @@ class CampaignsControllerTest < ActionController::TestCase
   
   context "A CampaignsController" do
     setup do
+      sign_in @user = users(:rjordan)
       @campaign   = Campaign.first
-      session[:user_id] = User.first.id
     end
 
     should_route :get, '/campaigns', :action => :index
@@ -51,6 +51,7 @@ class CampaignsControllerTest < ActionController::TestCase
       should_not_set_the_flash
       should_render_template :show
       should_respond_with :success
+      #check for forums
     end
 
     # context "on GET to :show as xml" do
@@ -90,7 +91,7 @@ class CampaignsControllerTest < ActionController::TestCase
     #CREATE TESTS
     context "on POST to :create" do
       setup do
-        post :create, :campaign=>{:name=>'Unknown', :max_players=>5, :system_id=>1}
+        post :create, :campaign=>{:name=>'Unknown', :max_players=>5, :system_id=>1, :description=>'Test Campaign', :user=>@user}
       end
       #should_assign_to :campaign
       should_set_the_flash_to(/created/i)
@@ -100,7 +101,7 @@ class CampaignsControllerTest < ActionController::TestCase
     #UPDATE TESTS
     context "on PUT to :update" do
       setup do
-        put :update, :campaign=>{:name=>'Unknown'}, :id=>@campaign
+        put :update, :id=>@campaign, :campaign=>{:name=>'Unknown'} 
       end
       #should_assign_to :campaign
       should_set_the_flash_to(/updated/i)
@@ -112,7 +113,7 @@ class CampaignsControllerTest < ActionController::TestCase
       setup do
         delete :destroy, :id=>@campaign
       end
-      should_set_the_flash_to(/removed/i)
+      should_set_the_flash_to(/successfully removed/i)
       should_redirect_to("the campaigns list") { campaigns_url }
     end
 

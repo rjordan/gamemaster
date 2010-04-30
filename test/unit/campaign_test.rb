@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class CampaignTest < ActiveSupport::TestCase
   context "A Campaign" do
@@ -13,6 +13,6 @@ class CampaignTest < ActiveSupport::TestCase
     should_have_many :player_characters
     should_have_many :nonplayer_characters
     should_validate_numericality_of :max_players
-    should_have_many :locations
+    should_have_many :resources
   end
 end

@@ -1,0 +1,27 @@
+<div id="content">
+<h2><%= link_to @resource.campaign.name, campaign_path(@resource.campaign) %> : <%= @resource.name %></h2>
+
+<p>
+<div id="section_heading">
+<span>Public Description</span>
+<hr/>
+</div>
+<%= @resource.public_description -%>
+</p>
+
+<% if @resource.campaign.user_id == session[:user_id] %>
+<p>
+  <div id="section_heading">
+    <span>GM's Description</span>
+  <hr/>
+ </div>
+<%= @resource.private_description -%>
+</p>
+<% end %>
+
+
+<br/>
+</div>
+<p>
+<%= link_to 'Edit', edit_campaign_resource_path(@resource) %>
+</p>

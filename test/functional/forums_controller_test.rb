@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class ForumsControllerTest < ActionController::TestCase
   
@@ -7,6 +7,7 @@ class ForumsControllerTest < ActionController::TestCase
   
   context "A ForumsController" do
     setup do
+      sign_in users(:rjordan)
       @forum = Forum.find(:first)
     end
 
@@ -32,6 +33,7 @@ class ForumsControllerTest < ActionController::TestCase
       setup do
         get :index 
       end
+      #should_assign_to :forums
       should_not_set_the_flash
       should_render_template :index
       should_respond_with :success
@@ -119,7 +121,7 @@ class ForumsControllerTest < ActionController::TestCase
       setup do
         delete :destroy, :id=>@forum
       end
-      should_set_the_flash_to(/removed/i)
+      should_set_the_flash_to(/successfully removed/i)
       should_redirect_to("the forums list") { forums_url }
     end
 

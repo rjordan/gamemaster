@@ -1,0 +1,26 @@
+<div id="streamlined_list">
+  <table class="sl_list">
+    <thead>
+      <tr>
+        <td>Name</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @resources.empty? %>
+          <tr class="odd">
+            <td colspan="1">
+              <div class="list_empty_message">
+                No records to display!
+              </div>
+            </td>
+          </tr>
+        <% end %>
+        <% for resource in @resources %>
+          <tr class="<%= cycle "even", "odd" -%>">
+            <td><%= link_to resource.name, campaign_resource_path(resource) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  
+  </div>

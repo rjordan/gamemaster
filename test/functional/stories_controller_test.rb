@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class StoriesControllerTest < ActionController::TestCase
  
@@ -113,7 +113,7 @@ class StoriesControllerTest < ActionController::TestCase
       setup do
         delete :destroy, :id=>@story
       end
-      should_set_the_flash_to(/removed/i)
+      should_set_the_flash_to(/successfully removed/i)
       should_redirect_to("the list of stories for a campaign") { campaign_stories_path( @story.campaign ) }
     end
 

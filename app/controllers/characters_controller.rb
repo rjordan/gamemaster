@@ -1,56 +1,45 @@
 class CharactersController < ApplicationController
+  respond_to :html, :xml, :json
 
   def index
-    @characters = Character.find(:all)
-    respond_to do |format|
-      format.html
-      format.xml { render :xml => @characters }
-    end
+    @characters = Character.all
+    respond_with @characters 
   end
   
   def show
     @character = Character.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.xml { render :xml => @character }
-    end
+    respond_with @character 
   end
   
   def new
-    @character = Character.new
-    @character.campaign = Campaign.find(params[:campaign_id])
+    @character = Campaign.find(params[:campaign_id]).nonplayer_characters.build
+    respond_with @character 
   end
   
   def edit
     @character = Character.find(params[:id])
+    respond_with @character 
   end
   
   def destroy
-    character = Character.find(params[:id])
-    
-    character.destroy
-    flash[:notice] = "The specified character has been removed!"
-    redirect_to campaign_path(character.campaign)
+    @character = Character.find(params[:id])
+    @character.destroy
+    respond_with @character do |format|
+      format.html { redirect_to campaign_path(@character.campaign) }
+    end
   end
   
   def update
     @character = Character.find(params[:id])
     @character.update_attributes(params[:character])
-    if @character.save
-      flash[:notice] = "The character was updated successfully!"
-      redirect_to character_path(@character) and return
-    end
-    render :action=>:edit
+    respond_with @character 
   end
   
   def create
     @character = Character.new(params[:character])
     @character.campaign = Campaign.find(params[:campaign_id])
-    if @character.save
-      flash[:notice] = "The character was created successfully!"
-      redirect_to character_path(@character) and return
-    end
-    render :action=>:new
+    @character.save
+    respond_with @character 
   end
 
 end

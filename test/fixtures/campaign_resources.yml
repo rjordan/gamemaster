@@ -1,0 +1,12 @@
+players_house:
+  name: The players House
+  campaign: scorched
+  resource_type: Location
+  public_description: A typical house.
+  private_description: Not much special here.
+players_house2:
+  name: Another players House
+  campaign: scorched
+  resource_type: Location
+  public_description: A typical house.
+  private_description: Not much special here.

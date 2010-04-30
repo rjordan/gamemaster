@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class ChaptersControllerTest < ActionController::TestCase
  
@@ -7,6 +7,7 @@ class ChaptersControllerTest < ActionController::TestCase
   
   context "A ChaptersController" do
     setup do
+      sign_in users(:rjordan)
       @chapter = Chapter.first
       session[:user_id] = User.first.id
     end
@@ -114,7 +115,7 @@ class ChaptersControllerTest < ActionController::TestCase
       setup do
         delete :destroy, :id=>@chapter
       end
-      should_set_the_flash_to(/removed/i)
+      should_set_the_flash_to(/successfully removed/i)
       should_redirect_to("the chapters list for a story") { story_chapters_url(@chapter.story) }
     end
 

@@ -1,0 +1,24 @@
+<fieldset>
+  <legend>Resource</legend>
+  <%= form.hidden_field :campaign_id %>
+  <p>
+    <%= form.label :name, 'Name', :class=>"required" %>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :resource_type, 'Resource Type', :class=>"required" %>
+    <%= form.select :resource_type, CampaignResource::ResourceTypes %>
+  </p>
+  <p>
+    <%= form.label :public, 'Revealed' %>
+    <%= form.check_box :public %>
+  </p>
+  <p>
+    <%= form.label :public_description, 'Public Description', :class=>"required" %>
+    <%= form.text_area :public_description %>
+  </p>
+  <p>
+    <%= form.label :private_description, 'GM Text' %>
+    <%= form.text_area :private_description %>
+  </p>
+</fieldset>

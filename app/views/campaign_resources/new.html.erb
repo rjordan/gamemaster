@@ -1,6 +1,7 @@
-<h1>New Campaign</h1>
+<h1>New Resource</h1>
 
-<%= form_for(@campaign) do |form| %>
+
+<%= form_for([@resource.campaign, @resource]) do |form| %>
   <%= form.error_messages %>
   <%= render :partial=>'form', :object=>form %>
   <%= form.submit 'Submit' %>

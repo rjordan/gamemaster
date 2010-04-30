@@ -7,7 +7,8 @@ class CharactersControllerTest < ActionController::TestCase
   
   context "A CharactersController" do
     setup do
-      @character   = Character.find(:first)
+      sign_in users(:rjordan)
+      @character = Character.find(:first)
     end
 
     should_route :get, '/campaigns/1/characters', :action=>:index, :campaign_id=>1
@@ -111,7 +112,7 @@ class CharactersControllerTest < ActionController::TestCase
       setup do
         delete :destroy, :id=>@character
       end
-      should_set_the_flash_to(/removed/i)
+      should_set_the_flash_to(/successfully removed/i)
       should_redirect_to("the campaign view") { campaign_url(@character.campaign) }
     end
 

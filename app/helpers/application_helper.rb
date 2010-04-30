@@ -2,6 +2,6 @@
 module ApplicationHelper
   def render_gravatar(user)
     gravatar_email = Digest::MD5.hexdigest("#{user.email}")
-    "<img src='http://www.gravatar.com/avatar.php?gravatar_id=#{gravatar_email}'/>"
+    "<img src='http://www.gravatar.com/avatar.php?gravatar_id=#{gravatar_email}'/>".html_safe
   end
 end

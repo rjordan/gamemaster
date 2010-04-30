@@ -6,28 +6,27 @@ GameMaster::Application.routes.draw do |map|
 
   resources :users
 
-  resources :campaigns do #shallow=>true
-      resources :stories do
-        resources :chapters
-      end
+  resources :campaigns do
+      resources :stories
       resources :characters
       resources :forums
-      resources :locations
+      resources :campaign_resources
   end
+  
   resources :stories do
     resources :chapters
   end
   resources :chapters
+  
+  resources :campaign_resources
   resources :characters
-  resources :forums
-  resources :locations
- 
-  resources :forums do #shallow=>true
+
+  resources :forums do
     resources :posts
   end
   resources :posts
 
-  root :to => "users#login"
+  root :to => "campaigns#index"
     
 end
 

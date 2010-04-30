@@ -1,56 +1,44 @@
 class ChaptersController < ApplicationController
+  respond_to :html, :xml, :json
 
   def index
-    @chapters = Chapter.find(:all)
-    respond_to do |format|
-      format.html
-      format.xml { render :xml => @chapters }
-    end
+    @chapters = Chapter.all
+    respond_with @chapters
   end
   
   def show
     @chapter = Chapter.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.xml { render :xml => @chapter }
-    end
+    respond_with @chapter
   end
   
   def new
-    @chapter = Chapter.new
-    @chapter.story = Story.find(params[:story_id])
+    @chapter = Story.find(params[:story_id]).chapters.build
+    respond_with @chapter
   end
   
   def edit
     @chapter = Chapter.find(params[:id])
+    respond_with @chapter
   end
   
   def destroy
-    chapter = Chapter.find(params[:id])
-    
-    chapter.destroy
-    flash[:notice] = "The specified chapter has been removed!"
-    redirect_to story_chapters_path(chapter.story)
+    @chapter = Chapter.find(params[:id])
+    @chapter.destroy
+    respond_with @chapter do |format|
+      format.html { redirect_to story_chapters_path(@chapter.story) }
+    end
   end
   
   def update
     @chapter = Chapter.find(params[:id])
     @chapter.update_attributes(params[:chapter])
-    if @chapter.save
-      flash[:notice] = "The chapter was updated successfully!"
-      redirect_to chapter_path(@chapter) and return
-    end
-    render :action=>:edit
+    respond_with @chapter
   end
   
   def create
-    @chapter = Chapter.new(params[:chapter])
-    @chapter.story_id = params[:story_id]
-    if @chapter.save
-      flash[:notice] = "The chapter was created successfully!"
-      redirect_to chapter_path(@chapter) and return
-    end
-    render :action=>:new
+    @chapter = Story.find(params[:story_id]).chapters.build(params[:chapter])
+    @chapter.save
+    respond_with @chapter 
   end
 
 end

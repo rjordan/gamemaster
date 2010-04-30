@@ -16,7 +16,7 @@
     </tr>
     <tr>
       <td class="show_label">Game Master:</td>
-      <td class="show_value"><%= @campaign.user.nickname %></td>
+      <td class="show_value"><%= link_to @campaign.user.nickname, user_path(@campaign.user) %></td>
     </tr>
     <tr>
       <td class="show_label">Created At:</td>
@@ -96,17 +96,17 @@
   <br/>
 
   <div id="section_heading">
-    <span>Locations</span>
+    <span>Resources</span>
     <% if (@campaign.user==current_user) %>
-    <%= link_to "New", new_campaign_location_path(@campaign), :class=>'button' %>
+    <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class=>'button' %>
     <% end %>
     <hr/>
   </div>
   <table class="show_form">
-    <% if @campaign.locations %>
-        <% for location in @campaign.locations %>
+    <% if @campaign.resources %>
+        <% for resource in @campaign.resources %>
         <tr>
-          <td><%= link_to location.name, location_url(location) %></td>
+          <td><%= link_to resource.name, campaign_resource_path(resource) %></td>
         </tr>
       <% end %>
   <% end %>

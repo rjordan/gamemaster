@@ -4,18 +4,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :all # include all helpers, all the time
-
+ 
+  before_filter :authenticate_user!
   before_filter :set_time_zone
   
   protected
   
   def set_time_zone
-  end
-  
-  def require_user
-    unless current_user
-      flash[:error] = t(:must_login)
-      redirect_to new_user_session_path 
+    if current_user && current_user.respond_to?(:timezone)
+      Time.zone = current_user.timezone
+    else
+      Time.zone = 'Central Time (US & Canada)'
     end
   end
+  
 end

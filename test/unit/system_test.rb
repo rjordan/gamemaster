@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class SystemTest < ActiveSupport::TestCase
   context "A System (game system)" do

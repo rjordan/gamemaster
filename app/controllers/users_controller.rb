@@ -1,19 +1,14 @@
 class UsersController < ApplicationController
+  respond_to :html, :xml, :json
 
   def index
-    @users = User.find(:all)
-    respond_to do |format|
-      format.html
-      format.xml { render :xml => @users }
-    end
+    @users = User.all
+    respond_with @users
   end
   
   def show
     @user = User.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.xml { render :xml => @user }
-    end
+    respond_with @user, :only => [:email, :nickname]
   end
   
 #  def new
