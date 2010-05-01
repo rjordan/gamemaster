@@ -2,13 +2,15 @@
 
 <%= form_for([@post.forum,@post]) do |form| %>
   <fieldset> 
+    <%= form.hidden_field :user_id %>
+    <%= form.hidden_field :forum_id %>
     <p>
-      <label for="title" class="required" >Title</label>
+      <%= form.label :title, 'Title', :class=>"required" %>
       <%= form.text_field :title %>
     </p>
     <p>
-      <label for="contents" class="required" >Contents</label>
-      <%= form.text_area :contents -%>
+      <%= form.label :contents, 'Contents', :class=>"required" %>
+      <%= form.text_area :contents %>
     </p>
   </fieldset>
   <%= form.submit 'Submit' %>

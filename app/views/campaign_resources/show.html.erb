@@ -9,7 +9,7 @@
 <%= @resource.public_description -%>
 </p>
 
-<% if @resource.campaign.user_id == session[:user_id] %>
+<% if @resource.campaign.user == current_user %>
 <p>
   <div id="section_heading">
     <span>GM's Description</span>

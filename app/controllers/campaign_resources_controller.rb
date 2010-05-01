@@ -22,13 +22,13 @@ class CampaignResourcesController < ApplicationController
   end
 
   def create
-    @resource = Campaign.find(params[:campaign_id]).resources.create(params[:resource])
+    @resource = Campaign.find(params[:campaign_id]).resources.create(params[:campaign_resource])
     respond_with @resource
   end
 
   def update
     @resource = CampaignResource.find(params[:id])
-    @resource.update_attributes(params[:resource])
+    @resource.update_attributes(params[:campaign_resource])
     respond_with @resource
   end
 

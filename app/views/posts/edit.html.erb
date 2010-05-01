@@ -3,12 +3,12 @@
 <%= form_for(@post) do |form| %>
   <fieldset>
     <p>
-      <%= form.label :title, :class=>'required' %>
+      <%= form.label :title, 'Title', :class=>'required' %>
       <%= form.text_field :title %>
     </p>
     <p>
-      <label for="contents" class="required" >Contents</label>
-      <%= form.text_area :contents -%>
+      <%= form.label:contents, 'Contents', :class=>"required" %>
+      <%= form.text_area :contents %>
     </p>
   </fieldset>
   <%= form.submit 'Submit' %>

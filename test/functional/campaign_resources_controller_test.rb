@@ -55,11 +55,11 @@ class CampaignResourcesControllerTest < ActionController::TestCase
     #CREATE TESTS
     context "on POST to :create" do
       setup do
-        post :create, :resource=>{ :campaign_id=>@resource.campaign.id, 
-                                               :resource_type=>'Character', 
-                                               :name=>'Unknown', 
-                                               :public_description=>'Nothing' }, 
-                                               :campaign_id=>@resource.campaign.id
+        post :create, :campaign_resource=>{ :campaign_id=>@resource.campaign.id, 
+                                            :resource_type=>'Character', 
+                                            :name=>'Unknown', 
+                                            :public_description=>'Nothing' }, 
+                                            :campaign_id=>@resource.campaign.id
       end
       #should_assign_to :resource
       should_set_the_flash_to(/created/i)

@@ -13,8 +13,7 @@ class PostsController < ApplicationController
   end
   
   def new
-    @post = Post.new
-    @post.forum = Forum.find(params[:forum_id])
+    @post = Post.new(:forum=>Forum.find(params[:forum_id]), :user=>current_user)
     respond_with @post
   end
   
@@ -40,8 +39,7 @@ class PostsController < ApplicationController
   
   def create
     @post = Post.new(params[:post])
-    @post.forum = Forum.find(params[:forum_id])
-    @post.user =  current_user
+    validate_user @post
     @post.save
     respond_with @post
   end

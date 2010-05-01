@@ -9,6 +9,11 @@ class ApplicationController < ActionController::Base
   before_filter :set_time_zone
   
   protected
+
+  def validate_user(model)
+    throw "Something funky going on! #{model.user.inspect} != #{current_user.inspect}" if model.user != current_user
+  end
+  
   
   def set_time_zone
     if current_user && current_user.respond_to?(:timezone)

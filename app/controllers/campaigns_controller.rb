@@ -34,7 +34,7 @@ class CampaignsController < ApplicationController
   
   def create
     @campaign = Campaign.new(params[:campaign])
-    throw "Something funky going on! #{@campaign.user.inspect} != #{current_user.inspect}" if @campaign.user != current_user
+    validate_user @campaign
     @campaign.save
     respond_with @campaign
   end

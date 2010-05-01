@@ -7,7 +7,7 @@ class PostsControllerTest < ActionController::TestCase
   
   context "A PostsController" do
     setup do
-      sign_in users(:rjordan)
+      sign_in @user = users(:rjordan)
       @post = Post.find(:first)
     end
 
@@ -90,9 +90,7 @@ class PostsControllerTest < ActionController::TestCase
     #CREATE TESTS
     context "on POST to :create" do
       setup do
-        @user = User.first
-        post :create, :forum_id=>@post.forum.id, :post=>{:user_id=>@user.id, :title=>'A General Forum', :contents=>"Another post!!!" }
-#        resource.create.params[:forum_id]=Forum.find(:first)
+        post :create, :post=>{:user_id=>@user.id, :forum_id=>@post.forum.id, :title=>'A General Forum', :contents=>"Another post!!!" }
       end
       #should_assign_to :post
       should_set_the_flash_to(/created/i)
