@@ -4,7 +4,7 @@
     <title><%= yield(:title) || "Untitled" %></title>
     <%= stylesheet_link_tag 'default' %>
     <%= stylesheet_link_tag 'eggplant/jquery-ui-1.8.1.custom' %>
-    <%= stylesheet_link_tag 'markitup-1.1.7/skins/simple/style', 'markitup-1.1.7/sets/textile/style' %>
+    <%= stylesheet_link_tag 'markitup-1.1.7/skins/markitup/style', 'markitup-1.1.7/sets/textile/style' %>
     <%= csrf_meta_tag %>
   </head>
   <body>
@@ -40,13 +40,9 @@
     <script type="text/javascript">
 	    $(function() {
 		    $("#tabs").tabs();
-	    });
-	    $(function() {
 		    $(".button").button();
+            $('.markItUp').markItUp(mySettings);
 	    });
-	    $(function() {
-            $('.markItUp').markItUp();
-        });
   	</script>
     
 

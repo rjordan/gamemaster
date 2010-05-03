@@ -6,7 +6,7 @@
     <%= form.text_field :name %>
   </p>
   
-  <% if @resource.new? %>
+  <% if @resource.new_record? %>
   <p>
     <%= form.label :resource_type, 'Resource Type', :class=>'required' %>
     <%= form.select :resource_type, CampaignResource::ResourceTypes %>
