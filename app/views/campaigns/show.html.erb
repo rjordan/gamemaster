@@ -27,102 +27,84 @@
       <td class="show_value"><%= @campaign.players.count %> / <%= @campaign.max_players %></td>
   </tr>  </table>
   <br/>
-  
-  <!-- either an email or a nickname -->
-  <div id="section_heading">
-    <span>Players</span>
-    <% if @campaign.is_game_master?(current_user) %>
-	  <%= link_to "Invite Player", nil, :class=>'button' %>
-    <% end %>
-    <hr/>
-  </div>
-  <table class="show_form">
-    <% if @campaign.players %>
-        <thead><tr><th>Player Name</th><th>Character Name</th></tr></thead>
-       <% for player in @campaign.players %>
-        <% character = @campaign.player_characters.find(:first, :conditions=>{:user_id=>player}) %>
-        <tr>
-          <td><%= link_to character.player_name, user_path(character.user) %></td>
-          <td><%= link_to character.name, character_path(character) %></td>
-        </tr>
-      <% end %>
-  <% end %>
-  </table>
-  <br/>
-  
-  <div id="section_heading">
-    <span>Stories</span>
-    <% if (@campaign.user==current_user) %>
-    <%= link_to 'New', new_campaign_story_path(@campaign), :class=>'button' -%>
-    <% end %>
-    <hr/>
-  </div>
-  <table class="show_form">
-    <% if @campaign.stories %>
-        <% for story in @campaign.stories %>
-        <tr>
-          <td><%=story.position %>) <%= link_to story.name, story_path(story) %></td>
-        </tr>
-      <% end %>
-  <% end %>
-  </table>
-  <br/>
-  
-  <div id="section_heading">
-    <span>Actors (NPCs)</span>
-    <% if (@campaign.user==current_user) %>
-    <%= link_to "New", new_campaign_character_path(@campaign), :class=>'button' %>
-    <% end %>
-    <hr/>
-  </div>
-  <table class="show_form">
-    <% if @npcs %>
-        <% for npc in @npcs %>
-        <tr>
-          <td><%= link_to npc.name, character_path(npc) %></td>
-        </tr>
-      <% end %>
-  <% end %>
-  </table>
-  <br/>
-  
-  <div id="section_heading">
-    <span>Props (Items)</span>
-    <% if (@campaign.user==current_user) %>
-    <%= link_to "New", {}, :class=>'button' %>
-    <% end %>
-    <hr/>
-  </div>
-  <br/>
 
-  <div id="section_heading">
-    <span>Resources</span>
-    <% if (@campaign.user==current_user) %>
-    <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class=>'button' %>
-    <% end %>
-    <hr/>
-  </div>
-  <table class="show_form">
-    <% if @campaign.resources %>
-        <% for resource in @campaign.resources %>
-        <tr>
-          <td><%= link_to resource.name, campaign_resource_path(resource) %></td>
-        </tr>
+  <div id="tabs">
+	  <ul>
+		  <li><a href="#tabs-1">Players</a></li>
+		  <li><a href="#tabs-2">Stories</a></li>
+		  <li><a href="#tabs-3">Characters</a></li>
+		  <li><a href="#tabs-4">Items</a></li>
+		  <li><a href="#tabs-5">Locations</a></li>
+	  </ul>
+	  <div id="tabs-1">
+      <% if @campaign.is_game_master?(current_user) %>
+        <%= link_to "Invite", nil, :class=>'button' %>
       <% end %>
-  <% end %>
-  </table>
-  <br/>
-
-  <div id="section_heading">
-    <span>Adventure Logs</span>
-    <hr/>
+      <% if @campaign.players %>
+        <table>
+          <thead><tr><th>Player Name</th><th>Character Name</th></tr></thead>
+          <% @campaign.players.each do |player| %>
+          <% character = @campaign.player_characters.find(:first, :conditions=>{:user_id=>player}) %>
+          <tr>
+            <td><%= link_to character.player_name, user_path(character.user) %></td>
+            <td><%= link_to character.name, character_path(character) %></td>
+          </tr>
+          <% end %>
+        </table>
+      <% end %>
+  	</div>
+	  <div id="tabs-2">
+      <% if (@campaign.user==current_user) %>
+        <%= link_to 'New', new_campaign_story_path(@campaign), :class=>'button' %>
+      <% end %>
+      <% if @campaign.stories %>
+        <table>
+          <% @campaign.stories.each do |story| %>
+          <tr><td><%=story.position %>) <%= link_to story.name, story_path(story) %></td></tr>
+          <% end %>
+        </table>
+      <% end %>
+    </div>
+	  <div id="tabs-3">
+      <% if (@campaign.user==current_user) %>
+        <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class=>'button' %>
+      <% end %>
+      <ul>
+        <% @campaign.characters.each do |character| %>
+          <li><%= link_to character.name, campaign_resource_path(character) %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div id="tabs-4">
+      <% if (@campaign.user==current_user) %>
+        <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class=>'button' %>
+      <% end %>
+      <ul>
+        <% @campaign.items.each do |item| %>
+          <li><%= link_to item.name, campaign_resource_path(item) %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div id="tabs-5">
+      <% if (@campaign.user==current_user) %>
+        <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class=>'button' %>
+      <% end %>
+      <ul>
+        <% @campaign.locations.each do |location| %>
+          <li><%= link_to location.name, campaign_resource_path(location) %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
+
+  <h2>Adventure Logs</h2>
+  <hr/>
   <%= link_to @campaign.public_forum.name, forum_posts_path(@campaign.public_forum) %><br/>
   <%= link_to @campaign.private_forum.name, forum_posts_path(@campaign.private_forum) %><br/>
   <br/>
   
 </div>
 
-<% if (@campaign.user==current_user) %>
-<%= link_to 'Edit', edit_campaign_path(@campaign) %>
+<% if @campaign.user==current_user %>
+  <%= link_to 'Edit', edit_campaign_path(@campaign) %>
 <% end %>

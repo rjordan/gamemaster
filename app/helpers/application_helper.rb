@@ -4,4 +4,10 @@ module ApplicationHelper
     gravatar_email = Digest::MD5.hexdigest("#{user.email}")
     "<img src='http://www.gravatar.com/avatar.php?gravatar_id=#{gravatar_email}'/>".html_safe
   end
+
+  def title(title)
+    content_for :title do
+      title
+    end
+  end
 end

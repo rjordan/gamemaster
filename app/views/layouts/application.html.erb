@@ -1,24 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <title><%= controller.action_name %></title>
+    <title><%= yield(:title) || "Untitled" %></title>
     <%= stylesheet_link_tag 'default' %>
+    <%= stylesheet_link_tag 'eggplant/jquery-ui-1.8.1.custom' %>
     <%= csrf_meta_tag %>
-</head>
+  </head>
   <body>
+  
+
     <div id="container">
-      <div id="header">
-        <div id="header_navigation">
-          <%= render :partial=>'shared/header_nav' %>
-        </div>
-      </div>
-      <div id="page_top">
-        <%= image_tag 'page_top.png' %>
-      </div>
+      
       <div id="content_for_layout">
-        <div id="right_column">
-        </div>
+        <header>
+          <div id="header_navigation">
+            <%= render :partial=>'shared/header_nav' %>
+          </div>
+        </header>
         <div id="main_column">
           <% flash.each_key do |flash_key| %>
             <div id="flash_<%= flash_key.to_s %>">
@@ -28,7 +26,23 @@
           <%= yield %>
         </div>
       </div>
+      
     </div>
-   <%= javascript_include_tag :defaults %>
+
+    <footer>
+      <p>Copyright 2010 Richard Kent Jordan</p>
+    </footer>
+    
+    <%= javascript_include_tag 'jquery-1.4.2.min', 'jquery.rails.min', 'jquery-ui-1.8.1.custom.min' %>
+    <%= javascript_include_tag 'application' %>
+    <script type="text/javascript">
+	    $(function() {
+		    $("#tabs").tabs();
+	    });
+	    $(function() {
+		    $(".button").button();
+	    });
+  	</script>
+
   </body>
 </html>

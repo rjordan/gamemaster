@@ -1,11 +1,5 @@
-<% user_id = session[:user_id] %>
 <ul>
-
-  <% if user_id %>
-    <li><%= link_to 'Home', user_path(user_id) %></li>
-  <% else %>
-    <li><%= link_to 'Home', root_path %></li>
-  <% end %>
+  <li><%= link_to 'Home', current_user ? user_path(current_user) : root_path %></li>
 
   <% unless current_user %>
     <li><%= link_to 'Login', new_user_session_path %></li>

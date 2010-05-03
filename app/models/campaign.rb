@@ -14,6 +14,7 @@ class Campaign < ActiveRecord::Base
   has_many :players, :through=>:player_characters, :source=>:user
   
   has_many :resources, :class_name=>'CampaignResource', :dependent=>:destroy
+  delegate :characters, :locations, :items, :to=>:resources
 
   #def players
   #  characters.find(:all, :conditions=>'user_id is not null')
