@@ -58,9 +58,9 @@ ActiveRecord::Schema.define(:version => 20091129200317) do
     t.string   "name",                                   :null => false
     t.integer  "story_id",                               :null => false
     t.integer  "position",            :default => 1,     :null => false
+    t.boolean  "revealed",            :default => false, :null => false
     t.text     "public_description",                     :null => false
     t.text     "private_description"
-    t.boolean  "public",              :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "version",             :default => 1,     :null => false
@@ -100,13 +100,12 @@ ActiveRecord::Schema.define(:version => 20091129200317) do
   create_table "stories", :force => true do |t|
     t.string   "name",                                   :null => false
     t.integer  "campaign_id",                            :null => false
+    t.boolean  "revealed",            :default => false, :null => false
     t.text     "public_description",                     :null => false
     t.text     "private_description"
-    t.boolean  "public",              :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "version",             :default => 1,     :null => false
-    t.integer  "position",            :default => 1,     :null => false
   end
 
   create_table "systems", :force => true do |t|
