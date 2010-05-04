@@ -1,50 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title><%= yield(:title) || "Untitled" %></title>
-    <%= stylesheet_link_tag 'default' %>
-    <%= stylesheet_link_tag 'eggplant/jquery-ui-1.8.1.custom' %>
+    <meta charset="utf-8" />
+    <%= stylesheet_link_tag 'application' %>
+    <%= stylesheet_link_tag 'eggplant2/jquery-ui-1.8.1.custom' %>
     <%= stylesheet_link_tag 'markitup-1.1.7/skins/markitup/style', 'markitup-1.1.7/sets/textile/style' %>
     <%= csrf_meta_tag %>
   </head>
-  <body>
+  <body id="<%= "#{controller_name}_#{action_name}" %>">
+
+  <header>
+    GameMaster
+    <aside>
+      <%= render :partial=>'shared/header_nav' %>
+    </aside>
+  </header>
+
+  <!-- sidebar -->
+  <aside id="sidebar"">
+    <ul>
+      <li><%= link_to 'Home', root_path %></li>
+      <li><%= link_to 'Campaigns', campaigns_path %></li>
+      <li><%= link_to 'Forums', forums_path %></li>
+    </ul>
+  </aside> 
+
+  <div id="container">
   
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <% end %>
+    <article>
+      <%= yield %>
+    </article>
+  </div>
 
-    <div id="container">
-      
-      <div id="content_for_layout">
-        <header>
-          <div id="header_navigation">
-            <%= render :partial=>'shared/header_nav' %>
-          </div>
-        </header>
-        <div id="main_column">
-          <% flash.each_key do |flash_key| %>
-            <div id="flash_<%= flash_key.to_s %>">
-              <%= flash[flash_key] %>
-            </div>
-          <% end %>
-          <%= yield %>
-        </div>
-      </div>
-      
-    </div>
+  <footer>
+    <p>Copyright 2008-<%= Time.now.year %> Richard Kent Jordan</p>
+  </footer>
 
-    <footer>
-      <p>Copyright 2010 Richard Kent Jordan</p>
-    </footer>
+
+  <%= javascript_include_tag 'jquery-1.4.2.min', 'jquery.rails.min', 'jquery-ui-1.8.1.custom.min' %>
+  <%= javascript_include_tag 'markitup-1.1.7/jquery.markitup.pack', 'markitup-1.1.7/sets/textile/set' %>
+  <%= javascript_include_tag 'application' %>
+  <script type="text/javascript">
+    $(function() {
+	    $("#tabs").tabs();
+	    $(".button").button();
+          $('.markItUp').markItUp(mySettings);
+    });
+	</script>
     
-    <%= javascript_include_tag 'jquery-1.4.2.min', 'jquery.rails.min', 'jquery-ui-1.8.1.custom.min' %>
-    <%= javascript_include_tag 'markitup-1.1.7/jquery.markitup.pack', 'markitup-1.1.7/sets/textile/set' %>
-    <%= javascript_include_tag 'application' %>
-    <script type="text/javascript">
-	    $(function() {
-		    $("#tabs").tabs();
-		    $(".button").button();
-            $('.markItUp').markItUp(mySettings);
-	    });
-  	</script>
-    
-
   </body>
 </html>

@@ -18,11 +18,15 @@
   	<% end %>
   </ul>
   <div id="tabs-1">
-    <p><%= @resource.public_description %></p>
+    <div class="tab-window">
+      <p><%= textilize(@resource.public_description).html_safe %></p>
+    </div>
 	</div>
   <% if @resource.campaign.user == current_user %>
     <div id="tabs-2">
-      <p><%= @resource.private_description %></p>
+      <div class="tab-window">
+        <p><%= textilize(@resource.private_description).html_safe %></p>
+      </div>
     </div>
   <% end %>
 </div>

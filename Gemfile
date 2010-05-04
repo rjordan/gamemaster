@@ -14,7 +14,8 @@ gem 'responders'
 gem 'shoulda', :group=>:test, :git=>'git://github.com/thoughtbot/shoulda.git', :branch=>'rails3'
 gem 'warden'
 gem 'devise', '1.1.rc1'
-
+gem 'RedCloth'
+gem 'html5'
 
 ## Bundle gems used only in certain environments:
 # gem "rspec", :group => :test
@@ -26,4 +27,5 @@ group :development do
   #These are just for console debugging
   gem 'hirb', :require=>false
   gem 'wirble', :require=>false
+  gem 'less'
 end
