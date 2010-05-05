@@ -1,5 +1,10 @@
-<div id="content">
-<h2><%= link_to @story.campaign.name, campaign_path(@story.campaign) %>: <%= @story.name %></h2>
+<% title @story.name %>
+<h2><%= @story.name %></h2>
+
+<div id="breadcrumbs">
+  <%= link_to @story.campaign.name, campaign_path(@story.campaign) %> > <%= @story.name %>
+</div>
+
 <p>
 <% if @story.revealed %>
   <span style="color:green">This storyline has been revealed.</span>
@@ -8,6 +13,7 @@
 <% end %>
 </p>
 
+<%= link_to 'Edit', edit_story_path(@story), :class=>'button' %>
 <div id="tabs">
   <ul>
 	  <li><a href="#tabs-1">Public Description</a></li>
@@ -16,11 +22,15 @@
   	<% end %>
   </ul>
   <div id="tabs-1">
-    <p><%= @story.public_description %></p>
+    <div class="tab-window">
+      <p><%= textilize(@story.public_description).html_safe %></p>
+    </div>
 	</div>
   <% if @story.campaign.user == current_user %>
     <div id="tabs-2">
-      <p><%= @story.private_description %></p>
+      <div class="tab-window">
+        <p><%= textilize(@story.private_description).html_safe %></p>
+      </div>
     </div>
   <% end %>
 </div>
@@ -30,29 +40,16 @@
   <span>Chapters</span>
   <%= link_to "New", new_story_chapter_path(@story), :class=>'button' %>
 <hr/>
-  </div>
-<% for chapter in @story.chapters.find(:all, :order=>:position) %>
-<% link_text = "Chapter "+chapter.position.to_s+": "+chapter.name %>
-<%= link_to link_text, chapter_path(chapter) %>
-<% end %>
-</p>
-
-<p>
-<div id="section_heading">
-  <span>Actors (NPC's)</span>
-  <%= link_to "New", {}, :class=>'button' %>
-<hr/>
-  </div></p>
-
-<p>
-<div id="section_heading">
-  <span>Props (Items)</span>
-  <%= link_to "New", {}, :class=>'button' %>
-<hr/>
-  </div></p>
-
-<br/>
 </div>
-<p>
-<%= link_to 'Edit', edit_story_path(@story) %>
+  <% for chapter in @story.chapters.find(:all, :order=>:position) %>
+    <ul class="sortable">
+      <li><%= link_to "Chapter #{chapter.position.to_s}: #{chapter.name}", chapter_path(chapter) %></li>
+    </ul>
+  <% end %>
 </p>
+
+<div id="resource_list">
+  <h2>Resources</h2>
+</div>
+
+

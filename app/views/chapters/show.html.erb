@@ -1,5 +1,10 @@
-<div id="content">
-<h2><%= link_to @chapter.story.campaign.name, campaign_path(@chapter.story.campaign) %>:<%= link_to @chapter.story.name, story_path(@chapter.story) %>:<%= @chapter.name %></h2>
+<% title @chapter.name %>
+<h2><%= @chapter.name %></h2>
+
+<div id='breadcrumbs'>
+  <%= link_to @chapter.story.campaign.name, campaign_path(@chapter.story.campaign) %> > <%= link_to @chapter.story.name, story_path(@chapter.story) %> > <%= @chapter.name %>
+</div>
+
 <p>
 <% if @chapter.revealed %>
   <span style="color:green">This chapter has been revealed.</span>
@@ -8,42 +13,26 @@
 <% end %>
 </p>
 
-<p>
-<div id="section_heading">
-<span>Public Description</span>
-<hr/>
+<%= link_to 'Edit', edit_chapter_path(@chapter), :class=>'button' %>
+<div id="tabs">
+  <ul>
+	  <li><a href="#tabs-1">Public Description</a></li>
+    <% if @chapter.story.campaign.user == current_user %>
+  	  <li><a href="#tabs-2">GM's Description</a></li>
+  	<% end %>
+  </ul>
+  <div id="tabs-1">
+    <div class="tab-window">
+      <p><%= textilize(@chapter.public_description).html_safe %></p>
+    </div>
+	</div>
+  <% if @chapter.story.campaign.user == current_user %>
+    <div id="tabs-2">
+      <div class="tab-window">
+        <p><%= textilize(@chapter.private_description).html_safe %></p>
+      </div>
+    </div>
+  <% end %>
 </div>
-<%= @chapter.public_description -%>
-</p>
 
-
-<% if @chapter.story.campaign.user_id == session[:user_id] %>
-<br/>
-<p>
-  <div id="section_heading">
-    <span>GM's Description</span>
-  <hr/>
- </div>
-<%= @chapter.private_description -%>
-</p>
-<% end %>
-
-<p>
-<div id="section_heading">
-  <span>Actors (NPC's)</span>
-  <%= link_to "New", {}, :class=>'button' %>
-<hr/>
-  </div></p>
-
-<p>
-<div id="section_heading">
-  <span>Props (Items)</span>
-  <%= link_to "New", {}, :class=>'button' %>
-<hr/>
-  </div></p>
-
-<br/>
-</div>
-<p>
-<%= link_to 'Edit', edit_chapter_path(@chapter) %>
-</p>
+<h2>Resources</h2>
