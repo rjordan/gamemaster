@@ -1,32 +1,29 @@
 <div id="content">
 <h2><%= link_to @story.campaign.name, campaign_path(@story.campaign) %>: <%= @story.name %></h2>
 <p>
-<% if @story.public %>
+<% if @story.revealed %>
   <span style="color:green">This storyline has been revealed.</span>
 <% else %>
   <span style="color:red">This storyline is for the GM's eyes only!</span>
 <% end %>
 </p>
 
-<p>
-<div id="section_heading">
-<span>Public Description</span>
-<hr/>
+<div id="tabs">
+  <ul>
+	  <li><a href="#tabs-1">Public Description</a></li>
+    <% if @story.campaign.user == current_user %>
+  	  <li><a href="#tabs-2">GM's Description</a></li>
+  	<% end %>
+  </ul>
+  <div id="tabs-1">
+    <p><%= @story.public_description %></p>
+	</div>
+  <% if @story.campaign.user == current_user %>
+    <div id="tabs-2">
+      <p><%= @story.private_description %></p>
+    </div>
+  <% end %>
 </div>
-<%= @story.public_description -%>
-</p>
-
-
-<% if @story.campaign.user_id == session[:user_id] %>
-<br/>
-<p>
-  <div id="section_heading">
-    <span>GM's Description</span>
-  <hr/>
- </div>
-<%= @story.private_description -%>
-</p>
-<% end %>
 
 <p>
 <div id="section_heading">

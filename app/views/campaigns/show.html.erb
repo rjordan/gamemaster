@@ -60,7 +60,7 @@
       <% if @campaign.stories %>
         <table>
           <% @campaign.stories.each do |story| %>
-          <tr><td><%=story.position %>) <%= link_to story.name, story_path(story) %></td></tr>
+          <tr><td><%= link_to story.name, story_path(story) %></td></tr>
           <% end %>
         </table>
       <% end %>

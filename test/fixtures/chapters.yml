@@ -1,7 +1,7 @@
 the_meeting:
   name: The Meeting
   story: introduction
-  public: false
+  revealed: false
   position: 1
   public_description: The characters meet.
   private_description: "Its a meeting!  Shhh, don't tell the players."

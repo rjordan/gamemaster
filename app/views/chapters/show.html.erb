@@ -1,7 +1,7 @@
 <div id="content">
 <h2><%= link_to @chapter.story.campaign.name, campaign_path(@chapter.story.campaign) %>:<%= link_to @chapter.story.name, story_path(@chapter.story) %>:<%= @chapter.name %></h2>
 <p>
-<% if @chapter.public %>
+<% if @chapter.revealed %>
   <span style="color:green">This chapter has been revealed.</span>
 <% else %>
   <span style="color:red">This chapter is for the GM's eyes only!</span>
