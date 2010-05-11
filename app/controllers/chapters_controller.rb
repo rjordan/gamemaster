@@ -21,6 +21,18 @@ class ChaptersController < ApplicationController
     respond_with @chapter
   end
   
+  def sort
+    chapters = Chapter.find(params[:chapter])
+    pos = 1
+    params[:chapter].each do |id|
+      chapter = chapters.select { |c| c.id=id }.first
+      chapter.position=pos
+      chapter.save!
+      pos+=1
+    end
+    render :nothing=>true
+  end
+  
   def destroy
     @chapter = Chapter.find(params[:id])
     @chapter.destroy

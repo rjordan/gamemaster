@@ -16,9 +16,24 @@ class PostsController < ApplicationController
     @post = Post.new(:forum=>Forum.find(params[:forum_id]), :user=>current_user)
     respond_with @post
   end
+
+  def create
+    @post = Post.new(params[:post])
+    validate_user @post
+    @post.save
+    respond_with @post
+  end
   
   def edit
     @post = Post.find(params[:id])
+    respond_with @post
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    @post.update_attributes(params[:post])
+    validate_user @post
+    @post.save
     respond_with @post
   end
   
@@ -30,18 +45,4 @@ class PostsController < ApplicationController
     end
   end
   
-  def update
-    @post = Post.find(params[:id])
-    @post.update_attributes(params[:post])
-    @post.save
-    respond_with @post
-  end
-  
-  def create
-    @post = Post.new(params[:post])
-    validate_user @post
-    @post.save
-    respond_with @post
-  end
-   
 end

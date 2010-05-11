@@ -1,2 +1,15 @@
 // Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+$(function() {
+  $("#tabs").tabs();
+  $(".button").button();
+  $("#stories_list").sortable({ 
+      update: function() { 
+        $.ajax({ 
+          type: 'post', 
+          data: $('#stories_list').sortable('serialize'),
+          dataType: 'script',
+          url: location+'/chapters/sort' }) 
+      }});
+  $('.markItUp').markItUp(mySettings);
+});
+

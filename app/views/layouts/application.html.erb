@@ -12,25 +12,25 @@
 
   <header>
     GameMaster
-    <aside>
-      <%= render :partial=>'shared/header_nav' %>
-    </aside>
+    <aside><%= render :partial=>'shared/header_nav' %></aside>
   </header>
 
   <!-- sidebar -->
-  <aside id="sidebar"">
-    <ul>
-      <li><%= link_to 'Home', root_path %></li>
-      <li><%= link_to 'Campaigns', campaigns_path %></li>
-      <li><%= link_to 'Forums', forums_path %></li>
-    </ul>
-  </aside> 
+  <aside id="sidebar""><%= render :partial=>'shared/left_nav' %></aside> 
 
   <div id="container">
   
     <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <%= content_tag :div, msg, :id => "flash_#{name}", :class=>'.ui-state-error' %>
     <% end %>
+
+    <% if flash.notice %>
+      <%= content_tag :div, flash[:notice], :id => "flash_notice", :class=>'.ui-state-highlight' %>
+    <% end %>
+    <% if flash.alert %>
+      <%= content_tag :div, flash[:alert], :id => "flash_alert", :class=>'.ui-state-error' %>
+    <% end %>
+    
     <article>
       <%= yield %>
     </article>
@@ -40,18 +40,8 @@
     <p>Copyright 2008-<%= Time.now.year %> Richard Kent Jordan</p>
   </footer>
 
-
   <%= javascript_include_tag 'jquery-1.4.2.min', 'jquery.rails.min', 'jquery-ui-1.8.1.custom.min' %>
   <%= javascript_include_tag 'markitup-1.1.7/jquery.markitup.pack', 'markitup-1.1.7/sets/textile/set' %>
   <%= javascript_include_tag 'application' %>
-  <script type="text/javascript">
-    $(function() {
-	    $("#tabs").tabs();
-	    $(".button").button();
-	    $(".sortable").sortable({revert: true});
-      $('.markItUp').markItUp(mySettings);
-    });
-	</script>
-    
   </body>
 </html>

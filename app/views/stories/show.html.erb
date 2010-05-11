@@ -41,11 +41,11 @@
   <%= link_to "New", new_story_chapter_path(@story), :class=>'button' %>
 <hr/>
 </div>
-  <% for chapter in @story.chapters.find(:all, :order=>:position) %>
-    <ul class="sortable">
-      <li><%= link_to "Chapter #{chapter.position.to_s}: #{chapter.name}", chapter_path(chapter) %></li>
-    </ul>
-  <% end %>
+  <ul id="stories_list">
+    <% for chapter in @story.chapters.find(:all, :order=>:position) %>
+      <li id="chapter_<%=chapter.id%>"><%= link_to chapter.name, chapter_path(chapter) %></li>
+    <% end %>
+  </ul>
 </p>
 
 <div id="resource_list">

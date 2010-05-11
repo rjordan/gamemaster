@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(:version => 20091129200317) do
     t.integer  "version",             :default => 1,     :null => false
   end
 
+  add_index "campaign_resources", ["campaign_id"], :name => "index_campaign_resources_on_campaign_id"
+
   create_table "campaigns", :force => true do |t|
     t.string   "name",                           :null => false
     t.integer  "user_id",                        :null => false
@@ -35,6 +37,9 @@ ActiveRecord::Schema.define(:version => 20091129200317) do
     t.datetime "updated_at"
     t.integer  "version",     :default => 1,     :null => false
   end
+
+  add_index "campaigns", ["public"], :name => "index_campaigns_on_public"
+  add_index "campaigns", ["system_id"], :name => "index_campaigns_on_system_id"
 
   create_table "campaigns_invitations", :id => false, :force => true do |t|
     t.integer  "campaign_id", :null => false
@@ -78,24 +83,36 @@ ActiveRecord::Schema.define(:version => 20091129200317) do
     t.integer  "version",             :default => 1, :null => false
   end
 
+  create_table "forum_users", :force => true do |t|
+    t.integer  "forum_id",                      :null => false
+    t.integer  "user_id",                       :null => false
+    t.boolean  "moderator",  :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "forum_users", ["forum_id", "user_id"], :name => "index_forum_users_on_forum_id_and_user_id", :unique => true
+
   create_table "forums", :force => true do |t|
     t.string   "name",                          :null => false
     t.integer  "campaign_id"
-    t.boolean  "public",      :default => true
+    t.boolean  "public",      :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "version",     :default => 1,    :null => false
   end
 
   create_table "posts", :force => true do |t|
-    t.string   "title",                     :null => false
     t.integer  "forum_id",                  :null => false
+    t.string   "title",                     :null => false
     t.integer  "user_id",                   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "version",    :default => 1, :null => false
     t.text     "contents",                  :null => false
   end
+
+  add_index "posts", ["forum_id"], :name => "index_posts_on_forum_id"
 
   create_table "stories", :force => true do |t|
     t.string   "name",                                   :null => false

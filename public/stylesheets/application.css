@@ -59,6 +59,10 @@ header aside ul li a:hover { color: #ffdf00; }
 }
 #sidebar ul li a:visited { color: #ffffff; }
 #sidebar ul li a:hover { color: #ffdf00; }
+#stories_list {
+  list-style-type: none;
+  font-size: 1.2em;
+}
 footer {
   display: block;
   text-align: center;

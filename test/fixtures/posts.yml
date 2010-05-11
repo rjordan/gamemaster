@@ -1,6 +1,6 @@
 feature_post:
   forum: feature_requests
-  user: a_player
+  user: rjordan
   title: Needed Feature
   contents: You should add more features!
 public_post_1:

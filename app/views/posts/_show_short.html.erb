@@ -14,6 +14,7 @@
           <% end %>
             </span>
           </div>
+          <time datetime="<%= show_short.created_at %>"><%= l show_short.created_at %></time>
           <div class="post_timestamp">
           <%= show_short.user.nickname %> said at <%= l show_short.created_at %>
           </div>

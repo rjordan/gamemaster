@@ -10,6 +10,8 @@ class CreateCampaigns < ActiveRecord::Migration
       t.timestamps
       t.integer :version, :null=>false, :default=>1
     end
+    add_index :campaigns, :system_id
+    add_index :campaigns, :public
     
     create_table :campaigns_players, :id=>false do |t|
       t.integer :campaign_id, :null=>false

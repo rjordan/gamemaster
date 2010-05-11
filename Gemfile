@@ -11,7 +11,7 @@ gem 'rails', '3.0.0.beta3'
 gem "sqlite3-ruby", :require => "sqlite3"
 
 gem 'responders'
-gem 'shoulda', :group=>:test, :git=>'git://github.com/thoughtbot/shoulda.git', :branch=>'rails3'
+gem 'shoulda' #, :group=>:test, :git=>'git://github.com/thoughtbot/shoulda.git', :branch=>'rails3'
 gem 'warden'
 gem 'devise', '1.1.rc1'
 gem 'RedCloth'

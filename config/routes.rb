@@ -14,7 +14,11 @@ GameMaster::Application.routes.draw do |map|
   end
   
   resources :stories do
-    resources :chapters
+    resources :chapters do
+      collection do
+        post :sort
+      end
+    end
   end
   resources :chapters
   
