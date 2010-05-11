@@ -22,9 +22,11 @@ en:
   date:
     formats:
       default: "%m/%d/%Y"
+      post_date: "%A, %B %d, %Y"
   time:
     formats:
       default: "%m/%d/%Y %I:%M%p (%Z)"
+      post_date: "%A, %B %d, %Y at %I:%M%p (%Z)"
   devise:
     failure:
       unauthenticated: 'You need to sign in or sign up before continuing.'

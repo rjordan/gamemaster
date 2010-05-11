@@ -1,32 +1,25 @@
-<div class="post">
-
-  <table>
-    <tr class="post_header"> 
-      <td class="post_image">
-        <%= render_gravatar show_short.user %>
-      </td>
-      <td class="post_byline">
-          <div class="post_title">
-            <%= show_short.title %>
-          <span class="post_icons">
-          <% if current_user == show_short.user %>
-            <%=link_to(image_tag( "page_edit.png"), edit_post_path(show_short)) %><%= image_tag("page_remove.png") %>
-          <% end %>
-            </span>
-          </div>
-          <time datetime="<%= show_short.created_at %>"><%= l show_short.created_at %></time>
-          <div class="post_timestamp">
-          <%= show_short.user.nickname %> said at <%= l show_short.created_at %>
-          </div>
-      </td>
-    </tr>
-    <tr>
-      <td class="post_body" colspan="2">
-        <p>
-          <%= show_short.contents %>
-        </p>
-      </td>
-    </tr>
-  </table>
-
-</div>
+<article class="post">
+  <div class="post_header">
+    <div class="post_image">
+      <%= render_gravatar show_short.user %>
+    </div>
+    <div class="post_byline">
+      <h1><%= show_short.title %></h1>
+      <%= link_to show_short.user.nickname, user_path(show_short.user) %> said on <time datetime="<%= show_short.created_at %>"><%= l(show_short.created_at, :format=>:post_date) %></time>
+    </div>
+    <% if current_user == show_short.user %>
+      <div class="post_edit_links">
+        <%=link_to(image_tag( "page_edit.png"), edit_post_path(show_short)) %><%= image_tag("page_remove.png") %>
+      </div>
+    <% end %>
+    <div class="post_tags">
+      <ul>
+        <li><a href="#">Tag1</a>
+        <li><a href="#">Tag2</a>
+      </ul>
+    </div>
+  </div>
+  <div class="post_body">
+    <%= textilize(show_short.contents) %>
+  </div>
+</article>

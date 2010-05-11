@@ -87,3 +87,11 @@ footer {
   background: white;
   min-height: 400px;
 }
+.post_header .post_byline a { text-decoration: none; }
+.post_header .post_edit_links { display: inline; }
+.post_header .post_tags ul li {
+  display: inline;
+  list-style-type: none;
+  text-size: 0.75em;
+}
+.post_header .post_tags ul li a { text-decoration: none; }

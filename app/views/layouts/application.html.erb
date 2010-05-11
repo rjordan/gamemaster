@@ -20,15 +20,19 @@
 
   <div id="container">
   
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :id => "flash_#{name}", :class=>'.ui-state-error' %>
-    <% end %>
+    <% 
+      flash.each do |name, msg|
+        unless name.to_s == 'alert' || name.to_s == 'notice'
+          throw "ERROR: Bad Flash header! (#{name})"
+        end
+      end
+    %>
 
     <% if flash.notice %>
-      <%= content_tag :div, flash[:notice], :id => "flash_notice", :class=>'.ui-state-highlight' %>
+      <%= content_tag :div, flash[:notice], :id => "flash_notice", :class=>'ui-state-highlight' %>
     <% end %>
     <% if flash.alert %>
-      <%= content_tag :div, flash[:alert], :id => "flash_alert", :class=>'.ui-state-error' %>
+      <%= content_tag :div, flash[:alert], :id => "flash_alert", :class=>'ui-state-error' %>
     <% end %>
     
     <article>
