@@ -4,7 +4,7 @@
       <%= render_gravatar show_short.user %>
     </div>
     <div class="post_byline">
-      <h1><%= show_short.title %></h1>
+      <h2><%= link_to show_short.title, post_path(show_short) %></h2>
       <%= link_to show_short.user.nickname, user_path(show_short.user) %> said on <time datetime="<%= show_short.created_at %>"><%= l(show_short.created_at, :format=>:post_date) %></time>
     </div>
     <% if current_user == show_short.user %>
