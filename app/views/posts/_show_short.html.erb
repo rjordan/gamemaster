@@ -1,25 +1,29 @@
-<article class="post">
+<div class="post">
   <div class="post_header">
-    <div class="post_image">
+    <div class="avatar">
       <%= render_gravatar show_short.user %>
     </div>
     <div class="post_byline">
-      <h2><%= link_to show_short.title, post_path(show_short) %></h2>
-      <%= link_to show_short.user.nickname, user_path(show_short.user) %> said on <time datetime="<%= show_short.created_at %>"><%= l(show_short.created_at, :format=>:post_date) %></time>
+      <h2><%= link_to show_short.title, post_path(show_short) %></h2><br/>
+      <span>
+        <%= link_to show_short.user.nickname, user_path(show_short.user) %> said <time datetime="<%= show_short.created_at %>"><%= distance_of_time_in_words Time.now-show_short.created_at %></time> ago.
+      </span>
+      <% if current_user == show_short.user %>
+        <span>
+          <%= link_to image_tag("page_edit.png"), edit_post_path(show_short)  %>
+          <%= link_to image_tag("page_remove.png"), post_path(show_short), :confirm=>"You are about to delete your post. Are you sure?", :method=>:delete  %>
+        </span>
+      <% end %>
     </div>
-    <% if current_user == show_short.user %>
-      <div class="post_edit_links">
-        <%=link_to(image_tag( "page_edit.png"), edit_post_path(show_short)) %><%= image_tag("page_remove.png") %>
-      </div>
-    <% end %>
-    <div class="post_tags">
-      <ul>
-        <li><a href="#">Tag1</a>
-        <li><a href="#">Tag2</a>
+    <% if show_short.respond_to?(:tags) && show_short.tags.length>0 %>
+      <ul class="post_tags">
+        <% show_short.tags.each do |tag| %>
+          <li><%= link_to tag, tag_path(tag) %></li>
+        <% end %>
       </ul>
-    </div>
+    <% end %>
   </div>
   <div class="post_body">
-    <%= textilize(show_short.contents) %>
+    <%= textilize(show_short.contents).html_safe %>
   </div>
-</article>
+</div>

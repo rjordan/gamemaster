@@ -109,28 +109,36 @@ footer {
   min-height: 400px;
 }
 
-.post_header {
- .post_image {
+.post {
+  border: 2px solid #dddddd;
+  padding: 0.5em;
+  a {
+    text-decoration: none;
   }
- .post_byline {
-    a {
-      text-decoration: none;
-    }
- }
- .post_edit_links {
-   display: inline;
- }
+  img {
+    border: 0px;
+  }
+  .avatar {
+    float: right;
+  }
+  h2 {
+    display: inline;
+  }
  .post_tags {
-    ul {
-      li {
-        display: inline;
-        list-style-type:none;
-        text-size: 0.75em;    
-        a {
-          text-decoration: none;
-        }
+    padding-left: 0px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    li {
+      display: inline;
+      list-style-type:none;
+      a {
+        font-size: 0.75em;    
       }
-   }
- }
+    }
+  }
+  .post_body {
+    padding-top: 1.0em;
+  }
 }
+
 
