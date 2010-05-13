@@ -9,8 +9,8 @@
       <%= form.text_field :title %>
     </p>
     <p>
-      <%= form.label :contents, 'Contents', :class=>"required" %>
-      <%= form.text_area :contents %>
+      <%= form.label :contents, 'Contents' %>
+      <%= form.text_area :contents, :class=>"required markItUp" %>
     </p>
   </fieldset>
   <%= form.submit 'Submit' %>
