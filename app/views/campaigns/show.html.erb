@@ -20,7 +20,7 @@
     </tr>
     <tr>
       <td class="show_label">Created At:</td>
-      <td class="show_value"><%= l @campaign.created_at %></td>
+      <td class="show_value"><%= l(@campaign.created_at, :format=>:post_date) %></td>
     </tr>
     <tr>
       <td class="show_label">Players:</td>
@@ -100,7 +100,9 @@
   <h2>Adventure Logs</h2>
   <hr/>
   <%= link_to @campaign.public_forum.name, forum_posts_path(@campaign.public_forum) %><br/>
-  <%= link_to @campaign.private_forum.name, forum_posts_path(@campaign.private_forum) %><br/>
+  <% if (@campaign.user==current_user) %>
+    <%= link_to @campaign.private_forum.name, forum_posts_path(@campaign.private_forum) %><br/>
+  <% end %>
   <br/>
   
 </div>
