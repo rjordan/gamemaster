@@ -87,11 +87,22 @@ footer {
   background: white;
   min-height: 400px;
 }
-.post_header .post_byline a { text-decoration: none; }
-.post_header .post_edit_links { display: inline; }
-.post_header .post_tags ul li {
+.post {
+  border: 2px solid #dddddd;
+  padding: 0.5em;
+}
+.post a { text-decoration: none; }
+.post img { border: 0px; }
+.post .avatar { float: right; }
+.post h2 { display: inline; }
+.post .post_tags {
+  padding-left: 0px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+.post .post_tags li {
   display: inline;
   list-style-type: none;
-  text-size: 0.75em;
 }
-.post_header .post_tags ul li a { text-decoration: none; }
+.post .post_tags li a { font-size: 0.75em; }
+.post .post_body { padding-top: 1em; }
