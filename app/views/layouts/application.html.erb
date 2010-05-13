@@ -11,7 +11,7 @@
   <body id="<%= "#{controller_name}_#{action_name}" %>">
 
   <header>
-    GameMaster
+     <h1 style="display:inline;"><%= link_to 'GameMaster', root_url %></h1>
     <aside><%= render :partial=>'shared/header_nav' %></aside>
   </header>
 
@@ -29,10 +29,15 @@
     %>
 
     <% if flash.notice %>
-      <%= content_tag :div, flash[:notice], :id => "flash_notice", :class=>'ui-state-highlight' %>
+      <div style="padding: 0pt 0.7em;", id="flash_notice", class="ui-state-highlight ui-corner-all">
+        <p><span style="float: left; margin-right: 0.3em;" class="ui-icon ui-icon-info"></span> <%= flash[:notice] %></p>
+      </div>
     <% end %>
+    
     <% if flash.alert %>
-      <%= content_tag :div, flash[:alert], :id => "flash_alert", :class=>'ui-state-error' %>
+      <div style="padding: 0pt 0.7em;", id="flash_alert", class="ui-state-error ui-corner-all" >
+        <p><span style="float: left; margin-right: 0.3em;" class="ui-icon ui-icon-alert"></span> <%= flash[:alert] %></p>
+      </div>
     <% end %>
     
     <article>
