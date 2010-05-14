@@ -9,9 +9,10 @@ gem 'rails', '3.0.0.beta3'
 # ActiveRecord requires a database adapter. By default,
 # Rails has selected sqlite3.
 gem "sqlite3-ruby", :require => "sqlite3"
+gem "postgres-pr", :group=>[:stage,:production]
 
 gem 'responders'
-gem 'shoulda' #, :group=>:test, :git=>'git://github.com/thoughtbot/shoulda.git' #, :branch=>'rails3'
+gem 'shoulda', :group=>:test #, :git=>'git://github.com/thoughtbot/shoulda.git' #, :branch=>'rails3'
 gem 'bcrypt-ruby'
 gem 'warden'
 gem 'devise', '1.1.rc1'
