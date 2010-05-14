@@ -29,11 +29,7 @@
   <br/>
 
   <div id="dialog_invite" title="Invite Player">
-    <%= form_for(@invite) do |form| %>
-      <%= form.label :email, 'Email Address' %>
-      <%= form.text_field :email %>
-      <%= form.submit 'Invite' %>
-    <% end %>
+    <%= render :partial=>'campaign_invites/form' %>
   </div>
   
   <div id="tabs">
