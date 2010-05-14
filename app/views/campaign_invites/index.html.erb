@@ -1,0 +1,9 @@
+<ul>
+  <% if @invites.empty? %>
+    <li>No outstanding invites.</li>
+  <% else %>
+      <% for invite in @invites %>
+        <li><%= invite.email %></li>
+      <% end %>
+  <% end %>
+</ul>
