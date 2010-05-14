@@ -12,8 +12,10 @@ class CampaignInvitesController < ApplicationController
   end
 
   def create
-    @invite = Campaign.find(params[:campaign_id]).invite.create(params[:campaign_invite])
-    respond_with @invite
+    @invite = Campaign.find(params[:campaign_id]).invites.create(params[:campaign_invite])
+    respond_with @invite do |format|
+      format.html { redirect_to campaign_path(@invite.campaign) }
+    end
   end
 
 #  def destroy

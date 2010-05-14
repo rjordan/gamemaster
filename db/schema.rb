@@ -12,8 +12,8 @@
 ActiveRecord::Schema.define(:version => 20100514041845) do
 
   create_table "campaign_invites", :force => true do |t|
-    t.integer  "campaign_id"
-    t.string   "email"
+    t.integer  "campaign_id", :null => false
+    t.string   "email",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

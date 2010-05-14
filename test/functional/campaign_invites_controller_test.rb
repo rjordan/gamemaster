@@ -39,7 +39,7 @@ class CampaignInvitesControllerTest < ActionController::TestCase
       end
       #should_assign_to :invite
       should_set_the_flash_to(/created/i)
-      should_redirect_to("the campaign view") { campaign_path(assigns(:invite)) }
+      should_redirect_to("the campaign view") { campaign_path(assigns(:invite).campaign) }
     end
 
     #DELETE tests
