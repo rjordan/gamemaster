@@ -11,7 +11,10 @@ GameMaster::Application.routes.draw do |map|
       resources :characters
       resources :forums
       resources :campaign_resources
+      resources :campaign_invites
   end
+  
+  resources :campaign_invites
   
   resources :stories do
     resources :chapters do

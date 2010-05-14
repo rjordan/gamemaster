@@ -11,5 +11,19 @@ $(function() {
           url: location+'/chapters/sort' }) 
       }});
   $('.markItUp').markItUp(mySettings);
+  
+	$("#dialog_invite").dialog({
+		  autoOpen: false,
+		  height: 150,
+		  width: 350,
+		  modal: true,
+		  resizable: false,
+		  Cancel: function() { $(this).dialog('close'); },
+		  close: function() {	allFields.val('').removeClass('ui-state-error'); }
+  });
+  
+
+  $('#player_invite').button().click(function() { $('#dialog_invite').dialog('open'); });
+
 });
 

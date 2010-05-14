@@ -28,6 +28,14 @@
   </tr>  </table>
   <br/>
 
+  <div id="dialog_invite" title="Invite Player">
+    <%= form_for(@invite) do |form| %>
+      <%= form.label :email, 'Email Address' %>
+      <%= form.text_field :email %>
+      <%= form.submit 'Invite' %>
+    <% end %>
+  </div>
+  
   <div id="tabs">
 	  <ul>
 		  <li><a href="#tabs-1">Players</a></li>
@@ -38,7 +46,7 @@
 	  </ul>
 	  <div id="tabs-1">
       <% if @campaign.is_game_master?(current_user) %>
-        <%= link_to "Invite", nil, :class=>'button' %>
+        <button id="player_invite">Invite</button>
       <% end %>
       <% if @campaign.players %>
         <table>

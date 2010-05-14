@@ -9,7 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091129200317) do
+ActiveRecord::Schema.define(:version => 20100514041845) do
+
+  create_table "campaign_invites", :force => true do |t|
+    t.integer  "campaign_id"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "campaign_invites", ["campaign_id"], :name => "index_campaign_invites_on_campaign_id"
 
   create_table "campaign_resources", :force => true do |t|
     t.string   "name",                                   :null => false
