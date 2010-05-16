@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :all # include all helpers, all the time
  
+  include SslRequirement
+  
   before_filter :authenticate_user!
   before_filter :set_time_zone
   

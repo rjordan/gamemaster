@@ -116,3 +116,17 @@ Devise.setup do |config|
   #   manager.default_strategies(:scope => :user).unshift :twitter_oauth
   # end
 end
+
+Devise::SessionsController.class_eval do 
+  skip_before_filter(:authenticate_user!)
+  ssl_required :new, :create #sign-in
+end
+
+Devise::UsersController.class_eval do
+  skip_before_filter(:authenticate_user!)
+  ssl_required :new, :create #sign-up
+end
+
+#reset password!
+
+
