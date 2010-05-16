@@ -13,7 +13,7 @@ class CreateStories < ActiveRecord::Migration
     create_table :chapters do |t|
       t.string :name, :null=>false
       t.integer :story_id, :null=>false
-      t.integer :position, :null=>false, :default=>1
+      t.integer :position, :default=>1
       t.boolean :revealed, :null=>false, :default=>false
       t.text :public_description, :null=>false
       t.text :private_description

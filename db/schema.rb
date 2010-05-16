@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(:version => 20100514041845) do
   create_table "chapters", :force => true do |t|
     t.string   "name",                                   :null => false
     t.integer  "story_id",                               :null => false
-    t.integer  "position",            :default => 1,     :null => false
+    t.integer  "position",            :default => 1
     t.boolean  "revealed",            :default => false, :null => false
     t.text     "public_description",                     :null => false
     t.text     "private_description"
