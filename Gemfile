@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source 'http://gemcutter.org'
 
-gem 'rails', '3.0.0.beta3'
+gem 'rails', :git=>'git://github.com/rails/rails.git' #, '3.0.0.beta3'
 
 ## Bundle edge rails:
 # gem "rails", :git => "git://github.com/rails/rails.git"
@@ -12,10 +12,10 @@ gem "sqlite3-ruby", :require => "sqlite3"
 gem "postgres-pr", :group=>[:stage,:production]
 
 gem 'responders'
-gem 'shoulda', :group=>:test #, :git=>'git://github.com/thoughtbot/shoulda.git' #, :branch=>'rails3'
+gem 'shoulda', :group=>:test, :git=>'git://github.com/thoughtbot/shoulda.git' #, :branch=>'rails3'
 gem 'bcrypt-ruby'
 gem 'warden'
-gem 'devise', '1.1.rc1'
+gem 'devise', :git=>'git://github.com/plataformatec/devise.git'
 gem 'RedCloth'
 gem 'html5'
 
