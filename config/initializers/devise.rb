@@ -119,12 +119,16 @@ end
 
 Devise::SessionsController.class_eval do 
   skip_before_filter(:authenticate_user!)
-  ssl_required :new, :create #sign-in
+  unless ['development','test'].include?(Rails.env)
+    ssl_required :new, :create #sign-in
+  end
 end
 
 Devise::UsersController.class_eval do
   skip_before_filter(:authenticate_user!)
-  ssl_required :new, :create #sign-up
+  unless ['development','test'].include?(Rails.env)
+    ssl_required :new, :create #sign-up
+  end
 end
 
 #reset password!
