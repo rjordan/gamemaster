@@ -18,15 +18,15 @@ class ForumsControllerTest < ActionController::TestCase
 #        resource.update.params = { :name=>'A General Forum'  }
 #      end
 
-    should_route :get, '/forums', :action=>:index
-    should_route :get, '/forums.xml', :action=>:index, :format=>:xml
-    should_route :get, '/forums/1', :action => :show, :id=>1
-    should_route :get, '/forums/1.xml', :action => :show, :id=>1, :format=>:xml
-    #should_route :get, '/forums/new', :action => :new
-    should_route :get, '/forums/1/edit', :action => :edit, :id=>1
-    should_route :post, '/forums', :action => :create
-    should_route :put, '/forums/1', :action => :update, :id => 1
-    should_route :delete, '/forums/1', :action => :destroy, :id => 1
+    should route(:get, '/forums').to(:action=>:index)
+    should route(:get, '/forums.xml').to(:action=>:index, :format=>:xml)
+    should route(:get, '/forums/1').to(:action => :show, :id=>1)
+    should route(:get, '/forums/1.xml').to(:action => :show, :id=>1, :format=>:xml)
+    #should route(:get, '/forums/new').to(:action => :new)
+    should route(:get, '/forums/1/edit').to(:action => :edit, :id=>1)
+    should route(:post, '/forums').to(:action => :create)
+    should route(:put, '/forums/1').to(:action => :update, :id => 1)
+    should route(:delete, '/forums/1').to(:action => :destroy, :id => 1)
 
     #INDEX TESTS
     context "on GET to :index" do
@@ -34,9 +34,9 @@ class ForumsControllerTest < ActionController::TestCase
         get :index 
       end
       #should_assign_to :forums
-      should_not_set_the_flash
-      should_render_template :index
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :index
+      should respond_with :success
     end
 
     # context "on GET to :index as xml" do
@@ -56,9 +56,9 @@ class ForumsControllerTest < ActionController::TestCase
         get :show, :id=>@forum
       end
       #should_assign_to :forum
-      should_not_set_the_flash
-      should_render_template :show
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :show
+      should respond_with :success
     end
 
     # context "on GET to :show as xml" do
@@ -79,9 +79,9 @@ class ForumsControllerTest < ActionController::TestCase
         get :new
       end
       #should_assign_to :forum
-      should_not_set_the_flash
-      should_render_template :new
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :new
+      should respond_with :success
     end
 
     #EDIT TESTS
@@ -90,9 +90,9 @@ class ForumsControllerTest < ActionController::TestCase
         get :edit, :id=>@forum
       end
       #should_assign_to :forum
-      should_not_set_the_flash
-      should_render_template :edit
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :edit
+      should respond_with :success
     end
 
     #TODO Implement
@@ -112,8 +112,8 @@ class ForumsControllerTest < ActionController::TestCase
         put :update, :forum=>{:name=>'A General Forum'}, :id=>@forum
       end
       #should_assign_to :forum
-      should_set_the_flash_to(/updated/i)
-      should_redirect_to("the forum view") { forum_url( assigns(:forum) ) }
+      should set_the_flash.to(/updated/i)
+      should redirect_to("the forum view") { forum_url( assigns(:forum) ) }
     end
 
     #DELETE tests
@@ -121,8 +121,8 @@ class ForumsControllerTest < ActionController::TestCase
       setup do
         delete :destroy, :id=>@forum
       end
-      should_set_the_flash_to(/successfully removed/i)
-      should_redirect_to("the forums list") { forums_url }
+      should set_the_flash.to(/successfully removed/i)
+      should redirect_to("the forums list") { forums_url }
     end
 
   end

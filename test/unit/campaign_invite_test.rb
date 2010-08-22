@@ -1,8 +1,9 @@
 require 'test_helper'
 
 class CampaignInviteTest < ActiveSupport::TestCase
-  should_have_db_columns :email, :created_at, :updated_at
-
-  should_validate_presence_of :email
-  should_belong_to :campaign
+  should have_db_column :email 
+  should have_db_column :created_at 
+  should have_db_column :updated_at
+  should validate_presence_of :email
+  should belong_to :campaign
 end

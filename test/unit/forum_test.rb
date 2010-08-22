@@ -1,11 +1,14 @@
 require 'test_helper'
 
 class ForumTest < ActiveSupport::TestCase
-  context "A Forum" do
-    should_have_db_columns :name, :campaign_id, :public, :created_at, :updated_at, :version
-    should_validate_presence_of :name
-    should_belong_to :campaign
-    should_have_many :posts
-    #subscribers?
-  end
+  should have_db_column :name 
+  should have_db_column :campaign_id 
+  should have_db_column :public 
+  should have_db_column :created_at 
+  should have_db_column :updated_at
+  should have_db_column :version
+  should validate_presence_of :name
+  should belong_to :campaign
+  should have_many :posts
+  #subscribers?
 end

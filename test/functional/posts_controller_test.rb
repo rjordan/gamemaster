@@ -11,24 +11,24 @@ class PostsControllerTest < ActionController::TestCase
       @post = Post.find(:first)
     end
 
-    should_route :get, '/forums/1/posts', :action=>:index, :forum_id=>1
-    should_route :get, '/forums/1/posts.xml', :action=>:index, :forum_id=>1, :format=>:xml
-    should_route :get, '/posts/1', :action => :show, :id=>1
-    should_route :get, '/posts/1.xml', :action => :show, :id=>1, :format=>:xml
-    should_route :get, '/forums/1/posts/new', :action => :new, :forum_id=>1
-    should_route :get, '/posts/1/edit', :action => :edit, :id=>1
-    should_route :post, '/forums/1/posts', :action => :create, :forum_id=>1
-    should_route :put, '/posts/1', :action => :update, :id => 1
-    should_route :delete, '/posts/1', :action => :destroy, :id => 1
+    should route(:get, '/forums/1/posts').to(:action=>:index, :forum_id=>1)
+    should route(:get, '/forums/1/posts.xml').to(:action=>:index, :forum_id=>1, :format=>:xml)
+    should route(:get, '/posts/1').to(:action => :show, :id=>1)
+    should route(:get, '/posts/1.xml').to(:action => :show, :id=>1, :format=>:xml)
+    should route(:get, '/forums/1/posts/new').to(:action => :new, :forum_id=>1)
+    should route(:get, '/posts/1/edit').to(:action => :edit, :id=>1)
+    should route(:post, '/forums/1/posts').to(:action => :create, :forum_id=>1)
+    should route(:put, '/posts/1').to(:action => :update, :id => 1)
+    should route(:delete, '/posts/1').to(:action => :destroy, :id => 1)
 
     #INDEX TESTS
     context "on GET to :index" do
       setup do
         get :index, :forum_id=>@post.forum
       end
-      should_not_set_the_flash
-      should_render_template :index
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :index
+      should respond_with :success
     end
 
     # context "on GET to :index as xml" do
@@ -48,9 +48,9 @@ class PostsControllerTest < ActionController::TestCase
         get :show, :id=>@post, :forum_id=>@post.forum
       end
       #should_assign_to :post
-      should_not_set_the_flash
-      should_render_template :show
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :show
+      should respond_with :success
     end
 
     # context "on GET to :show as xml" do
@@ -71,9 +71,9 @@ class PostsControllerTest < ActionController::TestCase
         get :new, :forum_id=>@post.forum
       end
       #should_assign_to :post
-      should_not_set_the_flash
-      should_render_template :new
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :new
+      should respond_with :success
     end
 
     #EDIT TESTS
@@ -82,9 +82,9 @@ class PostsControllerTest < ActionController::TestCase
         get :edit, :id=>@post
       end
       #should_assign_to :post
-      should_not_set_the_flash
-      should_render_template :edit
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :edit
+      should respond_with :success
     end
 
     #CREATE TESTS
@@ -93,8 +93,8 @@ class PostsControllerTest < ActionController::TestCase
         post :create, :post=>{:user_id=>@user.id, :forum_id=>@post.forum.id, :title=>'A General Forum', :contents=>"Another post!!!" }
       end
       #should_assign_to :post
-      should_set_the_flash_to(/created/i)
-      should_redirect_to("the post view") { post_path( assigns(:post) ) }
+      should set_the_flash.to(/created/i)
+      should redirect_to("the post view") { post_path( assigns(:post) ) }
     end
 
     #UPDATE TESTS
@@ -103,8 +103,8 @@ class PostsControllerTest < ActionController::TestCase
         put :update, :post=>{:title=>'A General Forum'}, :id=>@post
       end
       #should_assign_to :post
-      should_set_the_flash_to(/updated/i)
-      should_redirect_to("the post view") { post_path( assigns(:post) ) }
+      should set_the_flash.to(/updated/i)
+      should redirect_to("the post view") { post_path( assigns(:post) ) }
     end
 
     #DELETE tests
@@ -112,8 +112,8 @@ class PostsControllerTest < ActionController::TestCase
       setup do
         delete :destroy, :id=>@post.id
       end
-      should_set_the_flash_to(/successfully removed/i)
-      should_redirect_to("the forum posts list") { forum_posts_url(@post.forum) }
+      should set_the_flash.to(/successfully removed/i)
+      should redirect_to("the forum posts list") { forum_posts_url(@post.forum) }
     end
 
   end

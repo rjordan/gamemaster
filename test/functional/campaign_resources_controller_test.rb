@@ -13,10 +13,10 @@ class CampaignResourcesControllerTest < ActionController::TestCase
       setup do
         get :index, :campaign_id=>@resource.campaign
       end
-      should_respond_with :success
-      should_not_set_the_flash
+      should respond_with :success
+      should_not set_the_flash
       #should_assign_to 'resources'
-      should_render_template :index
+      should render_template :index
     end
 
     #SHOW TESTS
@@ -25,9 +25,9 @@ class CampaignResourcesControllerTest < ActionController::TestCase
         get :show, :id=>@resource
       end
       #should_assign_to :resource
-      should_not_set_the_flash
-      should_render_template :show
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :show
+      should respond_with :success
     end
 
     #NEW TESTS
@@ -36,9 +36,9 @@ class CampaignResourcesControllerTest < ActionController::TestCase
         get :new, :campaign_id=>@resource.campaign
       end
       #should_assign_to :resource
-      should_not_set_the_flash
-      should_render_template :new
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :new
+      should respond_with :success
     end
 
     #EDIT TESTS
@@ -47,9 +47,9 @@ class CampaignResourcesControllerTest < ActionController::TestCase
         get :edit, :id=>@resource
       end
       #should_assign_to :resource
-      should_not_set_the_flash
-      should_render_template :edit
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :edit
+      should respond_with :success
     end
 
     #CREATE TESTS
@@ -62,8 +62,8 @@ class CampaignResourcesControllerTest < ActionController::TestCase
                                             :campaign_id=>@resource.campaign.id
       end
       #should_assign_to :resource
-      should_set_the_flash_to(/created/i)
-      should_redirect_to("the resource view") { campaign_resource_path(assigns(:resource)) }
+      should set_the_flash.to(/created/i)
+      should redirect_to("the resource view") { campaign_resource_path(assigns(:resource)) }
     end
 
     #UPDATE TESTS
@@ -72,8 +72,8 @@ class CampaignResourcesControllerTest < ActionController::TestCase
         put :update, :campaign_resource=>{:name=> 'Unknown'}, :id=>@resource
       end
       #should_assign_to :location
-      should_set_the_flash_to(/updated/i)
-      should_redirect_to("the resource view") { campaign_resource_path(@resource) }
+      should set_the_flash.to(/updated/i)
+      should redirect_to("the resource view") { campaign_resource_path(@resource) }
     end
 
     #DELETE tests
@@ -81,8 +81,8 @@ class CampaignResourcesControllerTest < ActionController::TestCase
       setup do
         delete :destroy, :id=>@resource
       end
-      should_set_the_flash_to(/successfully removed/i)
-      should_redirect_to("the campaign view") { campaign_path(@resource.campaign) }
+      should set_the_flash.to(/successfully removed/i)
+      should redirect_to("the campaign view") { campaign_path(@resource.campaign) }
     end
 
   end

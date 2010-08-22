@@ -25,9 +25,9 @@ class CampaignInvitesControllerTest < ActionController::TestCase
         get :new, :campaign_id=>@invite.campaign
       end
       #should_assign_to :invite
-      should_not_set_the_flash
-      should_render_template :new
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :new
+      should respond_with :success
     end
 
     #CREATE TESTS
@@ -38,8 +38,8 @@ class CampaignInvitesControllerTest < ActionController::TestCase
                                           :campaign_id=>@invite.campaign.id
       end
       #should_assign_to :invite
-      should_set_the_flash_to(/created/i)
-      should_redirect_to("the campaign view") { campaign_path(assigns(:invite).campaign) }
+      should set_the_flash.to(/created/i)
+      should redirect_to("the campaign view") { campaign_path(assigns(:invite).campaign) }
     end
 
     #DELETE tests

@@ -11,24 +11,24 @@ class CharactersControllerTest < ActionController::TestCase
       @character = Character.find(:first)
     end
 
-    should_route :get, '/campaigns/1/characters', :action=>:index, :campaign_id=>1
-    should_route :get, '/campaigns/1/characters.xml', :action=>:index, :format=>:xml, :campaign_id=>1
-    should_route :get, '/characters/1', :action => :show, :id=>1
-    should_route :get, '/characters/1.xml', :action => :show, :id=>1, :format=>:xml
-    should_route :get, '/campaigns/1/characters/new', :action => :new, :campaign_id=>1
-    should_route :get, '/characters/1/edit', :action => :edit, :id=>1
-    should_route :post, '/campaigns/1/characters', :action => :create, :campaign_id=>1
-    should_route :put, '/characters/1', :action => :update, :id => 1
-    should_route :delete, '/characters/1', :action => :destroy, :id => 1
+    should route(:get, '/campaigns/1/characters').to(:action=>:index, :campaign_id=>1)
+    should route(:get, '/campaigns/1/characters.xml').to(:action=>:index, :format=>:xml, :campaign_id=>1)
+    should route(:get, '/characters/1').to(:action => :show, :id=>1)
+    should route(:get, '/characters/1.xml').to(:action => :show, :id=>1, :format=>:xml)
+    should route(:get, '/campaigns/1/characters/new').to(:action => :new, :campaign_id=>1)
+    should route(:get, '/characters/1/edit').to(:action => :edit, :id=>1)
+    should route(:post, '/campaigns/1/characters').to(:action => :create, :campaign_id=>1)
+    should route(:put, '/characters/1').to(:action => :update, :id => 1)
+    should route(:delete, '/characters/1').to(:action => :destroy, :id => 1)
 
         #INDEX TESTS
     context "on GET to :index" do
       setup do
         get :index, :campaign_id=>@character.campaign
       end
-      should_not_set_the_flash
-      should_render_template :index
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :index
+      should respond_with :success
     end
 
     # context "on GET to :index as xml" do
@@ -48,9 +48,9 @@ class CharactersControllerTest < ActionController::TestCase
         get :show, :id=>@character
       end
       #should_assign_to :character
-      should_not_set_the_flash
-      should_render_template :show
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :show
+      should respond_with :success
     end
 
     # context "on GET to :show as xml" do
@@ -71,9 +71,9 @@ class CharactersControllerTest < ActionController::TestCase
         get :new, :campaign_id=>@character.campaign
       end
       #should_assign_to :character
-      should_not_set_the_flash
-      should_render_template :new
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :new
+      should respond_with :success
     end
 
     #EDIT TESTS
@@ -82,9 +82,9 @@ class CharactersControllerTest < ActionController::TestCase
         get :edit, :id=>@character
       end
       #should_assign_to :character
-      should_not_set_the_flash
-      should_render_template :edit
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :edit
+      should respond_with :success
     end
 
     #CREATE TESTS
@@ -93,8 +93,8 @@ class CharactersControllerTest < ActionController::TestCase
         post :create, :character=>{ :campaign_id=>@character.campaign.id, :name=>'Unknown', :public_description=>'Nothing', :statistics=>'None' }, :campaign_id=>@character.campaign
       end
       #should_assign_to :character
-      should_set_the_flash_to(/created/i)
-      should_redirect_to("the character view") { character_url(assigns(:character)) }
+      should set_the_flash.to(/created/i)
+      should redirect_to("the character view") { character_url(assigns(:character)) }
     end
 
     #UPDATE TESTS
@@ -103,8 +103,8 @@ class CharactersControllerTest < ActionController::TestCase
         put :update, :character=>{:name=> 'Unknown'}, :id=>@character
       end
       #should_assign_to :character
-      should_set_the_flash_to(/updated/i)
-      should_redirect_to("the character view") { character_url(@character) }
+      should set_the_flash.to(/updated/i)
+      should redirect_to("the character view") { character_url(@character) }
     end
 
     #DELETE tests
@@ -112,8 +112,8 @@ class CharactersControllerTest < ActionController::TestCase
       setup do
         delete :destroy, :id=>@character
       end
-      should_set_the_flash_to(/successfully removed/i)
-      should_redirect_to("the campaign view") { campaign_url(@character.campaign) }
+      should set_the_flash.to(/successfully removed/i)
+      should redirect_to("the campaign view") { campaign_url(@character.campaign) }
     end
 
   end

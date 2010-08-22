@@ -12,24 +12,24 @@ class ChaptersControllerTest < ActionController::TestCase
       session[:user_id] = User.first.id
     end
 
-    should_route :get, '/stories/1/chapters', :action => :index, :story_id=>1
-    should_route :get, '/stories/1/chapters.xml', :action => :index, :story_id=>1, :format=>:xml
-    should_route :get, '/chapters/1', :action => :show, :id=>1
-    should_route :get, '/chapters/1.xml', :action => :show, :id=>1, :format=>:xml
-    should_route :get, '/stories/1/chapters/new', :action => :new, :story_id=>1
-    should_route :get, '/chapters/1/edit', :action => :edit, :id=>1
-    should_route :post, '/stories/1/chapters', :action => :create, :story_id=>1
-    should_route :put, '/chapters/1', :action => :update, :id => "1"
-    should_route :delete, '/chapters/1', :action => :destroy, :id => 1
+    should route(:get, '/stories/1/chapters').to(:action => :index, :story_id=>1)
+    should route(:get, '/stories/1/chapters.xml').to(:action => :index, :story_id=>1, :format=>:xml)
+    should route(:get, '/chapters/1').to(:action => :show, :id=>1)
+    should route(:get, '/chapters/1.xml').to(:action => :show, :id=>1, :format=>:xml)
+    should route(:get, '/stories/1/chapters/new').to(:action => :new, :story_id=>1)
+    should route(:get, '/chapters/1/edit').to(:action => :edit, :id=>1)
+    should route(:post, '/stories/1/chapters').to(:action => :create, :story_id=>1)
+    should route(:put, '/chapters/1').to(:action => :update, :id => 1)
+    should route(:delete, '/chapters/1').to(:action => :destroy, :id => 1)
 
     #INDEX TESTS
     context "on GET to :index" do
       setup do
         get :index, :story_id=>@chapter.story
       end
-      should_not_set_the_flash
-      should_render_template :index
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :index
+      should respond_with :success
     end
 
     # context "on GET to :index as xml" do
@@ -49,9 +49,9 @@ class ChaptersControllerTest < ActionController::TestCase
         get :show, :id=>@chapter
       end
       #should_assign_to :chapter
-      should_not_set_the_flash
-      should_render_template :show
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :show
+      should respond_with :success
     end
 
     # context "on GET to :show as xml" do
@@ -72,9 +72,9 @@ class ChaptersControllerTest < ActionController::TestCase
         get :new, :story_id=>@chapter.story
       end
       #should_assign_to :chapter
-      should_not_set_the_flash
-      should_render_template :new
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :new
+      should respond_with :success
     end
 
     #EDIT TESTS
@@ -83,9 +83,9 @@ class ChaptersControllerTest < ActionController::TestCase
         get :edit, :id=>@chapter
       end
       #should_assign_to :chapter
-      should_not_set_the_flash
-      should_render_template :edit
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :edit
+      should respond_with :success
     end
 
     #CREATE TESTS
@@ -96,8 +96,8 @@ class ChaptersControllerTest < ActionController::TestCase
           :story_id=>@chapter.story.id
       end
       #should_assign_to :chapter
-      should_set_the_flash_to(/created/i)
-      should_redirect_to("the chapter view") { chapter_url(assigns(:chapter)) }
+      should set_the_flash.to(/created/i)
+      should redirect_to("the chapter view") { chapter_url(assigns(:chapter)) }
     end
 
     #UPDATE TESTS
@@ -106,8 +106,8 @@ class ChaptersControllerTest < ActionController::TestCase
         put :update, :chapter=>{:name=>'Unknown'}, :id=>@chapter
       end
       #should_assign_to :chapter
-      should_set_the_flash_to(/updated/i)
-      should_redirect_to("the chapter view") { chapter_url(@chapter) }
+      should set_the_flash.to(/updated/i)
+      should redirect_to("the chapter view") { chapter_url(@chapter) }
     end
 
     #DELETE tests
@@ -115,8 +115,8 @@ class ChaptersControllerTest < ActionController::TestCase
       setup do
         delete :destroy, :id=>@chapter
       end
-      should_set_the_flash_to(/successfully removed/i)
-      should_redirect_to("the chapters list for a story") { story_chapters_url(@chapter.story) }
+      should set_the_flash.to(/successfully removed/i)
+      should redirect_to("the chapters list for a story") { story_chapters_url(@chapter.story) }
     end
 
   end

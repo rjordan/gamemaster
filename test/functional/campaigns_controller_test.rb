@@ -11,24 +11,24 @@ class CampaignsControllerTest < ActionController::TestCase
       @campaign   = Campaign.first
     end
 
-    should_route :get, '/campaigns', :action => :index
-    should_route :get, '/campaigns.xml', :action => :index, :format=>:xml
-    should_route :get, '/campaigns/1', :action => :show, :id=>1
-    should_route :get, '/campaigns/1.xml', :action => :show, :id=>1, :format=>:xml
-    should_route :get, '/campaigns/new', :action => :new
-    should_route :get, '/campaigns/1/edit', :action => :edit, :id=>1
-    should_route :post, '/campaigns', :action => :create
-    should_route :put, '/campaigns/1', :action => :update, :id => "1"
-    should_route :delete, '/campaigns/1', :action => :destroy, :id => 1
+    should route(:get, '/campaigns').to(:action => :index)
+    should route(:get, '/campaigns.xml').to(:action => :index, :format=>:xml)
+    should route(:get, '/campaigns/1').to(:action => :show, :id=>1)
+    should route(:get, '/campaigns/1.xml').to(:action => :show, :id=>1, :format=>:xml)
+    should route(:get, '/campaigns/new').to(:action => :new)
+    should route(:get, '/campaigns/1/edit').to(:action => :edit, :id=>1)
+    should route(:post, '/campaigns').to(:action => :create)
+    should route(:put, '/campaigns/1').to(:action => :update, :id => 1)
+    should route(:delete, '/campaigns/1').to(:action => :destroy, :id => 1)
 
     #INDEX TESTS
     context "on GET to :index" do
       setup do
         get :index
       end
-      should_not_set_the_flash
-      should_render_template :index
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :index
+      should respond_with :success
     end
 
     # context "on GET to :index as xml" do
@@ -48,9 +48,9 @@ class CampaignsControllerTest < ActionController::TestCase
         get :show, :id=>@campaign
       end
       #should_assign_to :campaign
-      should_not_set_the_flash
-      should_render_template :show
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :show
+      should respond_with :success
       #check for forums
     end
 
@@ -72,9 +72,9 @@ class CampaignsControllerTest < ActionController::TestCase
         get :new
       end
       #should_assign_to :campaign
-      should_not_set_the_flash
-      should_render_template :new
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :new
+      should respond_with :success
     end
 
     #EDIT TESTS
@@ -83,9 +83,9 @@ class CampaignsControllerTest < ActionController::TestCase
         get :edit, :id=>@campaign
       end
       #should_assign_to :campaign
-      should_not_set_the_flash
-      should_render_template :edit
-      should_respond_with :success
+      should_not set_the_flash
+      should render_template :edit
+      should respond_with :success
     end
 
     #CREATE TESTS
@@ -94,8 +94,8 @@ class CampaignsControllerTest < ActionController::TestCase
         post :create, :campaign=>{:name=>'Unknown', :max_players=>5, :system_id=>1, :description=>'Test Campaign', :user=>@user}
       end
       #should_assign_to :campaign
-      should_set_the_flash_to(/created/i)
-      should_redirect_to("the campaign view") { campaign_url(assigns(:campaign)) }
+      should set_the_flash.to(/created/i)
+      should redirect_to("the campaign view") { campaign_url(assigns(:campaign)) }
     end
 
     #UPDATE TESTS
@@ -104,8 +104,8 @@ class CampaignsControllerTest < ActionController::TestCase
         put :update, :id=>@campaign, :campaign=>{:name=>'Unknown'} 
       end
       #should_assign_to :campaign
-      should_set_the_flash_to(/updated/i)
-      should_redirect_to("the campaign view") { campaign_url(@campaign) }
+      should set_the_flash.to(/updated/i)
+      should redirect_to("the campaign view") { campaign_url(@campaign) }
     end
 
     #DELETE tests
@@ -113,8 +113,8 @@ class CampaignsControllerTest < ActionController::TestCase
       setup do
         delete :destroy, :id=>@campaign
       end
-      should_set_the_flash_to(/successfully removed/i)
-      should_redirect_to("the campaigns list") { campaigns_url }
+      should set_the_flash.to(/successfully removed/i)
+      should redirect_to("the campaigns list") { campaigns_url }
     end
 
 end

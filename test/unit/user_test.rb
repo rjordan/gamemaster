@@ -1,9 +1,12 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  should_have_db_columns :email, :nickname
-  should_validate_presence_of :email, :nickname
-  should_validate_uniqueness_of :email, :nickname, :case_sensitive=>false
-  should_have_many :campaigns
-  should_have_many :games
+  should have_db_column :email 
+  should have_db_column :nickname
+  should validate_presence_of :email 
+  should validate_presence_of :nickname
+  should validate_uniqueness_of :email 
+  should validate_uniqueness_of(:nickname)
+  should have_many :campaigns
+  should have_many :games
 end
