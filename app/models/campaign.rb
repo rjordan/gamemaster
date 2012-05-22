@@ -40,3 +40,18 @@ private
   end
   
 end
+
+############################
+
+#class Campaign
+#  include Mongoid::Document
+
+#  field :name, type: String
+  #embeds_many :instruments
+#end
+
+#class Instrument
+#  include Mongoid::Document
+#  field :name, type: String
+#  embedded_in :artist
+#end

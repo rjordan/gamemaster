@@ -1,6 +1,5 @@
 GameMaster::Application.configure do
-  # Settings specified here will take precedence over those in config/environment.rb
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  # Settings specified here will take precedence over those in config/application.rb
 
   # The test environment is used exclusively to run your application's
   # test suite.  You never need to work with it otherwise.  Remember that
@@ -8,7 +7,11 @@ GameMaster::Application.configure do
   # and recreated between test runs.  Don't rely on the data there!
   config.cache_classes = true
 
-  # Log error messages when you accidentally call methods on nil.
+  # Configure static asset server for tests with Cache-Control for performance
+  config.serve_static_assets = true
+  config.static_cache_control = "public, max-age=3600"
+
+  # Log error messages when you accidentally call methods on nil
   config.whiny_nils = true
 
   # Show full error reports and disable caching

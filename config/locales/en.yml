@@ -1,33 +1,4 @@
 en:
-  invite_player: Invite Player
-  flash:
-    actions:
-      create:
-        notice: '%{resource_name} was successfully created.'
-      update:
-        notice: '%{resource_name} was successfully updated.'
-      destroy:
-        notice: '%{resource_name} was successfully removed.'
-        alert: '%{resource_name} could not be removed.'
-  errors:
-    messages:
-      not_found: "not found"
-      already_confirmed: "has already been confirmed"
-      not_locked: "was not locked"
-  must_login: You must login to access this page.
-  activerecord:
-    errors:
-      messages:
-        not_a_number: not a number
-        blank: can't be blank
-  date:
-    formats:
-      default: "%m/%d/%Y"
-      post_date: "%A, %B %d, %Y"
   time:
     formats:
-      default: "%m/%d/%Y %I:%M%p (%Z)"
-      post_date: "%A, %B %d, %Y at %I:%M%p (%Z)"
-		
-		
-	
+      post_date: "%B %d, %Y %l:%M%p"

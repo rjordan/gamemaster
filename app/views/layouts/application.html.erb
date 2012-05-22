@@ -3,9 +3,11 @@
   <head>
     <title><%= yield(:title) || "Untitled" %></title>
     <meta charset="utf-8" />
-    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_include_tag 'markitup-1.1.7/jquery.markitup.pack', 'markitup-1.1.7/sets/textile/set' %>
+    <%= javascript_include_tag 'application' %>
     <%= stylesheet_link_tag 'eggplant2/jquery-ui-1.8.1.custom' %>
     <%= stylesheet_link_tag 'markitup-1.1.7/skins/markitup/style', 'markitup-1.1.7/sets/textile/style' %>
+    <%= stylesheet_link_tag 'application' %>
     <%= csrf_meta_tag %>
   </head>
   <body id="<%= "#{controller_name}_#{action_name}" %>">
@@ -48,9 +50,5 @@
   <footer>
     <p>Copyright 2008-<%= Time.now.year %> Richard Kent Jordan</p>
   </footer>
-
-  <%= javascript_include_tag 'jquery-1.4.2.min', 'rails', 'jquery-ui-1.8.1.custom.min' %>
-  <%= javascript_include_tag 'markitup-1.1.7/jquery.markitup.pack', 'markitup-1.1.7/sets/textile/set' %>
-  <%= javascript_include_tag 'application' %>
   </body>
 </html>

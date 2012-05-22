@@ -1,4 +1,4 @@
-require 'test_helper'
+require '../test_helper'
 
 class CampaignsControllerTest < ActionController::TestCase
   
@@ -21,7 +21,6 @@ class CampaignsControllerTest < ActionController::TestCase
     should route(:put, '/campaigns/1').to(:action => :update, :id => 1)
     should route(:delete, '/campaigns/1').to(:action => :destroy, :id => 1)
 
-    #INDEX TESTS
     context "on GET to :index" do
       setup do
         get :index
@@ -31,18 +30,6 @@ class CampaignsControllerTest < ActionController::TestCase
       should respond_with :success
     end
 
-    # context "on GET to :index as xml" do
-      # setup do
-        # get :index, :format=>'xml'
-      # end
-      # should_respond_with_content_type :xml
-      # should_not_set_the_flash
-      # should_render_without_layout
-      # should_respond_with :success
-      # should_respond_with_xml_for :campaigns
-    # end
-
-    #SHOW TESTS
     context "on GET to :show" do
       setup do
         get :show, :id=>@campaign
@@ -54,19 +41,6 @@ class CampaignsControllerTest < ActionController::TestCase
       #check for forums
     end
 
-    # context "on GET to :show as xml" do
-      # setup do
-        # get :show, :id=>@campaign, :format=>'xml'
-      # end
-      # should_assign_to :campaign
-      # should_respond_with_content_type :xml
-      # should_not_set_the_flash
-      # should_render_without_layout
-      # should_respond_with :success
-      # should_respond_with_xml_for :campaign
-    # end
-
-    #NEW TESTS
     context "on GET to :new" do
       setup do
         get :new
@@ -77,7 +51,6 @@ class CampaignsControllerTest < ActionController::TestCase
       should respond_with :success
     end
 
-    #EDIT TESTS
     context "on GET to :edit" do
       setup do
         get :edit, :id=>@campaign
@@ -88,7 +61,6 @@ class CampaignsControllerTest < ActionController::TestCase
       should respond_with :success
     end
 
-    #CREATE TESTS
     context "on POST to :create" do
       setup do
         post :create, :campaign=>{:name=>'Unknown', :max_players=>5, :system_id=>1, :description=>'Test Campaign', :user=>@user}
@@ -98,7 +70,6 @@ class CampaignsControllerTest < ActionController::TestCase
       should redirect_to("the campaign view") { campaign_url(assigns(:campaign)) }
     end
 
-    #UPDATE TESTS
     context "on PUT to :update" do
       setup do
         put :update, :id=>@campaign, :campaign=>{:name=>'Unknown'} 
@@ -108,7 +79,6 @@ class CampaignsControllerTest < ActionController::TestCase
       should redirect_to("the campaign view") { campaign_url(@campaign) }
     end
 
-    #DELETE tests
     context "on DELETE to :destroy" do
       setup do
         delete :destroy, :id=>@campaign
@@ -117,5 +87,5 @@ class CampaignsControllerTest < ActionController::TestCase
       should redirect_to("the campaigns list") { campaigns_url }
     end
 
-end
+  end
 end 

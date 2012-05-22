@@ -1,18 +1,24 @@
-# Edit this Gemfile to bundle your application's dependencies.
-source 'http://gemcutter.org'
+source :rubygems
 
-gem 'rails', '3.0.0.rc'
+gem 'rails', '~> 3.1.0'
+gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'jquery-rails'
 
-## Bundle edge rails:
-# gem "rails", :git => "git://github.com/rails/rails.git"
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails',   '~> 3.1.4'
+  gem 'coffee-rails', '~> 3.1.1'
+  gem 'uglifier', '>= 1.0.3'
+end
+gem 'therubyracer'
 
-# ActiveRecord requires a database adapter. By default,
-# Rails has selected sqlite3.
-gem "sqlite3-ruby", :require => "sqlite3"
-gem "postgres-pr", :group=>[:stage,:production]
+gem "postgres-pr", :group=>[:production]
+#gem "mongoid"
+#gem "bson_ext"
 
 gem 'responders'
-gem 'shoulda', :group=>:test
+gem 'shoulda'
 gem 'bcrypt-ruby'
 gem 'warden'
 gem 'devise', '~>1.1.0'
