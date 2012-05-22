@@ -121,7 +121,7 @@ class ForumsControllerTest < ActionController::TestCase
       setup do
         delete :destroy, :id=>@forum
       end
-      should set_the_flash.to(/successfully removed/i)
+      should set_the_flash.to(/successfully destroyed/i)
       should redirect_to("the forums list") { forums_url }
     end
 

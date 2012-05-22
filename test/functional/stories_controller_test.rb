@@ -113,7 +113,7 @@ class StoriesControllerTest < ActionController::TestCase
       setup do
         delete :destroy, :id=>@story
       end
-      should set_the_flash.to(/successfully removed/i)
+      should set_the_flash.to(/successfully destroyed/i)
       should redirect_to("the list of stories for a campaign") { campaign_stories_path( @story.campaign ) }
     end
 

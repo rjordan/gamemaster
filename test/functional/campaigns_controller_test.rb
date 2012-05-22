@@ -1,4 +1,4 @@
-require '../test_helper'
+require 'test_helper'
 
 class CampaignsControllerTest < ActionController::TestCase
   
@@ -63,7 +63,7 @@ class CampaignsControllerTest < ActionController::TestCase
 
     context "on POST to :create" do
       setup do
-        post :create, :campaign=>{:name=>'Unknown', :max_players=>5, :system_id=>1, :description=>'Test Campaign', :user=>@user}
+        post :create, :campaign=>{:name=>'Unknown', :max_players=>5, :system_id=>1, :description=>'Test Campaign', :user_id=>@user.id}
       end
       #should_assign_to :campaign
       should set_the_flash.to(/created/i)
@@ -83,7 +83,7 @@ class CampaignsControllerTest < ActionController::TestCase
       setup do
         delete :destroy, :id=>@campaign
       end
-      should set_the_flash.to(/successfully removed/i)
+      should set_the_flash.to(/successfully destroyed/i)
       should redirect_to("the campaigns list") { campaigns_url }
     end
 

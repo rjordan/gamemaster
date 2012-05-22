@@ -19,9 +19,10 @@ gem "postgres-pr", :group=>[:production]
 
 gem 'responders'
 gem 'shoulda'
+gem 'mocha'
 gem 'bcrypt-ruby'
 gem 'warden'
-gem 'devise', '~>1.1.0'
+gem 'devise', '~>1.5.0'
 gem 'RedCloth'
 gem 'html5'
 

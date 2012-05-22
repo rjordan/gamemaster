@@ -81,7 +81,7 @@ class CampaignResourcesControllerTest < ActionController::TestCase
       setup do
         delete :destroy, :id=>@resource
       end
-      should set_the_flash.to(/successfully removed/i)
+      should set_the_flash.to(/successfully destroyed/i)
       should redirect_to("the campaign view") { campaign_path(@resource.campaign) }
     end
 

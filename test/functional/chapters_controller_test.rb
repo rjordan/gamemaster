@@ -115,7 +115,7 @@ class ChaptersControllerTest < ActionController::TestCase
       setup do
         delete :destroy, :id=>@chapter
       end
-      should set_the_flash.to(/successfully removed/i)
+      should set_the_flash.to(/successfully destroyed/i)
       should redirect_to("the chapters list for a story") { story_chapters_url(@chapter.story) }
     end
 
