@@ -18,7 +18,7 @@ gem "postgres-pr", :group=>[:production]
 #gem "bson_ext"
 
 gem 'responders'
-gem 'shoulda'
+gem 'shoulda', :require=>false
 gem 'mocha'
 gem 'bcrypt-ruby'
 gem 'warden'

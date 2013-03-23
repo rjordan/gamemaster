@@ -1,7 +1,6 @@
 rjordan:
   nickname: CountZero
   email: rjordan@pobox.com
-  password_salt: $2a$10$CG8kgxtiZC4C6gpJGkWwxe
   encrypted_password: $2a$10$CG8kgxtiZC4C6gpJGkWwxeVpmjTywVZl5Dusip2lcXCBUOllW82am
   confirmation_sent_at: <%= 10.minutes.ago %>
   confirmation_token: v_2MCqdxyNEvZ_yn9CqJ
@@ -9,7 +8,6 @@ rjordan:
 a_player:
   nickname: jschmoe
   email: bob@nowhere.com
-  password_salt: $2a$10$zBR1zgc0HbU7Br3447nike
   encrypted_password: $2a$10$zBR1zgc0HbU7Br3447nike/39xDW1vc6D3IAThnnodUQnjGKUDC.K
   confirmation_sent_at: <%= 10.minutes.ago %>
   confirmation_token: lLMduUWgsStaAnemuyWE
