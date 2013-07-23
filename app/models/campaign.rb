@@ -5,12 +5,12 @@ class Campaign < ActiveRecord::Base
   belongs_to :user
   belongs_to :system
   
-  has_one :public_forum, :class_name=>'Forum', :conditions=>{:public=>true}, :dependent=>:destroy
-  has_one :private_forum, :class_name=>'Forum', :conditions=>{:public=>false}, :dependent=>:destroy
+  has_one :public_forum, ->{ where(public: true) }, :class_name=>'Forum', :dependent=>:destroy
+  has_one :private_forum, ->{ where(public: false) }, :class_name=>'Forum', :dependent=>:destroy
   has_many :stories
   
-  has_many :player_characters, :conditions=>"user_id is not null", :class_name=>'Character'
-  has_many :nonplayer_characters, :conditions=>"user_id is null", :class_name=>'Character'
+  has_many :player_characters, ->{ where("user_id is not null") }, :class_name=>'Character'
+  has_many :nonplayer_characters, ->{ where("user_id is null") }, :class_name=>'Character'
   has_many :players, :through=>:player_characters, :source=>:user
   
   has_many :invites, :class_name=>'CampaignInvite'

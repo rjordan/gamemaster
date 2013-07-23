@@ -1,10 +1,12 @@
-ENV["RAILS_ENV"] = "test"
-require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
+ENV["RAILS_ENV"] ||= "test"
+require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
-require 'shoulda'
+require 'mocha/setup'
 
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
+  ActiveRecord::Migration.check_pending!
+
+  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   #
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
@@ -16,6 +18,3 @@ end
 class ActionController::TestCase
   include Devise::TestHelpers
 end
-
-
-

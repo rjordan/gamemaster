@@ -1,12 +1,7 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
-
 class ApplicationController < ActionController::Base
-  protect_from_forgery
-  helper :all # include all helpers, all the time
- 
-  include SslRequirement
-  
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
   before_filter :authenticate_user!
   before_filter :set_time_zone
   
@@ -24,5 +19,4 @@ class ApplicationController < ActionController::Base
       Time.zone = 'Central Time (US & Canada)'
     end
   end
-  
 end
