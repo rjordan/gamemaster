@@ -13,7 +13,7 @@ GameMaster::Application.routes.draw do
       resources :campaign_invites
   end
   
-  resources :campaign_invites
+  #resources :campaign_invites
   
   resources :stories do
     resources :chapters do

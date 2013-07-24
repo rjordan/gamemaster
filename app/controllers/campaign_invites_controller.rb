@@ -1,35 +1,30 @@
 class CampaignInvitesController < ApplicationController
-  respond_to :html, :xml, :json
-
-#  def index
-#    @invites = Campaign.find(params[:campaign_id]).invites
-#    respond_with @invites
-#  end
+  respond_to :html, :json
+  before_action :find_campaign  
 
   def new
-    @invite = Campaign.find(params[:campaign_id]).invites.build
+    @invite = @campaign.invites.new
     respond_with @invite
   end
 
   def create
-    @invite = Campaign.find(params[:campaign_id]).invites.build(params[:campaign_invite])
+    @invite = @campaign.invites.build(invite_params)
     if @invite.save
       respond_with @invite do |format|
-        format.html { redirect_to campaign_path(@invite.campaign) }
+        format.html { redirect_to @campaign }
       end
     else
       respond_with @invite 
     end
+  end
     
+  private
+
+  def find_campaign
+    @campaign = Campaign.find(params[:campaign_id])
   end
 
-#  def destroy
-#    @invite = CampaignInvite.find(params[:id])
-#    @invite.destroy
-#    respond_with @invite do |format|
-#      format.html { 
-#        redirect_to campaign_path(@invite.campaign) 
-#       }
-#    end
-#  end
+  def invite_params
+    params.require(:campaign_invite).permit(:email)
+  end
 end
