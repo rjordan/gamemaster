@@ -1,13 +1,14 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '~> 4.0.0'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'bootstrap-sass', '~> 3.0.3.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -21,6 +22,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
@@ -32,7 +34,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem "postgres-pr", :group=>[:production]
+gem "pg", :group=>[:production]
+gem 'jquery-ui-rails'
 #gem "mongoid"
 #gem "bson_ext"
 
@@ -41,7 +44,6 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'faker'
-  #gem 'mocha', :require=>false
 end
 
 gem 'responders'
@@ -49,7 +51,7 @@ gem 'bcrypt-ruby'
 gem 'warden'
 gem 'devise', '~>1.5.0'
 gem 'RedCloth'
-gem 'html5'
+#gem 'html5'
 gem 'acts_as_list'
 gem 'therubyracer'
 
@@ -65,6 +67,9 @@ group :development do
   gem 'wirble', :require=>false
   gem 'less'
 end
+
+gem 'unicorn-rails'
+gem 'foreman'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

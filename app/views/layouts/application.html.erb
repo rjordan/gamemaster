@@ -2,23 +2,21 @@
 <html lang="en">
   <head>
     <title><%= yield(:title) || "Gamemaster" %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
-    <%= javascript_include_tag 'markitup-1.1.7/jquery.markitup.pack', 'markitup-1.1.7/sets/textile/set' %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <%= stylesheet_link_tag 'eggplant2/jquery-ui-1.8.1.custom' %>
-    <%= stylesheet_link_tag 'markitup-1.1.7/skins/markitup/style', 'markitup-1.1.7/sets/textile/style' %>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= csrf_meta_tag %>
   </head>
-  <body id="<%= "#{controller_name}_#{action_name}" %>">
+  <body class='<%= "#{controller_name}" %>'>
 
-  <header>
-     <h1 style="display:inline;"><%= link_to 'GameMaster', root_url %></h1>
-    <aside><%= render :partial=>'shared/header_nav' %></aside>
+  <header class="navbar navbar-inverse navbar-fixed-top" role=navigation>
+    <%= link_to 'GameMaster', root_url, class: 'navbar-brand' %>
+    <aside class="collapse navbar-collapse"><%= render :partial=>'shared/header_nav' %></aside>
   </header>
 
   <!-- sidebar -->
-  <aside id="sidebar""><%= render :partial=>'shared/left_nav' %></aside> 
+  <aside id="sidebar"><%= render :partial=>'shared/left_nav' %></aside> 
 
   <div id="container">
   

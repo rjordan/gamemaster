@@ -8,6 +8,18 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
- *= require_tree .
  */
+@import "jquery.ui.all";
+@import "eggplant2/jquery-ui-1.8.1.custom";
+
+$eggplant: #330022;
+$yellow: #FFDF00;
+
+$navbar-inverse-bg: $eggplant;
+$navbar-inverse-brand-color: $yellow;
+
+@import "bootstrap";
+@import "gamemaster";
+/*import 'markitup-1.1.7/skins/markitup/style'; */
+/*import 'markitup-1.1.7/sets/textile/style'; */
+

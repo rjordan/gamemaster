@@ -18,19 +18,19 @@ class User < ActiveRecord::Base
   has_many :forums, :through=>:forum_users
 
   
-  def to_xml(options = {})
-    options.reverse_merge! :only=>[ :id,
-                                                   :email,
-                                                   :nickname]
-    super(options)
-  end
+#  def to_xml(options = {})
+#    options.reverse_merge! :only=>[ :id,
+#                                    :email,
+#                                    :nickname]
+#    super(options)
+#  end
 
-  def to_json(options = {})
-    options.reverse_merge! :include_root_in_json => true
-    options.reverse_merge! :only=>[ :id,
-                                                   :email,
-                                                   :nickname]
-    super(options)
-  end
+#  def to_json(options = {})
+#    options.reverse_merge! :include_root_in_json => true
+#    options.reverse_merge! :only=>[ :id,
+#                                    :email,
+#                                    :nickname]
+#    super(options)
+#  end
   
 end
