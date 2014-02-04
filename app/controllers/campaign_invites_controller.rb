@@ -3,7 +3,7 @@ class CampaignInvitesController < ApplicationController
   before_action :find_campaign  
 
   def new
-    @invite = @campaign.invites.new
+    @invite = @campaign.invites.build
     respond_with @invite
   end
 

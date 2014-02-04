@@ -1,4 +1,9 @@
 GameMaster::Application.routes.draw do
+
+  namespace :api, defaults: { format: 'json' } do
+    resources :campaigns, only: [:index]
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   devise_for :users, :path_names=> { :sign_in=>'login', 
