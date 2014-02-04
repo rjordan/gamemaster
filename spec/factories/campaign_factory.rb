@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :campaign do
-    name 'Scorched Earth'
+    name { Faker::Lorem.words(2).join(' ') }
     user
     system
     public { false }
-    max_players 5
-    description 'My Exalted campaign'
+    max_players 6
+    description { Faker::Lorem.paragraphs(2).join('/n') }
   end
 end

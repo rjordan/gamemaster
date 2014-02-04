@@ -1,7 +1,8 @@
 GameMaster::Application.routes.draw do
 
   namespace :api, defaults: { format: 'json' } do
-    resources :campaigns, only: [:index]
+    resources :campaigns
+    resources :profiles, only: [:show]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -9,7 +10,9 @@ GameMaster::Application.routes.draw do
   devise_for :users, :path_names=> { :sign_in=>'login', 
                      :sign_out=>'logout', 
                      :sign_up=>'register'}
-  resources :users
+
+  resources :users, only: [:show]
+
   resources :campaigns do
       resources :stories
       resources :characters

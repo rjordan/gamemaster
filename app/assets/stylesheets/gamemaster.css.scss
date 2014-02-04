@@ -2,12 +2,22 @@ $eggplant: #330022;
 $yellow: #FFDF00;
 
 body {
-  background: $eggplant;
+  background: offwhite;
   padding-top: 70px;
+}
+
+footer {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  text-align: center;
+  background: $eggplant;
+  color: white;
 }
 
 #container {
   background: white;
 }
+
+
 
 

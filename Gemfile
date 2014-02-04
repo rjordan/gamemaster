@@ -8,7 +8,8 @@ gem 'jquery-ui-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+#gem 'jbuilder', '~> 1.2'
+gem 'rabl'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

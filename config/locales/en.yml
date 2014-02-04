@@ -1,4 +1,8 @@
 en:
+  system: Game System
+  game_master: Game Master
+  created_at: Created At
+  players: Players
   time:
     formats:
       post_date: "%B %d, %Y %l:%M%p"
