@@ -30,7 +30,7 @@ describe CampaignsController do
     it { expect(subject).to_not set_the_flash }
     it { expect(assigns(:campaign)).to_not be_nil }
     it { expect(subject).to render_template(:new) }
-  end  
+  end
 
   describe 'GET edit' do
     before do
@@ -41,7 +41,7 @@ describe CampaignsController do
     it { expect(subject).to_not set_the_flash }
     it { expect(assigns(:campaign)).to eq(@campaign) }
     it { expect(subject).to render_template(:edit) }
-  end  
+  end
 
 #    context "on POST to :create" do
 #      setup do

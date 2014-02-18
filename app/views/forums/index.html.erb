@@ -2,26 +2,26 @@
 <div id="list_view">
   <table>
     <thead>
-      <tr>
-        <td>Name</td>
-        </tr>
-      </thead>
-      <tbody>
-        <% if @forums.empty? %>
-          <tr class="odd">
-            <td colspan="3">
-              <div class="list_empty_message">
-                No records to display!
-              </div>
-            </td>
-          </tr>
-        <% end %>
-        <% for forum in @forums %>
-          <tr class="<%= cycle "even", "odd" -%>">
-            <td><%= link_to forum.name, forum_posts_path(forum) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  
-  </div>
+    <tr>
+      <td>Name</td>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @forums.empty? %>
+      <tr class="odd">
+        <td colspan="3">
+          <div class="list_empty_message">
+            No records to display!
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    <% for forum in @forums %>
+      <tr class="<%= cycle "even", "odd" -%>">
+        <td><%= link_to forum.name, forum_posts_path(forum) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+</div>

@@ -1,12 +1,12 @@
 # config/unicorn.rb
-rails_env = ENV['RAILS_ENV'] || 'production'  
-rails_root  = `pwd`.gsub("\n", "")
+rails_env = ENV['RAILS_ENV'] || 'production'
+rails_root = `pwd`.gsub("\n", "")
 
 worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 timeout 15
 preload_app true
-listen      3000
-pid         "#{rails_root}/tmp/pids/unicorn.pid"
+listen 3000
+pid "#{rails_root}/tmp/pids/unicorn.pid"
 #stderr_path "#{rails_root}/log/unicorn.log"
 #stdout_path "#{rails_root}/log/unicorn.log"
 

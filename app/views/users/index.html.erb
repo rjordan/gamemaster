@@ -2,26 +2,26 @@
 <div id="list_view">
   <table>
     <thead>
-      <tr>
-        <td>Nickname</td>
-        </tr>
-      </thead>
-      <tbody>
-        <% if @users.empty? %>
-          <tr class="odd">
-            <td colspan="<%= list_columns.size + 1 %>">
-              <div class="sl_list_empty_message">
-                No records to display!
-              </div>
-            </td>
-          </tr>
-        <% end %>
-        <% for user in @users %>
-          <tr class="<%= cycle "even", "odd" -%>">
-            <td><%= link_to user.nickname, user_path(user) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  
-  </div>
+    <tr>
+      <td>Nickname</td>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @users.empty? %>
+      <tr class="odd">
+        <td colspan="<%= list_columns.size + 1 %>">
+          <div class="sl_list_empty_message">
+            No records to display!
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    <% for user in @users %>
+      <tr class="<%= cycle "even", "odd" -%>">
+        <td><%= link_to user.nickname, user_path(user) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+</div>

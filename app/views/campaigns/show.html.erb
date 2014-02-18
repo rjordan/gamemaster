@@ -1,7 +1,7 @@
 <h2><%= @campaign.name %></h2>
 <p>
   This is a
-  <% if @campaign.public? %>  
+  <% if @campaign.public? %>
     <span style="color:green">PUBLIC</span>
   <% else %>
     <span style="color:red">PRIVATE</span>
@@ -10,7 +10,7 @@
 </p>
 
 
-<div> 
+<div>
   <%= label_tag t(:system) %>:
   <%= @campaign.system.name %>
 </div>
@@ -20,7 +20,7 @@
 </div>
 <div>
   <%= label_tag t(:created_at) %>:
-  <%= l(@campaign.created_at, :format=>:post_date) %>
+  <%= l(@campaign.created_at, :format => :post_date) %>
 </div>
 <div>
   <%= label_tag t(:players) %>:
@@ -30,79 +30,86 @@
 <br/>
 
 <div id="dialog_invite" title="Invite Player">
-  <%= render :partial=>'campaign_invites/form' %>
+  <%= render :partial => 'campaign_invites/form' %>
 </div>
 
 <br/>
-  
-  <div id="tabs">
-	  <ul>
-		  <li><a href="#tabs-1">Players</a></li>
-		  <li><a href="#tabs-2">Stories</a></li>
-		  <li><a href="#tabs-3">Characters</a></li>
-		  <li><a href="#tabs-4">Items</a></li>
-		  <li><a href="#tabs-5">Locations</a></li>
-	  </ul>
-	  <div id="tabs-1">
-      <% if @campaign.game_master?(current_user) %>
-        <button id="player_invite">Invite</button>
-      <% end %>
-      <% if @campaign.players %>
-        <table>
-          <thead><tr><th>Player Name</th><th>Character Name</th></tr></thead>
-          <% @campaign.players.each do |player| %>
-          <% character = @campaign.player_characters.find(:first, :conditions=>{:user_id=>player}) %>
+
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Players</a></li>
+    <li><a href="#tabs-2">Stories</a></li>
+    <li><a href="#tabs-3">Characters</a></li>
+    <li><a href="#tabs-4">Items</a></li>
+    <li><a href="#tabs-5">Locations</a></li>
+  </ul>
+  <div id="tabs-1">
+    <% if @campaign.game_master?(current_user) %>
+      <button id="player_invite">Invite</button>
+    <% end %>
+    <% if @campaign.players %>
+      <table>
+        <thead>
+        <tr>
+          <th>Player Name</th>
+          <th>Character Name</th>
+        </tr>
+        </thead>
+        <% @campaign.players.each do |player| %>
+          <% character = @campaign.player_characters.find(:first, :conditions => { :user_id => player }) %>
           <tr>
             <td><%= link_to character.player_name, user_path(character.user) %></td>
             <td><%= link_to character.name, character_path(character) %></td>
           </tr>
-          <% end %>
-        </table>
-      <% end %>
-  	</div>
-	  <div id="tabs-2">
-      <% if @campaign.game_master?(current_user) %>
-        <%= link_to 'New', new_campaign_story_path(@campaign), :class=>'button' %>
-      <% end %>
-      <% if @campaign.stories %>
-        <table>
-          <% @campaign.stories.each do |story| %>
-          <tr><td><%= link_to story.name, campaign_story_path(@campaign, story) %></td></tr>
-          <% end %>
-        </table>
-      <% end %>
-    </div>
-	  <div id="tabs-3">
-      <% if @campaign.game_master?(current_user) %>
-        <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class=>'button' %>
-      <% end %>
-      <ul>
-        <% @campaign.characters.each do |character| %>
-          <li><%= link_to character.name, campaign_resource_path(character) %></li>
         <% end %>
-      </ul>
-    </div>
-    <div id="tabs-4">
-      <% if @campaign.game_master?(current_user) %>
-        <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class=>'button' %>
-      <% end %>
-      <ul>
-        <% @campaign.items.each do |item| %>
-          <li><%= link_to item.name, campaign_resource_path(item) %></li>
-        <% end %>
-      </ul>
-    </div>
-    <div id="tabs-5">
-      <% if @campaign.game_master?(current_user) %>
-        <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class=>'button' %>
-      <% end %>
-      <ul>
-        <% @campaign.locations.each do |location| %>
-          <li><%= link_to location.name, campaign_resource_path(location) %></li>
-        <% end %>
-      </ul>
-    </div>
+      </table>
+    <% end %>
   </div>
+  <div id="tabs-2">
+    <% if @campaign.game_master?(current_user) %>
+      <%= link_to 'New', new_campaign_story_path(@campaign), :class => 'button' %>
+    <% end %>
+    <% if @campaign.stories %>
+      <table>
+        <% @campaign.stories.each do |story| %>
+          <tr>
+            <td><%= link_to story.name, campaign_story_path(@campaign, story) %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+  <div id="tabs-3">
+    <% if @campaign.game_master?(current_user) %>
+      <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class => 'button' %>
+    <% end %>
+    <ul>
+      <% @campaign.characters.each do |character| %>
+        <li><%= link_to character.name, campaign_resource_path(character) %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div id="tabs-4">
+    <% if @campaign.game_master?(current_user) %>
+      <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class => 'button' %>
+    <% end %>
+    <ul>
+      <% @campaign.items.each do |item| %>
+        <li><%= link_to item.name, campaign_resource_path(item) %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div id="tabs-5">
+    <% if @campaign.game_master?(current_user) %>
+      <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class => 'button' %>
+    <% end %>
+    <ul>
+      <% @campaign.locations.each do |location| %>
+        <li><%= link_to location.name, campaign_resource_path(location) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
 <h2>Adventure Logs</h2>
 <%# link_to @campaign.public_forum.name, forum_posts_path(@campaign.public_forum) %><br/>
@@ -111,7 +118,7 @@
 <% end %>
 
 <br/>
-  
+
 <% if @campaign.game_master?(current_user) %>
   <%= link_to 'Edit', edit_campaign_path(@campaign) %>
 <% end %>

@@ -51,7 +51,7 @@ group :test do
 end
 
 #group :development do
-  #These are just for console debugging
+#These are just for console debugging
 #  gem 'hirb', :require=>false
 #  gem 'wirble', :require=>false
 #  gem 'less'

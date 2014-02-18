@@ -1,6 +1,5 @@
-
 <div id="content">
-  
+
   <h1><%= @forum.name %></h1>
   <% if @forum.campaign %>
     Back to: <%= link_to @forum.campaign.name, campaign_path(@forum.campaign) %>

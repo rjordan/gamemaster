@@ -1,12 +1,12 @@
 html {
-  margin: 0; 
+  margin: 0;
   padding: 0;
 }
 
 body {
-  background: #330022; 
+  background: #330022;
   /* color: #fff;  */
-  margin: 0 auto; 
+  margin: 0 auto;
   padding: 0;
 }
 
@@ -15,26 +15,26 @@ textarea {
 }
 
 #container {
-  color: #000;
-  background-color: #FFF; 
-  margin: 0 auto; 
-  padding: 0; 
+  color: #000000;
+  background-color: #FFFFFF;
+  margin: 0 auto;
+  padding: 0;
   width: 990px;
 }
 
 #header {
-  color: #000;
-  background: #FFF; 
-  margin: 0 auto; 
+  color: #000000;
+  background: #FFFFFF;
+  margin: 0 auto;
   width: 990px;
-  height: 71px; 
+  height: 71px;
   padding: 0.5em;
 }
 
 footer {
   text-align: center;
-  background-color: #000;
-  color: #FFF;
+  background-color: #000000;
+  color: #FFFFFF;
   height: 71px;
 }
 
@@ -44,41 +44,40 @@ footer {
 }
 
 #header_navigation ul li {
-  display: inline; 
-  list-style-type: none; 
+  display: inline;
+  list-style-type: none;
   padding: 2px;
 }
 
 #header_navigation a {
-  color: #fff;
-  font-weight: bold; 
+  color: #FFFFFF;
+  font-weight: bold;
   text-decoration: none;
 }
 
 #header_navigation a:visited {
-  color: #fff;
+  color: #FFFFFF;
 }
 
 #page_top {
-  background-color: #000;
+  background-color: #000000;
 }
 
 #right_column {
-  background-color: #eee; 
-  border: 1px solid #ccc; 
-  float: right; 
-  min-height: 380px; 
-  padding: 0 10px; 
-  width: 200px; 
+  background-color: #EEEEEE;
+  border: 1px solid #CCCCCC;
+  float: right;
+  min-height: 380px;
+  padding: 0 10px;
+  width: 200px;
   margin-right: 5px;
   min-height: 400px;
 }
 
 #main_column {
-  padding: 1px 245px 1em 15px; 
+  padding: 1px 245px 1em 15px;
   margin: 0
 }
-
 
 #content_for_layout {
   clear: both;
@@ -92,16 +91,16 @@ footer {
 }
 
 #list_view table {
-  width: 100%; 
+  width: 100%;
 }
 
 #list_view table thead tr td {
-  font-weight: bold; 
+  font-weight: bold;
   font-size: 1.1em;
 }
 
 .show_label {
-  font-weight: bold; 
+  font-weight: bold;
   font-size: 1.1em;
   line-height: 1.2em;
 }
@@ -112,7 +111,7 @@ footer {
 
 #flash_alert {
   border: 3px solid black;
-  background-color: #f0f0f0;
+  background-color: #F0F0F0;
   padding: 7px;
   padding-bottom: 12px;
   margin-bottom: 20px;
@@ -125,7 +124,7 @@ footer {
   padding: 7px;
   padding-bottom: 12px;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
+  background-color: #F0F0F0;
 }
 
 #errorExplanation h2 {
@@ -134,12 +133,12 @@ footer {
   padding: 5px 5px 5px 15px;
   font-size: 20pt;
   margin: -7px;
-  background-color: #c00;
-  color: #fff;
+  background-color: #CC0000;
+  color: #FFFFFF;
 }
 
 #errorExplanation p {
-  color: #333;
+  color: #333333;
   margin-bottom: 0;
   padding: 5px;
 }
@@ -161,11 +160,11 @@ footer {
 }
 
 #post_contents {
-    width: 29em;
-    font-size: 14pt;
+  width: 29em;
+  font-size: 14pt;
 }
 
- .post_header {
+.post_header {
   background: #330022;
   color: white;
   width: 100%;

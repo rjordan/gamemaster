@@ -1,10 +1,10 @@
 require 'test_helper'
 
 class ForumsControllerTest < ActionController::TestCase
-  
+
   def setup
   end
-  
+
   context "A ForumsController" do
     setup do
       sign_in users(:rjordan)
@@ -18,12 +18,12 @@ class ForumsControllerTest < ActionController::TestCase
 #        resource.update.params = { :name=>'A General Forum'  }
 #      end
 
-    should route(:get, '/forums').to(:action=>:index)
-    should route(:get, '/forums.xml').to(:action=>:index, :format=>:xml)
-    should route(:get, '/forums/1').to(:action => :show, :id=>1)
-    should route(:get, '/forums/1.xml').to(:action => :show, :id=>1, :format=>:xml)
-    #should route(:get, '/forums/new').to(:action => :new)
-    should route(:get, '/forums/1/edit').to(:action => :edit, :id=>1)
+    should route(:get, '/forums').to(:action => :index)
+    should route(:get, '/forums.xml').to(:action => :index, :format => :xml)
+    should route(:get, '/forums/1').to(:action => :show, :id => 1)
+    should route(:get, '/forums/1.xml').to(:action => :show, :id => 1, :format => :xml)
+#should route(:get, '/forums/new').to(:action => :new)
+    should route(:get, '/forums/1/edit').to(:action => :edit, :id => 1)
     should route(:post, '/forums').to(:action => :create)
     should route(:put, '/forums/1').to(:action => :update, :id => 1)
     should route(:delete, '/forums/1').to(:action => :destroy, :id => 1)
@@ -31,7 +31,7 @@ class ForumsControllerTest < ActionController::TestCase
     #INDEX TESTS
     context "on GET to :index" do
       setup do
-        get :index 
+        get :index
       end
       #should_assign_to :forums
       should_not set_the_flash
@@ -40,20 +40,20 @@ class ForumsControllerTest < ActionController::TestCase
     end
 
     # context "on GET to :index as xml" do
-      # setup do
-        # get :index, :format=>'xml'
-      # end
-      # should_respond_with_content_type :xml
-      # should_not_set_the_flash
-      # should_render_without_layout
-      # should_respond_with :success
-      # should_respond_with_xml_for :forums
+    # setup do
+    # get :index, :format=>'xml'
+    # end
+    # should_respond_with_content_type :xml
+    # should_not_set_the_flash
+    # should_render_without_layout
+    # should_respond_with :success
+    # should_respond_with_xml_for :forums
     # end
 
     #SHOW TESTS
     context "on GET to :show" do
       setup do
-        get :show, :id=>@forum
+        get :show, :id => @forum
       end
       #should_assign_to :forum
       should_not set_the_flash
@@ -62,15 +62,15 @@ class ForumsControllerTest < ActionController::TestCase
     end
 
     # context "on GET to :show as xml" do
-      # setup do
-        # get :show, :id=>@forum, :format=>'xml'
-      # end
-      # should_assign_to :forum
-      # should_respond_with_content_type :xml
-      # should_not_set_the_flash
-      # should_render_without_layout
-      # should_respond_with :success
-      # should_respond_with_xml_for :forum
+    # setup do
+    # get :show, :id=>@forum, :format=>'xml'
+    # end
+    # should_assign_to :forum
+    # should_respond_with_content_type :xml
+    # should_not_set_the_flash
+    # should_render_without_layout
+    # should_respond_with :success
+    # should_respond_with_xml_for :forum
     # end
 
     #NEW TESTS
@@ -87,7 +87,7 @@ class ForumsControllerTest < ActionController::TestCase
     #EDIT TESTS
     context "on GET to :edit" do
       setup do
-        get :edit, :id=>@forum
+        get :edit, :id => @forum
       end
       #should_assign_to :forum
       should_not set_the_flash
@@ -97,29 +97,29 @@ class ForumsControllerTest < ActionController::TestCase
 
     #TODO Implement
     #CREATE TESTS
-#    context "on POST to :create" do
-#      setup do
-#        post :create, :forum=>{:name=>'A General Forum'}
-#      end
-#      should_assign_to :forum
-#      should_set_the_flash_to(/created/i)
-#      should_redirect_to("the forum view") { forum_url( assigns(:forum) ) }
-#    end
+    #    context "on POST to :create" do
+    #      setup do
+    #        post :create, :forum=>{:name=>'A General Forum'}
+    #      end
+    #      should_assign_to :forum
+    #      should_set_the_flash_to(/created/i)
+    #      should_redirect_to("the forum view") { forum_url( assigns(:forum) ) }
+    #    end
 
     #UPDATE TESTS
     context "on PUT to :update" do
       setup do
-        put :update, :forum=>{:name=>'A General Forum'}, :id=>@forum
+        put :update, :forum => { :name => 'A General Forum' }, :id => @forum
       end
       #should_assign_to :forum
       should set_the_flash.to(/updated/i)
-      should redirect_to("the forum view") { forum_url( assigns(:forum) ) }
+      should redirect_to("the forum view") { forum_url(assigns(:forum)) }
     end
 
     #DELETE tests
     context "on DELETE to :destroy" do
       setup do
-        delete :destroy, :id=>@forum
+        delete :destroy, :id => @forum
       end
       should set_the_flash.to(/successfully destroyed/i)
       should redirect_to("the forums list") { forums_url }

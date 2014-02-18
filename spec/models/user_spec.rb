@@ -10,7 +10,7 @@ describe User do
   it { should have_many :games }
 
   #Validations
-  it { should validate_presence_of :email } 
+  it { should validate_presence_of :email }
   it { should validate_presence_of :nickname }
   #it { should validate_uniqueness_of :email }
   #it { should validate_uniqueness_of :nickname }

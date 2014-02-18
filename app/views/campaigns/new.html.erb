@@ -2,7 +2,7 @@
 
 <%= form_for(@campaign) do |form| %>
   <%= form.error_messages %>
-  <%= render :partial=>'form', :object=>form %>
+  <%= render :partial => 'form', :object => form %>
   <%= form.submit 'Submit' %>
 <% end %>
 

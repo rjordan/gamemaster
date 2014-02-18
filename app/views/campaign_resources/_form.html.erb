@@ -2,37 +2,38 @@
   <legend>Resource</legend>
   <%= form.hidden_field :campaign_id %>
   <p>
-    <%= form.label :name, 'Name', :class=>'required' %>
+    <%= form.label :name, 'Name', :class => 'required' %>
     <%= form.text_field :name %>
   </p>
-  
+
   <% if @resource.new_record? %>
-  <p>
-    <%= form.label :resource_type, 'Resource Type', :class=>'required' %>
-    <%= form.select :resource_type, CampaignResource::ResourceTypes %>
-  </p>
+    <p>
+      <%= form.label :resource_type, 'Resource Type', :class => 'required' %>
+      <%= form.select :resource_type, CampaignResource::ResourceTypes %>
+    </p>
   <% else %>
     <%= form.hidden_field :resource_type %>
   <% end %>
-  
+
   <p>
     <%= form.label :public, 'Revealed' %>
     <%= form.check_box :public %>
   </p>
+
   <div id="tabs">
-      <ul>
-        <li><a href="#tabs-1">Public Description</a></li>
-        <% if @resource.campaign.user == current_user %>
-          <li><a href="#tabs-2">GM's Description</a></li>
-        <% end %>
-      </ul>
-    <div id="tabs-1">
-      <%= form.text_area :public_description, :class=>'markItUp' %>
-    </div>
+    <ul>
+      <li><a href="#tabs-1">Public Description</a></li>
       <% if @resource.campaign.user == current_user %>
-        <div id="tabs-2">
-          <%= form.text_area :private_description, :class=>'markItUp' %>
-        </div>
+        <li><a href="#tabs-2">GM's Description</a></li>
       <% end %>
+    </ul>
+    <div id="tabs-1">
+      <%= form.text_area :public_description, :class => 'markItUp' %>
     </div>
+    <% if @resource.campaign.user == current_user %>
+      <div id="tabs-2">
+        <%= form.text_area :private_description, :class => 'markItUp' %>
+      </div>
+    <% end %>
+  </div>
 </fieldset>

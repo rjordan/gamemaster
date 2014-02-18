@@ -5,7 +5,7 @@ describe Api::ProfilesController do
     before do
       @profile = create(:user)
       get "/api/profiles/#{@profile.id}", nil, { Accept: 'application/json' }
-    end   
+    end
     it { expect(response.status).to eq(200) }
     it { expect(response.content_type).to eq('application/json') }
   end

@@ -11,7 +11,7 @@ class CampaignResourcesControllerTest < ActionController::TestCase
     #INDEX TESTS
     context "on GET to :index" do
       setup do
-        get :index, :campaign_id=>@resource.campaign
+        get :index, :campaign_id => @resource.campaign
       end
       should respond_with :success
       should_not set_the_flash
@@ -22,7 +22,7 @@ class CampaignResourcesControllerTest < ActionController::TestCase
     #SHOW TESTS
     context "on GET to :show" do
       setup do
-        get :show, :id=>@resource
+        get :show, :id => @resource
       end
       #should_assign_to :resource
       should_not set_the_flash
@@ -33,7 +33,7 @@ class CampaignResourcesControllerTest < ActionController::TestCase
     #NEW TESTS
     context "on GET to :new" do
       setup do
-        get :new, :campaign_id=>@resource.campaign
+        get :new, :campaign_id => @resource.campaign
       end
       #should_assign_to :resource
       should_not set_the_flash
@@ -44,7 +44,7 @@ class CampaignResourcesControllerTest < ActionController::TestCase
     #EDIT TESTS
     context "on GET to :edit" do
       setup do
-        get :edit, :id=>@resource
+        get :edit, :id => @resource
       end
       #should_assign_to :resource
       should_not set_the_flash
@@ -55,11 +55,11 @@ class CampaignResourcesControllerTest < ActionController::TestCase
     #CREATE TESTS
     context "on POST to :create" do
       setup do
-        post :create, :campaign_resource=>{ :campaign_id=>@resource.campaign.id, 
-                                            :resource_type=>'Character', 
-                                            :name=>'Unknown', 
-                                            :public_description=>'Nothing' }, 
-                                            :campaign_id=>@resource.campaign.id
+        post :create, :campaign_resource => { :campaign_id => @resource.campaign.id,
+                                              :resource_type => 'Character',
+                                              :name => 'Unknown',
+                                              :public_description => 'Nothing' },
+             :campaign_id => @resource.campaign.id
       end
       #should_assign_to :resource
       should set_the_flash.to(/created/i)
@@ -69,7 +69,7 @@ class CampaignResourcesControllerTest < ActionController::TestCase
     #UPDATE TESTS
     context "on PUT to :update" do
       setup do
-        put :update, :campaign_resource=>{:name=> 'Unknown'}, :id=>@resource
+        put :update, :campaign_resource => { :name => 'Unknown' }, :id => @resource
       end
       #should_assign_to :location
       should set_the_flash.to(/updated/i)
@@ -79,7 +79,7 @@ class CampaignResourcesControllerTest < ActionController::TestCase
     #DELETE tests
     context "on DELETE to :destroy" do
       setup do
-        delete :destroy, :id=>@resource
+        delete :destroy, :id => @resource
       end
       should set_the_flash.to(/successfully destroyed/i)
       should redirect_to("the campaign view") { campaign_path(@resource.campaign) }

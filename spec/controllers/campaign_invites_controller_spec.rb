@@ -12,7 +12,7 @@ describe CampaignInvitesController do
   #NEW TESTS
   context "on GET to :new" do
     before do
-      get :new, :campaign_id=>@campaign.id
+      get :new, :campaign_id => @campaign.id
     end
     it { assigns(:invite).should_not be_nil }
     #it { should_not set_the_flash }
@@ -23,10 +23,10 @@ describe CampaignInvitesController do
   #CREATE TESTS
   context "on POST to :create" do
     before do
-      post :create, campaign_id: @campaign.id, 
-                    campaign_invite: { 
-                      email: Faker::Internet.email 
-                    } 
+      post :create, campaign_id: @campaign.id,
+           campaign_invite: {
+               email: Faker::Internet.email
+           }
     end
     it { assigns(:invite).should_not be_nil }
     #it { should set_the_flash.to(/created/i) }

@@ -1,6 +1,6 @@
 class CampaignInvitesController < ApplicationController
   respond_to :html, :json
-  before_action :find_campaign  
+  before_action :find_campaign
 
   def new
     @invite = @campaign.invites.build
@@ -14,10 +14,10 @@ class CampaignInvitesController < ApplicationController
         format.html { redirect_to @campaign }
       end
     else
-      respond_with @invite 
+      respond_with @invite
     end
   end
-    
+
   private
 
   def find_campaign

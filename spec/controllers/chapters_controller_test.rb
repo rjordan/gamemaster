@@ -1,10 +1,10 @@
 require 'test_helper'
 
 class ChaptersControllerTest < ActionController::TestCase
- 
+
   def setup
   end
-  
+
   context "A ChaptersController" do
     setup do
       sign_in users(:rjordan)
@@ -12,20 +12,20 @@ class ChaptersControllerTest < ActionController::TestCase
       session[:user_id] = User.first.id
     end
 
-    should route(:get, '/stories/1/chapters').to(:action => :index, :story_id=>1)
-    should route(:get, '/stories/1/chapters.xml').to(:action => :index, :story_id=>1, :format=>:xml)
-    should route(:get, '/chapters/1').to(:action => :show, :id=>1)
-    should route(:get, '/chapters/1.xml').to(:action => :show, :id=>1, :format=>:xml)
-    should route(:get, '/stories/1/chapters/new').to(:action => :new, :story_id=>1)
-    should route(:get, '/chapters/1/edit').to(:action => :edit, :id=>1)
-    should route(:post, '/stories/1/chapters').to(:action => :create, :story_id=>1)
+    should route(:get, '/stories/1/chapters').to(:action => :index, :story_id => 1)
+    should route(:get, '/stories/1/chapters.xml').to(:action => :index, :story_id => 1, :format => :xml)
+    should route(:get, '/chapters/1').to(:action => :show, :id => 1)
+    should route(:get, '/chapters/1.xml').to(:action => :show, :id => 1, :format => :xml)
+    should route(:get, '/stories/1/chapters/new').to(:action => :new, :story_id => 1)
+    should route(:get, '/chapters/1/edit').to(:action => :edit, :id => 1)
+    should route(:post, '/stories/1/chapters').to(:action => :create, :story_id => 1)
     should route(:put, '/chapters/1').to(:action => :update, :id => 1)
     should route(:delete, '/chapters/1').to(:action => :destroy, :id => 1)
 
     #INDEX TESTS
     context "on GET to :index" do
       setup do
-        get :index, :story_id=>@chapter.story
+        get :index, :story_id => @chapter.story
       end
       should_not set_the_flash
       should render_template :index
@@ -33,20 +33,20 @@ class ChaptersControllerTest < ActionController::TestCase
     end
 
     # context "on GET to :index as xml" do
-      # setup do
-        # get :index, :format=>'xml', :story_id=>@chapter.story
-      # end
-      # should_respond_with_content_type :xml
-      # should_not_set_the_flash
-      # should_render_without_layout
-      # should_respond_with :success
-      # should_respond_with_xml_for :chapters
+    # setup do
+    # get :index, :format=>'xml', :story_id=>@chapter.story
+    # end
+    # should_respond_with_content_type :xml
+    # should_not_set_the_flash
+    # should_render_without_layout
+    # should_respond_with :success
+    # should_respond_with_xml_for :chapters
     # end
 
     #SHOW TESTS
     context "on GET to :show" do
       setup do
-        get :show, :id=>@chapter
+        get :show, :id => @chapter
       end
       #should_assign_to :chapter
       should_not set_the_flash
@@ -55,21 +55,21 @@ class ChaptersControllerTest < ActionController::TestCase
     end
 
     # context "on GET to :show as xml" do
-      # setup do
-        # get :show, :id=>@chapter, :format=>'xml'
-      # end
-      # should_assign_to :chapter
-      # should_respond_with_content_type :xml
-      # should_not_set_the_flash
-      # should_render_without_layout
-      # should_respond_with :success
-      # should_respond_with_xml_for :chapter
+    # setup do
+    # get :show, :id=>@chapter, :format=>'xml'
+    # end
+    # should_assign_to :chapter
+    # should_respond_with_content_type :xml
+    # should_not_set_the_flash
+    # should_render_without_layout
+    # should_respond_with :success
+    # should_respond_with_xml_for :chapter
     # end
 
     #NEW TESTS
     context "on GET to :new" do
       setup do
-        get :new, :story_id=>@chapter.story
+        get :new, :story_id => @chapter.story
       end
       #should_assign_to :chapter
       should_not set_the_flash
@@ -80,7 +80,7 @@ class ChaptersControllerTest < ActionController::TestCase
     #EDIT TESTS
     context "on GET to :edit" do
       setup do
-        get :edit, :id=>@chapter
+        get :edit, :id => @chapter
       end
       #should_assign_to :chapter
       should_not set_the_flash
@@ -91,9 +91,9 @@ class ChaptersControllerTest < ActionController::TestCase
     #CREATE TESTS
     context "on POST to :create" do
       setup do
-        post :create, :chapter=>{:story_id=>@chapter.story.id,
-          :name=>'Unknown', :public_description=>'test' },
-          :story_id=>@chapter.story.id
+        post :create, :chapter => { :story_id => @chapter.story.id,
+                                    :name => 'Unknown', :public_description => 'test' },
+             :story_id => @chapter.story.id
       end
       #should_assign_to :chapter
       should set_the_flash.to(/created/i)
@@ -103,7 +103,7 @@ class ChaptersControllerTest < ActionController::TestCase
     #UPDATE TESTS
     context "on PUT to :update" do
       setup do
-        put :update, :chapter=>{:name=>'Unknown'}, :id=>@chapter
+        put :update, :chapter => { :name => 'Unknown' }, :id => @chapter
       end
       #should_assign_to :chapter
       should set_the_flash.to(/updated/i)
@@ -113,7 +113,7 @@ class ChaptersControllerTest < ActionController::TestCase
     #DELETE tests
     context "on DELETE to :destroy" do
       setup do
-        delete :destroy, :id=>@chapter
+        delete :destroy, :id => @chapter
       end
       should set_the_flash.to(/successfully destroyed/i)
       should redirect_to("the chapters list for a story") { story_chapters_url(@chapter.story) }

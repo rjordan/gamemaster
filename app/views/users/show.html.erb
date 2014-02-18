@@ -1,7 +1,7 @@
-
 <div id="content">
- <%= render_gravatar @user %>
+  <%= render_gravatar @user %>
   <h1><%= @user.nickname %></h1>
+
   <p>
   </p>
   <table class="show_form">
@@ -15,11 +15,11 @@
     </tr>
   </table>
   <br/>
-  
+
   <div id="section_heading">
     <span>Running Campaigns</span>
     <% if current_user==@user %>
-      <%= link_to "New Campaign", new_campaign_path, :class=>'button' %>
+      <%= link_to "New Campaign", new_campaign_path, :class => 'button' %>
     <% end %>
     <hr/>
   </div>
@@ -34,11 +34,11 @@
     <% end %>
   </table>
   <br/>
-  
+
   <div id="section_heading">
     <span>Playing Games</span>
     <% if session[:user_id]==@user %>
-    <%= link_to "Find Game", campaigns_path, :class=>'button' %>
+      <%= link_to "Find Game", campaigns_path, :class => 'button' %>
     <% end %>
     <hr/>
   </div>
@@ -52,7 +52,7 @@
     <% end %>
   </table>
   <br/>
-  
+
 </div>
 
 <% if session[:user_id]==@user %>

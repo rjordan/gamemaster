@@ -1,8 +1,8 @@
 <%= form_for([@invite.campaign, @invite]) do |form| %>
-    <%# form.error_messages %>
-    <%= form.hidden_field :campaign_id %>
-    <%= form.label :email, 'Email Address' %>
-    <%= form.text_field :email %>
-    <%= form.submit 'Invite' %>
+  <%# form.error_messages %>
+  <%= form.hidden_field :campaign_id %>
+  <%= form.label :email, 'Email Address' %>
+  <%= form.text_field :email %>
+  <%= form.submit 'Invite' %>
 <% end %>
 

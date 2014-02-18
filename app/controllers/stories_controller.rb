@@ -6,18 +6,18 @@ class StoriesController < ApplicationController
     @stories = Story.all
     respond_with @stories
   end
-  
+
   def show
     @story = Story.find(params[:id])
     respond_with @story
   end
-  
+
   def new
     @story = Story.new
     @story.campaign = Campaign.find(params[:campaign_id])
     respond_with @story
   end
-  
+
   def create
     @story = Story.new(params[:story])
     @story.campaign_id = params[:campaign_id]
