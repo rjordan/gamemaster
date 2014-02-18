@@ -18,27 +18,20 @@ class Campaign < ActiveRecord::Base
   has_many :resources, :class_name=>'CampaignResource', :dependent=>:destroy
   delegate :characters, :locations, :items, :to=>:resources
 
-  #def players
-  #  characters.find(:all, :conditions=>'user_id is not null')
-  #end
-  
-  before_save :create_forums
-  
-  def is_game_master?(user)
+  def initialize
+    super
+    build_public_forum(name: 'Public Forum')
+    build_private_forum(name: 'Private Forum')
+  end
+
+  def game_master?(user)
     self.user==user
   end
   
-  def is_player?(user)
+  def player?(user)
     self.players.include?(user)
   end
 
-private
-
-  def create_forums
-    public_forum ||= Forum.new(:name=>'Public Forum')
-    private_forum ||= Forum.new(:name=>'Private Forum')
-  end
-  
 end
 
 ############################

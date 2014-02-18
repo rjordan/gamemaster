@@ -28,4 +28,48 @@ describe Campaign do
   it { should validate_presence_of :system_id }
   it { should validate_presence_of :max_players }
   it { should validate_numericality_of :max_players }
+
+  describe 'a new instance' do
+    before do
+      @campaign = Campaign.new
+    end
+    it { expect(@campaign.public_forum).to be_instance_of(Forum) }
+    it { expect(@campaign.private_forum).to be_instance_of(Forum) }
+  end
+
+  describe '#game_master?' do
+    context 'when false' do
+      before do
+        @user = create(:user)
+        @campaign = create(:campaign)
+      end
+      it { expect(@campaign.game_master?(@user)).to be_false }
+    end
+    context 'when true' do
+      before do
+        @user = create(:user)
+        @campaign = create(:campaign, user: @user)
+      end
+      it { expect(@campaign.game_master?(@user)).to be_true }
+    end
+  end
+
+  describe '#player?' do
+    context 'when false' do
+      before do
+        @user = create(:user)
+        @character = create(:character, user: @user)
+        @campaign = create(:campaign, players: [])
+      end
+      it { expect(@campaign.player?(@user)).to be_false }
+    end
+    context 'when true' do
+      before do
+        @user = create(:user)
+        @character = create(:character, user: @user)
+        @campaign = create(:campaign, player_characters: [@character])
+      end
+      it { expect(@campaign.player?(@user)).to be_true }
+    end
+  end
 end
