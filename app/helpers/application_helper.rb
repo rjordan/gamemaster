@@ -9,6 +9,16 @@ module ApplicationHelper
     end
   end
 
+  def markdown
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::XHTML, :autolink => true, :space_after_headers => true)
+  end
+
+  def render_markdown(content)
+    content_tag :div, class: 'markdown' do
+      markdown.render(content).html_safe
+    end
+  end
+
   def title(title)
     content_for :title do
       title

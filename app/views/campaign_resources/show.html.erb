@@ -19,13 +19,13 @@
   </ul>
   <div id="tabs-1">
     <div class="tab-window">
-      <p><%= textilize(@resource.public_description).html_safe %></p>
+      <p><%= render_markdown(@resource.public_description) %></p>
     </div>
 	</div>
-  <% if @resource.campaign.user == current_user %>
+  <% if @resource.campaign.game_master?(current_user) %>
     <div id="tabs-2">
       <div class="tab-window">
-        <p><%= textilize(@resource.private_description).html_safe %></p>
+        <p><%= render_markdown(@resource.private_description) %></p>
       </div>
     </div>
   <% end %>
