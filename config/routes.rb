@@ -14,7 +14,13 @@ GameMaster::Application.routes.draw do
   resources :users, only: [:show]
 
   resources :campaigns do
-      resources :stories
+      resources :stories do
+        resources :chapters do
+          collection do
+            post :sort
+          end
+        end
+      end
       resources :characters
       resources :forums
       resources :campaign_resources
@@ -23,22 +29,14 @@ GameMaster::Application.routes.draw do
   
   #resources :campaign_invites
   
-  resources :stories do
-    resources :chapters do
-      collection do
-        post :sort
-      end
-    end
-  end
-
-  resources :chapters
-  resources :campaign_resources
-  resources :characters
-
+#  resources :campaign_resources
+#  resources :characters
   resources :forums do
     resources :posts
   end
-  resources :posts
+#  resources :posts
+
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   root :to => "campaigns#index"

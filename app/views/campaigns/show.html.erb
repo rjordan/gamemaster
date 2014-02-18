@@ -44,7 +44,7 @@
 		  <li><a href="#tabs-5">Locations</a></li>
 	  </ul>
 	  <div id="tabs-1">
-      <% if @campaign.is_game_master?(current_user) %>
+      <% if @campaign.game_master?(current_user) %>
         <button id="player_invite">Invite</button>
       <% end %>
       <% if @campaign.players %>
@@ -61,19 +61,19 @@
       <% end %>
   	</div>
 	  <div id="tabs-2">
-      <% if (@campaign.user==current_user) %>
+      <% if @campaign.game_master?(current_user) %>
         <%= link_to 'New', new_campaign_story_path(@campaign), :class=>'button' %>
       <% end %>
       <% if @campaign.stories %>
         <table>
           <% @campaign.stories.each do |story| %>
-          <tr><td><%= link_to story.name, story_path(story) %></td></tr>
+          <tr><td><%= link_to story.name, campaign_story_path(@campaign, story) %></td></tr>
           <% end %>
         </table>
       <% end %>
     </div>
 	  <div id="tabs-3">
-      <% if (@campaign.user==current_user) %>
+      <% if @campaign.game_master?(current_user) %>
         <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class=>'button' %>
       <% end %>
       <ul>
@@ -83,7 +83,7 @@
       </ul>
     </div>
     <div id="tabs-4">
-      <% if (@campaign.user==current_user) %>
+      <% if @campaign.game_master?(current_user) %>
         <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class=>'button' %>
       <% end %>
       <ul>
@@ -93,7 +93,7 @@
       </ul>
     </div>
     <div id="tabs-5">
-      <% if (@campaign.user==current_user) %>
+      <% if @campaign.game_master?(current_user) %>
         <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class=>'button' %>
       <% end %>
       <ul>
@@ -106,12 +106,12 @@
 
 <h2>Adventure Logs</h2>
 <%# link_to @campaign.public_forum.name, forum_posts_path(@campaign.public_forum) %><br/>
-<% if (@campaign.user==current_user) %>
+<% if @campaign.game_master?(current_user) %>
   <%# link_to @campaign.private_forum.name, forum_posts_path(@campaign.private_forum) %><br/>
 <% end %>
 
 <br/>
   
-<% if @campaign.user==current_user %>
+<% if @campaign.game_master?(current_user) %>
   <%= link_to 'Edit', edit_campaign_path(@campaign) %>
 <% end %>

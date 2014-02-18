@@ -1,5 +1,6 @@
 class StoriesController < ApplicationController
-  respond_to :html, :xml, :json
+  before_action :find_campaign
+  respond_to :html
 
   def index
     @stories = Story.all
@@ -41,6 +42,12 @@ class StoriesController < ApplicationController
     respond_with @story do |format|
       format.html { redirect_to campaign_stories_path(@story.campaign) }
     end
+  end
+
+  private
+
+  def find_campaign
+    @campaign = Campaign.find(params[:campaign_id])
   end
 
 end
