@@ -42,7 +42,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'guard-rspec', require: false
-  gem 'rails-footnotes'
+  gem 'rails-footnotes', github: 'josevalim/rails-footnotes', branch: 'release-4.0'
   gem 'rails_best_practices'
 end
 
