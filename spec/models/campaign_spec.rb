@@ -17,9 +17,10 @@ describe Campaign do
   it { should have_one(:private_forum).dependent(:destroy) }
   it { should have_one(:public_forum).dependent(:destroy) }
   it { should have_many :stories }
-  it { should have_many :players }
   it { should have_many :player_characters }
   it { should have_many :nonplayer_characters }
+  it { should have_many :players }
+  it { should have_many :invites }
   it { should have_many :resources }
 
   #Validations
