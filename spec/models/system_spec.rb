@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe System do
-  it { should have_db_column :name }
-  it { should validate_presence_of :name }
-  it { should have_many :campaigns }
+  it { expect(subject).to have_db_column :name }
+
+  it { expect(subject).to have_many :campaigns }
+
+  it { expect(subject).to validate_presence_of :name }
 end

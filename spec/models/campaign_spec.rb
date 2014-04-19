@@ -12,23 +12,23 @@ describe Campaign do
   it { expect(subject).to have_db_column(:version).of_type(:integer) }
 
   #Associations
-  it { should belong_to :user }
-  it { should belong_to :system }
-  it { should have_one(:private_forum).dependent(:destroy) }
-  it { should have_one(:public_forum).dependent(:destroy) }
-  it { should have_many :stories }
-  it { should have_many :player_characters }
-  it { should have_many :nonplayer_characters }
-  it { should have_many :players }
-  it { should have_many :invites }
-  it { should have_many :resources }
+  it { expect(subject).to belong_to :user }
+  it { expect(subject).to belong_to :system }
+  it { expect(subject).to have_one(:private_forum).dependent(:destroy) }
+  it { expect(subject).to have_one(:public_forum).dependent(:destroy) }
+  it { expect(subject).to have_many :stories }
+  it { expect(subject).to have_many :player_characters }
+  it { expect(subject).to have_many :nonplayer_characters }
+  it { expect(subject).to have_many :players }
+  it { expect(subject).to have_many :invites }
+  it { expect(subject).to have_many :resources }
 
   #Validations
-  it { should validate_presence_of :name }
-  it { should validate_presence_of :user_id }
-  it { should validate_presence_of :system_id }
-  it { should validate_presence_of :max_players }
-  it { should validate_numericality_of :max_players }
+  it { expect(subject).to validate_presence_of :name }
+  it { expect(subject).to validate_presence_of :user_id }
+  it { expect(subject).to validate_presence_of :system_id }
+  it { expect(subject).to validate_presence_of :max_players }
+  it { expect(subject).to validate_numericality_of :max_players }
 
   context 'a new instance' do
     before do

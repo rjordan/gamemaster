@@ -20,7 +20,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'responders'
 gem 'bcrypt-ruby'
 gem 'warden'
-gem 'devise', '~>1.5.0'
+gem 'devise', '~>3.2.0'
 gem 'redcarpet'
 #gem 'html5'
 gem 'acts_as_list'
@@ -42,6 +42,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'guard-rspec', require: false
+  gem 'capybara'
+  gem 'capybara-webkit'
   gem 'rails-footnotes', github: 'josevalim/rails-footnotes', branch: 'release-4.0'
   gem 'rails_best_practices'
 end
