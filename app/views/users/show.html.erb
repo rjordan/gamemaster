@@ -3,17 +3,9 @@
   <h1><%= @user.nickname %></h1>
 
   <p>
+    <label>User ID:</label> <%= @user.id %><br/>
+    <label>Signup Date:</label> <%= l(@user.created_at) %>
   </p>
-  <table class="show_form">
-    <tr>
-      <td class="show_label">ID:</td>
-      <td class="show_value"><%= @user.id %></td>
-    </tr>
-    <tr>
-      <td class="show_label">Signup Date:</td>
-      <td class="show_value"><%= l(@user.created_at) %></td>
-    </tr>
-  </table>
   <br/>
 
   <div id="section_heading">
@@ -23,17 +15,24 @@
     <% end %>
     <hr/>
   </div>
-  <table class="show_form">
-    <% if @user.campaigns %>
-      <% for campaign in @user.campaigns %>
-        <tr>
-          <td><%= link_to campaign.name, campaign_path(campaign) %></td>
-          <td><%= campaign.system.name %></td>
-        </tr>
-      <% end %>
-    <% end %>
+  <% if @user.campaigns.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Campaign Name</th>
+        <th>System</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% for campaign in @user.campaigns %>
+          <tr>
+            <td><%= link_to campaign.name, campaign_path(campaign) %></td>
+            <td><%= campaign.system.name %></td>
+          </tr>
+        <% end %>
+    </tbody>
   </table>
-  <br/>
+  <% end %>
 
   <div id="section_heading">
     <span>Playing Games</span>
@@ -42,15 +41,23 @@
     <% end %>
     <hr/>
   </div>
-  <table class="show_form">
-    <% if @user.games %>
+  <% if @user.games.any? %>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Campaign Name</th>
+      <th>System</th>
+    </tr>
+    </thead>
+    <tbody>
       <% for game in @user.games %>
         <tr>
           <td><%= link_to game.name, campaign_path(game) %></td>
         </tr>
       <% end %>
-    <% end %>
+    </tbody>
   </table>
+  <% end %>
   <br/>
 
 </div>

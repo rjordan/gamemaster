@@ -1,6 +1,6 @@
 // Place your application-specific JavaScript functions and classes here
 $(function () {
-  $("#tabs").tabs();
+  //$("#tabs").tabs();
   $(".button").button();
   $("#stories_list").sortable({
     update: function () {

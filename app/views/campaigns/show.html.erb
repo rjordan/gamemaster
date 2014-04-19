@@ -35,15 +35,9 @@
 
 <br/>
 
-<div id="tabs">
-  <ul>
-    <li><a href="#tabs-1">Players</a></li>
-    <li><a href="#tabs-2">Stories</a></li>
-    <li><a href="#tabs-3">Characters</a></li>
-    <li><a href="#tabs-4">Items</a></li>
-    <li><a href="#tabs-5">Locations</a></li>
-  </ul>
-  <div id="tabs-1">
+<h2>Tabs</h2>
+<div class="tab-content">
+  <div class="tab-pane active" id="players">
     <% if @campaign.game_master?(current_user) %>
       <button id="player_invite">Invite</button>
     <% end %>
@@ -65,7 +59,7 @@
       </table>
     <% end %>
   </div>
-  <div id="tabs-2">
+  <div class="tab-pane" id="stories">
     <% if @campaign.game_master?(current_user) %>
       <%= link_to 'New', new_campaign_story_path(@campaign), :class => 'button' %>
     <% end %>
@@ -79,7 +73,7 @@
       </table>
     <% end %>
   </div>
-  <div id="tabs-3">
+  <div class="tab-pane" id="characters">
     <% if @campaign.game_master?(current_user) %>
       <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class => 'button' %>
     <% end %>
@@ -89,7 +83,7 @@
       <% end %>
     </ul>
   </div>
-  <div id="tabs-4">
+  <div class="tab-pane" id="resources">
     <% if @campaign.game_master?(current_user) %>
       <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class => 'button' %>
     <% end %>
@@ -99,7 +93,7 @@
       <% end %>
     </ul>
   </div>
-  <div id="tabs-5">
+  <div class="tab-pane" id="locations">
     <% if @campaign.game_master?(current_user) %>
       <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class => 'button' %>
     <% end %>

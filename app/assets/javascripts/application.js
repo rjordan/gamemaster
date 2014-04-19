@@ -11,11 +11,11 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.ui.all
-//= require jquery_ujs
+// require jquery.ui.all
+// require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require global.js
+// require global.js
 // require 'markitup-1.1.7/jquery.markitup.pack'
 // require 'markitup-1.1.7/sets/textile/set'
 
