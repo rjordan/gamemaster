@@ -46,6 +46,7 @@ group :development, :test do
   gem 'capybara-webkit'
   gem 'rails-footnotes', github: 'josevalim/rails-footnotes', branch: 'release-4.0'
   gem 'rails_best_practices'
+  gem 'json-schema'
 end
 
 group :test do

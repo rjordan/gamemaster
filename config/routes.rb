@@ -1,8 +1,10 @@
 GameMaster::Application.routes.draw do
 
   namespace :api, defaults: { format: 'json' } do
-    resources :campaigns
-    resources :profiles, only: [:show]
+    namespace :v1 do
+      resources :campaigns, only: [:index, :show]
+      resources :profiles, only: [:show]
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

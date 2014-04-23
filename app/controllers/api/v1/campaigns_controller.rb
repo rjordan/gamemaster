@@ -1,4 +1,4 @@
-class Api::CampaignsController < Api::ApiController
+class Api::V1::CampaignsController < Api::ApiController
   def index
     @campaigns = Campaign.where(public: true)
     respond_to do |format|
