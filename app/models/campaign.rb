@@ -17,12 +17,7 @@ class Campaign < ActiveRecord::Base
 
   has_many :resources, class_name: 'CampaignResource', dependent: :destroy
   delegate :characters, :locations, :items, to: :resources
-
-  def initialize(*args)
-    super
-    build_public_forum(name: 'Public Forum')
-    build_private_forum(name: 'Private Forum')
-  end
+  after_initialize :build_forums
 
   def game_master?(user)
     self.user==user
@@ -32,6 +27,12 @@ class Campaign < ActiveRecord::Base
     self.players.include?(user)
   end
 
+  private
+
+  def build_forums
+    build_public_forum(name: 'Public Forum')
+    build_private_forum(name: 'Private Forum')
+  end
 end
 
 ############################
