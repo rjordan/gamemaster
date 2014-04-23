@@ -18,7 +18,7 @@ class Campaign < ActiveRecord::Base
   has_many :resources, class_name: 'CampaignResource', dependent: :destroy
   delegate :characters, :locations, :items, to: :resources
 
-  def initialize
+  def initialize(*args)
     super
     build_public_forum(name: 'Public Forum')
     build_private_forum(name: 'Private Forum')
