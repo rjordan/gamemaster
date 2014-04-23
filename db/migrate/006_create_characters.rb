@@ -10,6 +10,9 @@ class CreateCharacters < ActiveRecord::Migration
       t.timestamps
       t.integer :version, :null => false, :default => 1
     end
+    add_index :characters, :campaign_id
+    add_index :characters, :user_id
+
   end
 
   def self.down

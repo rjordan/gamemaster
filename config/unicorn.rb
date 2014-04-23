@@ -1,6 +1,6 @@
 # config/unicorn.rb
 rails_env = ENV['RAILS_ENV'] || 'production'
-rails_root = `pwd`.gsub("\n", "")
+rails_root = `pwd`.chomp
 
 worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 timeout 15

@@ -3,5 +3,5 @@ class Story < ActiveRecord::Base
   validates_numericality_of :campaign_id
   belongs_to :campaign
   has_many :chapters #, -> { order: 'position' }
-  default_scope -> { order(:name) }
+  #default_scope -> { order(:name) }
 end

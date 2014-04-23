@@ -12,6 +12,7 @@ class CreateCampaigns < ActiveRecord::Migration
     end
     add_index :campaigns, :system_id
     add_index :campaigns, :public
+    add_index :campaigns, :user_id
 
     create_table :campaigns_players, :id => false do |t|
       t.integer :campaign_id, :null => false

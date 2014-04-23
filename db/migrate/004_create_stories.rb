@@ -9,6 +9,7 @@ class CreateStories < ActiveRecord::Migration
       t.timestamps
       t.integer :version, :null => false, :default => 1
     end
+    add_index :stories, :campaign_id
 
     create_table :chapters do |t|
       t.string :name, :null => false
@@ -20,6 +21,8 @@ class CreateStories < ActiveRecord::Migration
       t.timestamps
       t.integer :version, :null => false, :default => 1
     end
+    add_index :chapters, :story_id
+
   end
 
   def self.down
