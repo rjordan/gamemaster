@@ -18,15 +18,6 @@ class ForumsControllerTest < ActionController::TestCase
 #        resource.update.params = { :name=>'A General Forum'  }
 #      end
 
-    should route(:get, '/forums').to(:action => :index)
-    should route(:get, '/forums.xml').to(:action => :index, :format => :xml)
-    should route(:get, '/forums/1').to(:action => :show, :id => 1)
-    should route(:get, '/forums/1.xml').to(:action => :show, :id => 1, :format => :xml)
-#should route(:get, '/forums/new').to(:action => :new)
-    should route(:get, '/forums/1/edit').to(:action => :edit, :id => 1)
-    should route(:post, '/forums').to(:action => :create)
-    should route(:put, '/forums/1').to(:action => :update, :id => 1)
-    should route(:delete, '/forums/1').to(:action => :destroy, :id => 1)
 
     #INDEX TESTS
     context "on GET to :index" do

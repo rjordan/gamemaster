@@ -11,15 +11,6 @@ class CharactersControllerTest < ActionController::TestCase
       @character = Character.find(:first)
     end
 
-    should route(:get, '/campaigns/1/characters').to(:action => :index, :campaign_id => 1)
-    should route(:get, '/campaigns/1/characters.xml').to(:action => :index, :format => :xml, :campaign_id => 1)
-    should route(:get, '/characters/1').to(:action => :show, :id => 1)
-    should route(:get, '/characters/1.xml').to(:action => :show, :id => 1, :format => :xml)
-    should route(:get, '/campaigns/1/characters/new').to(:action => :new, :campaign_id => 1)
-    should route(:get, '/characters/1/edit').to(:action => :edit, :id => 1)
-    should route(:post, '/campaigns/1/characters').to(:action => :create, :campaign_id => 1)
-    should route(:put, '/characters/1').to(:action => :update, :id => 1)
-    should route(:delete, '/characters/1').to(:action => :destroy, :id => 1)
 
     #INDEX TESTS
     context "on GET to :index" do

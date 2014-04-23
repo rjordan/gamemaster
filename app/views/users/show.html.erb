@@ -16,22 +16,22 @@
     <hr/>
   </div>
   <% if @user.campaigns.any? %>
-  <table class="table table-striped">
-    <thead>
+    <table class="table table-striped">
+      <thead>
       <tr>
         <th>Campaign Name</th>
         <th>System</th>
       </tr>
-    </thead>
-    <tbody>
-        <% for campaign in @user.campaigns %>
-          <tr>
-            <td><%= link_to campaign.name, campaign_path(campaign) %></td>
-            <td><%= campaign.system.name %></td>
-          </tr>
-        <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+      <% for campaign in @user.campaigns %>
+        <tr>
+          <td><%= link_to campaign.name, campaign_path(campaign) %></td>
+          <td><%= campaign.system.name %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   <% end %>
 
   <div id="section_heading">
@@ -42,21 +42,21 @@
     <hr/>
   </div>
   <% if @user.games.any? %>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>Campaign Name</th>
-      <th>System</th>
-    </tr>
-    </thead>
-    <tbody>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Campaign Name</th>
+        <th>System</th>
+      </tr>
+      </thead>
+      <tbody>
       <% for game in @user.games %>
         <tr>
           <td><%= link_to game.name, campaign_path(game) %></td>
         </tr>
       <% end %>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
   <% end %>
   <br/>
 

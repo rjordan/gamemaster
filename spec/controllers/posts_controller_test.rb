@@ -11,15 +11,7 @@ class PostsControllerTest < ActionController::TestCase
       @post = Post.find(:first)
     end
 
-    should route(:get, '/forums/1/posts').to(:action => :index, :forum_id => 1)
-    should route(:get, '/forums/1/posts.xml').to(:action => :index, :forum_id => 1, :format => :xml)
-    should route(:get, '/posts/1').to(:action => :show, :id => 1)
-    should route(:get, '/posts/1.xml').to(:action => :show, :id => 1, :format => :xml)
-    should route(:get, '/forums/1/posts/new').to(:action => :new, :forum_id => 1)
-    should route(:get, '/posts/1/edit').to(:action => :edit, :id => 1)
-    should route(:post, '/forums/1/posts').to(:action => :create, :forum_id => 1)
-    should route(:put, '/posts/1').to(:action => :update, :id => 1)
-    should route(:delete, '/posts/1').to(:action => :destroy, :id => 1)
+
 
     #INDEX TESTS
     context "on GET to :index" do

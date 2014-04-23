@@ -12,16 +12,6 @@ class ChaptersControllerTest < ActionController::TestCase
       session[:user_id] = User.first.id
     end
 
-    should route(:get, '/stories/1/chapters').to(:action => :index, :story_id => 1)
-    should route(:get, '/stories/1/chapters.xml').to(:action => :index, :story_id => 1, :format => :xml)
-    should route(:get, '/chapters/1').to(:action => :show, :id => 1)
-    should route(:get, '/chapters/1.xml').to(:action => :show, :id => 1, :format => :xml)
-    should route(:get, '/stories/1/chapters/new').to(:action => :new, :story_id => 1)
-    should route(:get, '/chapters/1/edit').to(:action => :edit, :id => 1)
-    should route(:post, '/stories/1/chapters').to(:action => :create, :story_id => 1)
-    should route(:put, '/chapters/1').to(:action => :update, :id => 1)
-    should route(:delete, '/chapters/1').to(:action => :destroy, :id => 1)
-
     #INDEX TESTS
     context "on GET to :index" do
       setup do
