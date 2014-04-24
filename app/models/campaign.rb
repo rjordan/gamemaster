@@ -9,6 +9,7 @@ class Campaign < ActiveRecord::Base
   has_one :private_forum, -> { where(public: false) }, class_name: 'Forum', dependent: :destroy
   has_many :stories
 
+  has_many :characters, dependent: :destroy
   has_many :player_characters, -> { where('user_id is not null') }, :class_name => 'Character'
   has_many :nonplayer_characters, -> { where('user_id is null') }, :class_name => 'Character'
   has_many :players, through: :player_characters, source: :user
@@ -16,7 +17,7 @@ class Campaign < ActiveRecord::Base
   has_many :invites, :class_name => 'CampaignInvite'
 
   has_many :resources, class_name: 'CampaignResource', dependent: :destroy
-  delegate :characters, :locations, :items, to: :resources
+#  delegate :characters, :locations, :items, to: :resources
   after_initialize :build_forums
 
   def game_master?(user)

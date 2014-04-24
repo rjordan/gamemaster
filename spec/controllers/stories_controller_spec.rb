@@ -9,6 +9,7 @@ describe StoriesController do
     before do
       get :index, :campaign_id => @story.campaign
     end
+    it { expect(assigns(:stories)).to_not be_nil }
     it { expect(subject).to_not set_the_flash }
     it { expect(subject).to render_template(:index) }
     it { expect(response.status).to eq(200) }

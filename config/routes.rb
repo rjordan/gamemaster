@@ -16,24 +16,26 @@ GameMaster::Application.routes.draw do
   resources :users, only: [:show]
 
   resources :campaigns do
-    resources :stories do
-      resources :chapters do
-        collection do
-          post :sort
-        end
-      end
-    end
+    resources :stories, only: [:index, :new, :create]
     resources :characters
     resources :forums
     resources :campaign_resources
     resources :campaign_invites
   end
 
+  resources :stories, except: [:index,:new] do
+    resources :chapters do
+      collection do
+        post :sort
+      end
+    end
+  end
+
   #resources :campaign_invites
 
   #  resources :campaign_resources
   #  resources :characters
-  resources :forums do
+  resources :forums, only: [:index, :show] do
     resources :posts
   end
   #  resources :posts

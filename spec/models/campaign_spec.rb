@@ -17,6 +17,7 @@ describe Campaign do
   it { expect(subject).to have_one(:private_forum).dependent(:destroy) }
   it { expect(subject).to have_one(:public_forum).dependent(:destroy) }
   it { expect(subject).to have_many :stories }
+  it { expect(subject).to have_many :characters }
   it { expect(subject).to have_many :player_characters }
   it { expect(subject).to have_many :nonplayer_characters }
   it { expect(subject).to have_many :players }
