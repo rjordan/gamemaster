@@ -26,11 +26,18 @@ class CampaignsController < ApplicationController
 
   def update
     @campaign = Campaign.find(params[:id])
-    @campaign.update_attributes(params[:campaign])
+    @campaign.update_attributes(campaign_params)
+    redirect_to @campaign
   end
 
   def destroy
     @campaign = Campaign.find(params[:id])
     @campaign.destroy
+  end
+
+  private
+
+  def campaign_params
+    params.require(:campaign).permit(:name, :system_id, :max_players, :description)
   end
 end

@@ -1,7 +1,11 @@
 <h1>Editing Campaign</h1>
 
-<%= form_for(@campaign) do |form| %>
+<%= form_for(@campaign, html: {role: 'form', class: 'form-horizontal'}) do |form| %>
   <%= render :partial => 'form', :object => form %>
-  <%= form.submit 'Submit' %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= form.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
+  </div>
 <% end %>
 

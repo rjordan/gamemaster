@@ -20,7 +20,7 @@
         <td><%= link_to campaign.name, campaign_path(campaign) %></td>
         <td><%= campaign.system.name %></td>
         <td><%= campaign.user.nickname %></td>
-        <td><%= campaign.players.count %> / <%= campaign.max_players %></td>
+        <td><%= campaign.characters.player.count %> / <%= campaign.max_players %></td>
       </tr>
     <% end %>
     </tbody>

@@ -20,7 +20,7 @@
 </div>
 <div>
   <%= label_tag t(:created_at) %>:
-  <%= l(@campaign.created_at, :format => :post_date) %>
+  <%= l(@campaign.created_at, :format => :post_time) %>
 </div>
 <div>
   <%= label_tag t(:players) %>:
@@ -29,17 +29,17 @@
 
 <br/>
 
-<div id="dialog_invite" title="Invite Player">
-  <%= render :partial => 'campaign_invites/form' %>
-</div>
-
-<br/>
-
-<h2>Tabs</h2>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#players" data-toggle="tab">Players</a></li>
+  <li><a href="#stories" data-toggle="tab">Stories</a></li>
+  <li><a href="#characters" data-toggle="tab">Characters</a></li>
+  <li><a href="#resources" data-toggle="tab">Resources</a></li>
+  <li><a href="#locations" data-toggle="tab">Locationss</a></li>
+</ul>
 <div class="tab-content">
   <div class="tab-pane active" id="players">
     <% if @campaign.game_master?(current_user) %>
-      <button id="player_invite">Invite</button>
+      <%= render :partial => 'campaign_invites/form' %>
     <% end %>
     <% if @campaign.characters.player %>
       <table>

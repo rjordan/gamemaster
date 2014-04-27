@@ -22,11 +22,11 @@ class Campaign < ActiveRecord::Base
   end
 
   def public_forum
-    forums.select{|f| f.public==true}.first
+    forums.open.first
   end
 
   def private_forum
-    forums.select{|f| f.public==false}.first
+    forums.closed.first
   end
 
   private

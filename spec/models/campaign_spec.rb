@@ -34,12 +34,12 @@ describe Campaign do
     before do
       @campaign = Campaign.new
     end
-    describe 'public forum' do
-      it { expect(@campaign.public_forum).to be_instance_of(Forum) }
-    end
-    describe 'private forum' do
-      it { expect(@campaign.private_forum).to be_instance_of(Forum) }
-    end
+    # describe 'public forum' do
+    #   it { expect(@campaign.public_forum).to be_instance_of(Forum) }
+    # end
+    # describe 'private forum' do
+    #   it { expect(@campaign.private_forum).to be_instance_of(Forum) }
+    # end
   end
 
   #BDD

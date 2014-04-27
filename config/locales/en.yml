@@ -5,4 +5,5 @@ en:
   players: Players
   time:
     formats:
-      post_date: "%B %d, %Y %l:%M%p"
+      date: "%B %d, %Y"
+      post_time: "%B %d, %Y %l:%M%p"

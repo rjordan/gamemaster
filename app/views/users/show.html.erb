@@ -4,14 +4,14 @@
 
   <p>
     <label>User ID:</label> <%= @user.id %><br/>
-    <label>Signup Date:</label> <%= l(@user.created_at) %>
+    <label>Signup Date:</label> <%= l(@user.created_at, format: :date) %>
   </p>
   <br/>
 
   <div id="section_heading">
     <span>Running Campaigns</span>
     <% if current_user==@user %>
-      <%= link_to "New Campaign", new_campaign_path, :class => 'button' %>
+      <%= link_to 'New Campaign', new_campaign_path, :class => 'button' %>
     <% end %>
     <hr/>
   </div>

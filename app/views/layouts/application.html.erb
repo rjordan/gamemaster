@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title><%= yield(:title) || "Gamemaster" %></title>
+  <title><%= yield(:title) || 'GameMaster' %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8"/>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tag %>
 </head>
 <body class='<%= "#{controller_name}" %>'>
 
-<header class="navbar navbar-inverse navbar-fixed-top" role=navigation>
+<header class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <%= link_to 'GameMaster', root_url, class: 'navbar-brand' %>
   <aside class="collapse navbar-collapse"><%= render :partial => 'shared/header_nav' %></aside>
 </header>
@@ -18,25 +18,15 @@
 <!-- sidebar -->
 <aside id="sidebar"><%= render :partial => 'shared/left_nav' %></aside>
 
-<div id="container">
-
-  <%
-     flash.each do |name, msg|
-       unless name.to_s == 'alert' || name.to_s == 'notice'
-         throw "ERROR: Bad Flash header! (#{name})"
-       end
-     end
-  %>
+  <div id="container" class="container">
 
   <% if flash.notice %>
-    <div id="flash_notice"
-    , class="alert alert-warning">
+    <div id="flash_notice" class="alert alert-warning">
     <p><span class="ui-icon ui-icon-info"></span> <%= flash[:notice] %></p>
     </div>
   <% end %>
   <% if flash.alert %>
-    <div id="flash_alert"
-    , class="alert alert-danger" >
+    <div id="flash_alert" class="alert alert-danger">
     <p><span class="ui-icon ui-icon-alert"></span> <%= flash[:alert] %></p>
     </div>
   <% end %>
