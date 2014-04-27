@@ -5,8 +5,8 @@ class CampaignsController < ApplicationController
   end
 
   def show
-    @campaign = Campaign.includes(:resources).find(params[:id]) #, :include=>[:players, :stories, :player_characters, :nonplayer_characters])
-    @npcs = @campaign.nonplayer_characters
+    @campaign = Campaign.includes(:resources, :characters).find(params[:id])
+    # @npcs = @campaign.nonplayer_characters
     @invite = @campaign.invites.build
   end
 

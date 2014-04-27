@@ -14,13 +14,12 @@ describe Campaign do
   #Associations
   it { expect(subject).to belong_to :user }
   it { expect(subject).to belong_to :system }
-  it { expect(subject).to have_one(:private_forum).dependent(:destroy) }
-  it { expect(subject).to have_one(:public_forum).dependent(:destroy) }
+  it { expect(subject).to have_many(:forums).dependent(:destroy) }
   it { expect(subject).to have_many :stories }
   it { expect(subject).to have_many :characters }
-  it { expect(subject).to have_many :player_characters }
-  it { expect(subject).to have_many :nonplayer_characters }
-  it { expect(subject).to have_many :players }
+  # it { expect(subject).to have_many :player_characters }
+  # it { expect(subject).to have_many :nonplayer_characters }
+  # it { expect(subject).to have_many :players }
   it { expect(subject).to have_many :invites }
   it { expect(subject).to have_many :resources }
 
@@ -62,7 +61,7 @@ describe Campaign do
     before do
       @user = create(:user)
       @character = create(:character, user: @user)
-      @campaign = create(:campaign, player_characters: [@character])
+      @campaign = create(:campaign, characters: [@character])
     end
     describe '#game_master?' do
       it { expect(@campaign.game_master?(@user)).to be_false }
@@ -93,19 +92,16 @@ describe Campaign do
   end
 
   describe '#player?' do
+    before do
+      @user = create(:user)
+      @campaign = create(:campaign, characters: [])
+    end
     context 'when false' do
-      before do
-        @user = create(:user)
-        @character = create(:character, user: @user)
-        @campaign = create(:campaign, players: [])
-      end
       it { expect(@campaign.player?(@user)).to be_false }
     end
     context 'when true' do
       before do
-        @user = create(:user)
-        @character = create(:character, user: @user)
-        @campaign = create(:campaign, player_characters: [@character])
+        create(:character, campaign: @campaign, user: @user)
       end
       it { expect(@campaign.player?(@user)).to be_true }
     end

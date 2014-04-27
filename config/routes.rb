@@ -35,10 +35,9 @@ GameMaster::Application.routes.draw do
 
   #  resources :campaign_resources
   #  resources :characters
-  resources :forums, only: [:index, :show] do
+  resources :forums, only: [:show] do
     resources :posts
   end
-  #  resources :posts
 
 
   # You can have the root of your site routed with "root"

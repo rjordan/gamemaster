@@ -108,9 +108,9 @@ describe 'Application routing' do
   end
 
   context 'forum routes' do
-    it 'handles the index route' do
-      expect(get: '/forums').to route_to('forums#index')
-    end
+    # it 'handles the index route' do
+    #   expect(get: '/forums').to route_to('forums#index')
+    # end
     it 'handles the show route' do
       expect(get: '/forums/1').to route_to('forums#show', id: '1')
     end

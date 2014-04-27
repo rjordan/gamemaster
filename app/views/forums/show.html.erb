@@ -1,10 +1,28 @@
-<div id="content">
+<h1><%= @forum.title %></h1>
 
-  <h1><%= @forum.name %></h1>
-  <% if @forum.campaign %>
-    Back to: <%= link_to @forum.campaign.name, campaign_path(@forum.campaign) %>
-  <% end %>
-  <%= link_to "New Post", new_forum_post_path(@forum) %>
-</div>
+<% if @forum.campaign %>
+  Back to: <%= link_to @forum.campaign.name, campaign_path(@forum.campaign) %>
+<% end %>
+
+<br/>
+<%= link_to 'New Post', new_forum_post_path(@forum) %>
+<table class="table table-stripped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Post Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @forum.posts.order('created_at desc').each do |p| %>
+      <tr>
+        <td><%= p.title %></td>
+        <td><%= p.author %></td>
+        <td><%= p.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 

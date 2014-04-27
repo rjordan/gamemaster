@@ -5,19 +5,12 @@ class Campaign < ActiveRecord::Base
   belongs_to :user
   belongs_to :system
 
-  has_one :public_forum, -> { where(public: true) }, class_name: 'Forum', dependent: :destroy
-  has_one :private_forum, -> { where(public: false) }, class_name: 'Forum', dependent: :destroy
-  has_many :stories
-
+  has_many :forums, dependent: :destroy
+  has_many :stories, dependent: :destroy
   has_many :characters, dependent: :destroy
-  has_many :player_characters, -> { where('user_id is not null') }, :class_name => 'Character'
-  has_many :nonplayer_characters, -> { where('user_id is null') }, :class_name => 'Character'
-  has_many :players, through: :player_characters, source: :user
-
-  has_many :invites, :class_name => 'CampaignInvite'
-
+  has_many :invites, :class_name => 'CampaignInvite', dependent: :destroy
   has_many :resources, class_name: 'CampaignResource', dependent: :destroy
-#  delegate :characters, :locations, :items, to: :resources
+
   after_initialize :build_forums
 
   def game_master?(user)
@@ -25,14 +18,22 @@ class Campaign < ActiveRecord::Base
   end
 
   def player?(user)
-    self.players.include?(user)
+    characters.player.where(user: user).any?
+  end
+
+  def public_forum
+    forums.select{|f| f.public==true}.first
+  end
+
+  def private_forum
+    forums.select{|f| f.public==false}.first
   end
 
   private
 
   def build_forums
-    build_public_forum(name: 'Public Forum')
-    build_private_forum(name: 'Private Forum')
+    forums.build(name: 'Public Forum', public: true)
+    forums.build(name: 'Private Forum', public: false)
   end
 end
 

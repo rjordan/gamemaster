@@ -24,7 +24,7 @@
 </div>
 <div>
   <%= label_tag t(:players) %>:
-  <%= @campaign.players.count %> / <%= @campaign.max_players %>
+  <%= @campaign.characters.player.count %> / <%= @campaign.max_players %>
 </div>
 
 <br/>
@@ -41,7 +41,7 @@
     <% if @campaign.game_master?(current_user) %>
       <button id="player_invite">Invite</button>
     <% end %>
-    <% if @campaign.players %>
+    <% if @campaign.characters.player %>
       <table>
         <thead>
         <tr>
@@ -49,8 +49,8 @@
           <th>Character Name</th>
         </tr>
         </thead>
-        <% @campaign.players.each do |player| %>
-          <% character = @campaign.player_characters.find(:first, :conditions => { :user_id => player }) %>
+        <% @campaign.characters.player.each do |player| %>
+          <% character = @campaign.characters.player.find(:first, :conditions => { :user_id => player }) %>
           <tr>
             <td><%= link_to character.player_name, user_path(character.user) %></td>
             <td><%= link_to character.name, character_path(character) %></td>
@@ -85,20 +85,20 @@
   </div>
   <div class="tab-pane" id="resources">
     <% if @campaign.game_master?(current_user) %>
-      <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class => 'button' %>
+      <%= link_to 'New', new_campaign_campaign_resource_path(@campaign), :class => 'button' %>
     <% end %>
     <ul>
-      <% @campaign.items.each do |item| %>
+      <% @campaign.resources.items.each do |item| %>
         <li><%= link_to item.name, campaign_resource_path(item) %></li>
       <% end %>
     </ul>
   </div>
   <div class="tab-pane" id="locations">
     <% if @campaign.game_master?(current_user) %>
-      <%= link_to "New", new_campaign_campaign_resource_path(@campaign), :class => 'button' %>
+      <%= link_to 'New', new_campaign_campaign_resource_path(@campaign), :class => 'button' %>
     <% end %>
     <ul>
-      <% @campaign.locations.each do |location| %>
+      <% @campaign.resources.locations.each do |location| %>
         <li><%= link_to location.name, campaign_resource_path(location) %></li>
       <% end %>
     </ul>
@@ -106,9 +106,9 @@
 </div>
 
 <h2>Adventure Logs</h2>
-<%# link_to @campaign.public_forum.name, forum_posts_path(@campaign.public_forum) %><br/>
+<%= link_to @campaign.public_forum.name, forum_path(@campaign.public_forum) %><br/>
 <% if @campaign.game_master?(current_user) %>
-  <%# link_to @campaign.private_forum.name, forum_posts_path(@campaign.private_forum) %><br/>
+  <%= link_to @campaign.private_forum.name, forum_path(@campaign.private_forum) %><br/>
 <% end %>
 
 <br/>

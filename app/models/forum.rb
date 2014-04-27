@@ -6,6 +6,13 @@ class Forum < ActiveRecord::Base
   has_many :forum_users
   has_many :users, :through => :forum_users
 
+  scope :closed, -> { where(public: false) }
+  scope :open, -> { where(public: true) }
+
+  def title
+    "#{campaign.name}: #{name}"
+  end
+
   def has_access?(user)
     return true if self.public
     return true if self.users.includes? user
