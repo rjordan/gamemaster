@@ -79,7 +79,7 @@
     <% end %>
     <ul>
       <% @campaign.characters.each do |character| %>
-        <li><%= link_to character.name, campaign_resource_path(character) %></li>
+        <li><%= link_to character.name, campaign_campaign_resource_path(@campaign,character) %></li>
       <% end %>
     </ul>
   </div>
@@ -89,7 +89,7 @@
     <% end %>
     <ul>
       <% @campaign.resources.items.each do |item| %>
-        <li><%= link_to item.name, campaign_resource_path(item) %></li>
+        <li><%= link_to item.name, campaign_campaign_resource_path(@campaign,item) %></li>
       <% end %>
     </ul>
   </div>
@@ -99,7 +99,7 @@
     <% end %>
     <ul>
       <% @campaign.resources.locations.each do |location| %>
-        <li><%= link_to location.name, campaign_resource_path(location) %></li>
+        <li><%= link_to location.name, campaign_campaign_resource_path(@campaign, location) %></li>
       <% end %>
     </ul>
   </div>

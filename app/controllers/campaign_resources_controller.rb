@@ -22,13 +22,13 @@ class CampaignResourcesController < ApplicationController
   end
 
   def create
-    @resource = Campaign.find(params[:campaign_id]).resources.create(params[:campaign_resource])
+    @resource = Campaign.find(params[:campaign_id]).resources.create(campaign_resource_params)
     respond_with @resource
   end
 
   def update
     @resource = CampaignResource.find(params[:id])
-    @resource.update_attributes(params[:campaign_resource])
+    @resource.update_attributes(campaign_resource_params)
     respond_with @resource
   end
 
@@ -40,5 +40,12 @@ class CampaignResourcesController < ApplicationController
         redirect_to campaign_path(@resource.campaign)
       }
     end
+  end
+
+  private
+
+  def campaign_resource_params
+    params.require(:campaign_resource).permit(:name, :campaign_id, :resource_type,
+                                              :public, :public_description, :private_description)
   end
 end

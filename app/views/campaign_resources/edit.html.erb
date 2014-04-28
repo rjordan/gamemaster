@@ -1,7 +1,12 @@
 <h1>Editing Resource</h1>
 
-<%= form_for(@resource) do |form| %>
+<%= form_for([@resource.campaign, @resource]) do |form| %>
   <%= render :partial => 'form', :object => form %>
-  <%= form.submit 'Submit' %>
+  <br/>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= form.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
+  </div>
 <% end %>
 

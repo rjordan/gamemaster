@@ -3,6 +3,7 @@ en:
   game_master: Game Master
   created_at: Created At
   players: Players
+  revealed: Revealed
   time:
     formats:
       date: "%B %d, %Y"

@@ -7,28 +7,24 @@
 <br/>
 
 <p>
-  <%= link_to 'Edit', edit_campaign_resource_path(@resource), :class => 'button' %>
+  <%= link_to 'Edit', edit_campaign_campaign_resource_path(@resource.campaign, @resource), :class => 'button' %>
 </p>
 
-<div id="tabs">
-  <ul>
-    <li><a href="#tabs-1">Public Description</a></li>
-    <% if @resource.campaign.user == current_user %>
-      <li><a href="#tabs-2">GM's Description</a></li>
-    <% end %>
-  </ul>
-  <div id="tabs-1">
-    <div class="tab-window">
-      <p><%= render_markdown(@resource.public_description) %></p>
-    </div>
-  </div>
-  <% if @resource.campaign.game_master?(current_user) %>
-    <div id="tabs-2">
-      <div class="tab-window">
-        <p><%= render_markdown(@resource.private_description) %></p>
-      </div>
-    </div>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#public_description" data-toggle="tab">Public Description</a></li>
+  <% if @resource.campaign.user == current_user %>
+    <li><a href="#private_description" data-toggle="tab">GM's Description</a></li>
   <% end %>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="public_description">
+    <p><%= render_markdown(@resource.public_description) %></p>
+  </div>
+  <div class="tab-pane" id="private_description">
+    <p><%= render_markdown(@resource.private_description) %></p>
+  </div>
 </div>
+
+
 
 
