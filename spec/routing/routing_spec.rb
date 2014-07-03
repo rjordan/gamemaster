@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Application routing' do
+describe 'Application routing', type: :routing do
 
   it 'handles the root route' do
     expect(get: '/').to route_to('campaigns#index')

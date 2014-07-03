@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CharactersController do
+describe CharactersController, type: :controller do
   before do
     @character = create(:character)
   end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'The login page' do
+describe 'The login page', type: :feature do
   context 'with an invalid user' do
     before do
       visit 'users/login'

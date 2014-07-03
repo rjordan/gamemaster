@@ -6,6 +6,7 @@ worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 timeout 15
 preload_app true
 listen 3000
+listen "/tmp/unicorn.sock", :backlog => 64
 pid "#{rails_root}/tmp/pids/unicorn.pid"
 #stderr_path "#{rails_root}/log/unicorn.log"
 #stdout_path "#{rails_root}/log/unicorn.log"

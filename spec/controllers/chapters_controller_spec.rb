@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ChaptersController do
+describe ChaptersController, type: :controller do
   before do
     @chapter = create(:chapter)
   end

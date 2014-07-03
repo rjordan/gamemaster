@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Story do
+describe Story, type: :model do
   it { expect(subject).to have_db_column :name }
   it { expect(subject).to have_db_column :campaign_id }
   it { expect(subject).to have_db_column :revealed }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CampaignInvite do
+describe CampaignInvite, type: :model do
   it { expect(subject).to have_db_column(:email) }
   it { expect(subject).to have_db_column(:created_at) }
   it { expect(subject).to have_db_column(:updated_at) }

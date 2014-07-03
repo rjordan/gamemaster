@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Chapter do
+describe Chapter, type: :model do
   it { expect(subject).to have_db_column :name }
   it { expect(subject).to have_db_column :story_id }
   it { expect(subject).to have_db_column :revealed }

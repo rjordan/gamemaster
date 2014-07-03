@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Api::V1::ProfilesController do
+describe Api::V1::ProfilesController, type: :controller do
   before do
     @full_schema = {
         type: 'object',

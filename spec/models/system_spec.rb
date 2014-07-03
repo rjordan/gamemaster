@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe System do
+describe System, type: :model do
   it { expect(subject).to have_db_column :name }
 
   it { expect(subject).to have_many :campaigns }

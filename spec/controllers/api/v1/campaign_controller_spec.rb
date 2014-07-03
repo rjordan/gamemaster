@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Api::V1::CampaignsController do
+describe Api::V1::CampaignsController, type: :controller do
   describe 'index' do
     before do
       @public_campaign = create(:campaign, public: true)

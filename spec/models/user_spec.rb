@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe User do
+describe User, type: :model do
   #Schema
   it { expect(subject).to have_db_column :email }
   it { expect(subject).to have_db_column :nickname }

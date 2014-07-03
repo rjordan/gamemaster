@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Post do
+describe Post, type: :model do
   it { expect(subject).to have_db_column :title }
   it { expect(subject).to have_db_column :user_id }
   it { expect(subject).to have_db_column :created_at }

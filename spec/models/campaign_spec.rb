@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Campaign do
+describe Campaign, type: :model do
   #The value of these tests is questionable
   it { expect(subject).to have_db_column(:name).of_type(:string).with_options(null: false) }
   it { expect(subject).to have_db_column(:user_id).of_type(:integer).with_options(null: false) }
@@ -50,10 +50,10 @@ describe Campaign do
       @campaign = create(:campaign, user: @user)
     end
     describe '#game_master?' do
-      it { expect(@campaign.game_master?(@user)).to be_true }
+      it { expect(@campaign.game_master?(@user)).to be_truthy }
     end
     describe '#player?' do
-      it { expect(@campaign.player?(@user)).to be_false }
+      it { expect(@campaign.player?(@user)).to be_falsey }
     end
   end
 
@@ -64,10 +64,10 @@ describe Campaign do
       @campaign = create(:campaign, characters: [@character])
     end
     describe '#game_master?' do
-      it { expect(@campaign.game_master?(@user)).to be_false }
+      it { expect(@campaign.game_master?(@user)).to be_falsey }
     end
     describe '#player?' do
-      it { expect(@campaign.player?(@user)).to be_true }
+      it { expect(@campaign.player?(@user)).to be_truthy }
     end
   end
 
@@ -80,14 +80,14 @@ describe Campaign do
         @user = create(:user)
         @campaign = create(:campaign)
       end
-      it { expect(@campaign.game_master?(@user)).to be_false }
+      it { expect(@campaign.game_master?(@user)).to be_falsey }
     end
     context 'when true' do
       before do
         @user = create(:user)
         @campaign = create(:campaign, user: @user)
       end
-      it { expect(@campaign.game_master?(@user)).to be_true }
+      it { expect(@campaign.game_master?(@user)).to be_truthy }
     end
   end
 
@@ -97,13 +97,13 @@ describe Campaign do
       @campaign = create(:campaign, characters: [])
     end
     context 'when false' do
-      it { expect(@campaign.player?(@user)).to be_false }
+      it { expect(@campaign.player?(@user)).to be_falsey }
     end
     context 'when true' do
       before do
         create(:character, campaign: @campaign, user: @user)
       end
-      it { expect(@campaign.player?(@user)).to be_true }
+      it { expect(@campaign.player?(@user)).to be_truthy }
     end
   end
 end

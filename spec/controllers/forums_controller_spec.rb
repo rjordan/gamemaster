@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ForumsController do
+describe ForumsController, type: :controller do
   before do
     @forum = create(:forum)
   end

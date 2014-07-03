@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CampaignInvitesController do
+describe CampaignInvitesController, type: :controller do
   include Devise::TestHelpers
 
   before do
@@ -14,7 +14,7 @@ describe CampaignInvitesController do
     before do
       get :new, :campaign_id => @campaign.id
     end
-    it { assigns(:invite).should_not be_nil }
+    it { expect(assigns(:invite)).to_not be_nil }
     #it { should_not set_the_flash }
     it { should render_template :new }
     it { should respond_with :success }
@@ -28,7 +28,7 @@ describe CampaignInvitesController do
                email: Faker::Internet.email
            }
     end
-    it { assigns(:invite).should_not be_nil }
+    it { expect(assigns(:invite)).to_not be_nil }
     #it { should set_the_flash.to(/created/i) }
     it { should redirect_to(campaign_path(assigns(:invite).campaign)) }
   end

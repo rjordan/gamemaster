@@ -1,16 +1,27 @@
-FROM stackbrew/ubuntu:saucy
+FROM ubuntu:saucy
 MAINTAINER Richard Kent Jordan <rjordan@pobox.com>
 
-RUN echo "deb http://archive.ubuntu.com/ubuntu saucy main universe" > /etc/apt/sources.list
-RUN apt-get update; apt-get upgrade -y
-
-RUN apt-get install -y build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion pkg-config libpq5 libpq-dev libcurl4-gnutls-dev python-software-properties libffi-dev libgdbm-dev nodejs ruby2.0 ruby2.0-dev
+RUN apt-get update;\
+    apt-get install python-software-properties -y; \
+    add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) main universe";\
+    apt-get update;\
+    apt-get install build-essential openssl \
+      git-core libmysqlclient-dev libpq-dev autoconf \
+      gawk libreadline6-dev libyaml-dev libsqlite3-dev \
+      libgdbm-dev libncurses5-dev automake libtool \
+      bison pkg-config curl libxslt-dev libxml2-dev ruby2.0 ruby2.0-dev nginx -y;\
+    echo "---\n:benchmark: false\n:bulk_threshold: 1000\n:backtrace: false\n:verbose: true\ngem: --no-ri --no-rdoc" > ~/.gemrc;\
+    apt-get clean -y;\
+    apt-get autoremove -y;
 
 RUN gem update --system
 RUN gem install bundler
 
 ADD . /app            
-         
+
+RUN rm /etc/nginx/sites-enabled/default
+RUN ln -s /app/config/nginx.config /etc/nginx/sites-enabled/default
+
 ENV RAILS_ENV production
 WORKDIR /app
 RUN bundle install --without development test
@@ -19,5 +30,6 @@ RUN rake assets:precompile
 
 #Rails (Must set production.rb to serve static assets)
 EXPOSE 3000
-CMD foreman start
+EXPOSE 80
+CMD service nginx start; foreman start
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe StoriesController do
+describe StoriesController, type: :controller do
   before do
     @story = create(:story)
   end

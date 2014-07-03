@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CampaignsController do
+describe CampaignsController, type: :controller do
   describe 'GET index' do
     before do
       get :index

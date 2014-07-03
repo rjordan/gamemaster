@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'The home page' do
+describe 'The home page', type: :feature do
   context 'when a user is not logged in' do
     before do
       visit '/'

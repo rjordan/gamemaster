@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.1.0'
 gem 'sqlite3'
-#gem 'pg', :group=>:production
+gem 'pg', :group=>:production
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'turbolinks'
@@ -38,7 +38,7 @@ group :doc do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.14'
+  gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'guard-rspec', require: false
