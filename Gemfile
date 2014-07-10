@@ -18,7 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 gem 'responders'
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 gem 'warden'
 gem 'devise', '~>3.2.0'
 gem 'redcarpet'
@@ -27,7 +27,6 @@ gem 'acts_as_list'
 gem 'therubyracer'
 
 gem 'unicorn-rails'
-gem 'foreman'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
