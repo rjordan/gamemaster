@@ -1,7 +1,10 @@
 class Character < ActiveRecord::Base
-  validates_presence_of :name, :public_description, :statistics
   belongs_to :campaign
   belongs_to :user
+
+  validates :name, presence: true
+  validates :public_description, presence: true
+  validates :statistics, presence: true
 
   scope :player, -> { where('user_id is not null') }
   scope :nonplayer, -> { where('user_id is null') }

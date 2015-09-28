@@ -1,65 +1,63 @@
 source 'https://rubygems.org'
+ruby '2.2.3'
 
-gem 'rails', '~> 4.1.0'
-gem 'sqlite3'
-gem 'pg', :group=>:production
+gem 'rails', '~> 4.2.4'
+gem 'sass-rails', '~> 5.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
 gem 'turbolinks'
 
+gem 'autoprefixer-rails'
+gem 'bootstrap-sass'
+gem 'devise'
+gem 'active_model_serializers', '~> 0.10.0.rc3'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-#gem 'jbuilder', '~> 1.2'
-gem 'rabl'
-
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
-gem 'bootstrap-sass', '~> 3.0.3.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
-
+# gem 'jbuilder', '~> 1.2'
 gem 'responders'
 gem 'bcrypt'
 gem 'warden'
-gem 'devise', '~>3.2.0'
 gem 'redcarpet'
-#gem 'html5'
 gem 'acts_as_list'
-gem 'therubyracer'
+gem 'will_paginate'
 
-gem 'unicorn-rails'
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+# gem 'html5'
+# gem 'therubyracer'
+# gem 'unicorn-rails'
 
 group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
 
+gem 'pg', group: :production
+
 group :development, :test do
+  gem 'thin'
+  gem 'database_cleaner'
+  gem 'sqlite3'
   gem 'rspec-rails', '~> 3.0'
+  gem 'teaspoon-jasmine'
+  gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'guard-rspec', require: false
+  gem 'guard-teaspoon', require: false
   gem 'capybara'
   gem 'capybara-webkit'
-  gem 'rails-footnotes', github: 'josevalim/rails-footnotes', branch: 'release-4.0'
+  gem 'rails-footnotes'
   gem 'rails_best_practices'
   gem 'json-schema'
+  gem 'timecop'
+  gem 'memory_test_fix'
+  gem 'launchy'
+  gem 'mailcatcher', require: false
 end
 
-group :test do
-  gem 'shoulda-matchers'
+group :development do
+  gem 'web-console', '~> 2.0'
+  gem 'spring'
+  gem 'rubocop', require: false
+  gem 'metric_fu', require: false
+  gem 'overcommit', require: false
 end
-
-#group :development do
-#These are just for console debugging
-#  gem 'hirb', :require=>false
-#  gem 'wirble', :require=>false
-#  gem 'less'
-#end
-
-
-
-
-

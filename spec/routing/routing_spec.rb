@@ -1,7 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Application routing', type: :routing do
-
   it 'handles the root route' do
     expect(get: '/').to route_to('campaigns#index')
   end
@@ -9,6 +8,9 @@ describe 'Application routing', type: :routing do
   context 'profile routes' do
     it 'handles the show route' do
       expect(get: '/users/1').to route_to('users#show', id: '1')
+    end
+    it 'handles the show route' do
+      expect(get: '/users/1/edit').to route_to('users#edit', id: '1')
     end
   end
 
@@ -33,8 +35,8 @@ describe 'Application routing', type: :routing do
     end
     it 'handles the delete route' do
       expect(delete: '/campaigns/1').to route_to('campaigns#destroy', id: '1')
-    end                        
-    
+    end
+
     context 'character routes' do
       it 'handles the index route' do
         expect(get: '/campaigns/1/characters').to route_to('characters#index', campaign_id: '1')
@@ -82,6 +84,7 @@ describe 'Application routing', type: :routing do
     it 'handles the delete route' do
       expect(delete: '/stories/1').to route_to('stories#destroy', id: '1')
     end
+
     context 'chapter routes' do
       it 'handles the index route' do
         expect(get: '/stories/1/chapters').to route_to('chapters#index', story_id: '1')
@@ -93,7 +96,7 @@ describe 'Application routing', type: :routing do
         expect(get: '/stories/1/chapters/new').to route_to('chapters#new', story_id: '1')
       end
       it 'handles the create route' do
-         expect(post: '/stories/1/chapters').to route_to('chapters#create', story_id: '1')
+        expect(post: '/stories/1/chapters').to route_to('chapters#create', story_id: '1')
       end
       it 'handles the edit route' do
         expect(get: '/stories/1/chapters/1/edit').to route_to('chapters#edit', id: '1', story_id: '1')
@@ -114,12 +117,12 @@ describe 'Application routing', type: :routing do
     it 'handles the show route' do
       expect(get: '/forums/1').to route_to('forums#show', id: '1')
     end
-#     it 'handles the edit route' do
-#       expect(get: '/stories/1/chapters/1/edit').to route_to('chapters#edit', id: '1', story_id: '1')
-#     end
-#     it 'handles the update route' do
-#       expect(put: '/stories/1/chapters/1').to route_to('chapters#update', id: '1', story_id: '1')
-#     end
+    # it 'handles the edit route' do
+    #   expect(get: '/stories/1/chapters/1/edit').to route_to('chapters#edit', id: '1', story_id: '1')
+    # end
+    #     it 'handles the update route' do
+    #       expect(put: '/stories/1/chapters/1').to route_to('chapters#update', id: '1', story_id: '1')
+    #     end
     context 'post routes' do
       it 'handles the index route' do
         expect(get: '/forums/1/posts').to route_to('posts#index', forum_id: '1')
@@ -145,4 +148,3 @@ describe 'Application routing', type: :routing do
     end
   end
 end
-

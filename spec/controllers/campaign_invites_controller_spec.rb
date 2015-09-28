@@ -1,35 +1,32 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe CampaignInvitesController, type: :controller do
-  include Devise::TestHelpers
+  let(:campaign) { FactoryGirl.create(:campaign) }
 
   before do
-    @user = create(:user)
+    @user = FactoryGirl.create(:user)
     sign_in @user
-    @campaign = create(:campaign)
   end
 
-  #NEW TESTS
-  context "on GET to :new" do
+  context 'on GET to :new' do
     before do
-      get :new, :campaign_id => @campaign.id
+      get :new, campaign_id: campaign.id
     end
+    it { expect(response.status).to eq(200) }
     it { expect(assigns(:invite)).to_not be_nil }
-    #it { should_not set_the_flash }
-    it { should render_template :new }
-    it { should respond_with :success }
+    it { expect(subject).to_not set_flash }
+    it { expect(subject).to render_template(:new) }
   end
 
-  #CREATE TESTS
-  context "on POST to :create" do
+  context 'on POST to :create' do
     before do
-      post :create, campaign_id: @campaign.id,
-           campaign_invite: {
-               email: Faker::Internet.email
-           }
+      post :create, campaign_id: campaign.id,
+                    campaign_invite: {
+                      email: Faker::Internet.email
+                    }
     end
     it { expect(assigns(:invite)).to_not be_nil }
-    #it { should set_the_flash.to(/created/i) }
+    it { expect(subject).to set_flash.to('Invitation sent.') }
     it { should redirect_to(campaign_path(assigns(:invite).campaign)) }
   end
 end

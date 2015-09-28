@@ -1,4 +1,4 @@
-<div id="content">
+<div class="user-profile">
   <%= render_gravatar @user %>
   <h1><%= @user.nickname %></h1>
 
@@ -6,62 +6,60 @@
     <label>User ID:</label> <%= @user.id %><br/>
     <label>Signup Date:</label> <%= l(@user.created_at, format: :date) %>
   </p>
+
   <br/>
 
-  <div id="section_heading">
-    <span>Running Campaigns</span>
+  <div>
+    <h2>Running Campaigns</h2>
     <% if current_user==@user %>
-      <%= link_to 'New Campaign', new_campaign_path, :class => 'button' %>
+        <%= link_to 'New Campaign', new_campaign_path, :class => 'btn' %>
     <% end %>
-    <hr/>
+    <% if @user.campaigns.any? %>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Campaign Name</th>
+            <th>System</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% for campaign in @user.campaigns %>
+              <tr>
+                <td><%= link_to campaign.name, campaign_path(campaign) %></td>
+                <td><%= campaign.system.name %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+    <% end %>
   </div>
-  <% if @user.campaigns.any? %>
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th>Campaign Name</th>
-        <th>System</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% for campaign in @user.campaigns %>
-        <tr>
-          <td><%= link_to campaign.name, campaign_path(campaign) %></td>
-          <td><%= campaign.system.name %></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  <% end %>
 
-  <div id="section_heading">
-    <span>Playing Games</span>
-    <% if session[:user_id]==@user %>
-      <%= link_to "Find Game", campaigns_path, :class => 'button' %>
+  <div>
+    <h2>Playing Games</h2>
+    <% if current_user==@user %>
+        <%= link_to "Find Game", campaigns_path, :class => 'btn' %>
     <% end %>
-    <hr/>
+    <% if @user.games.any? %>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Campaign Name</th>
+            <th>System</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% for game in @user.games %>
+              <tr>
+                <td><%= link_to game.name, campaign_path(game) %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+    <% end %>
   </div>
-  <% if @user.games.any? %>
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th>Campaign Name</th>
-        <th>System</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% for game in @user.games %>
-        <tr>
-          <td><%= link_to game.name, campaign_path(game) %></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  <% end %>
-  <br/>
 
 </div>
 
-<% if session[:user_id]==@user %>
-  <%= link_to 'Edit', edit_user_path(@user) %>
+<% if current_user==@user %>
+    <%= link_to 'Edit', edit_user_path(@user) %>
 <% end %>

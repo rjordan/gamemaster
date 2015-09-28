@@ -1,0 +1,156 @@
+$eggplant: #330022;
+$yellow: #FFDF00;
+
+$navbar-inverse-bg: $eggplant;
+$navbar-inverse-brand-color: $yellow;
+
+$body-bg: offwhite;
+
+$brand-primary: $eggplant;
+$brand-warning: lighten($yellow, 20%);
+
+$nav-link-hover-bg: $brand-warning;
+
+
+/*
+html {
+  margin: 0; 
+  padding: 0;
+}
+
+body {
+  background: $eggplant;
+  margin: 0 auto; 
+  padding: 0;
+}
+
+textarea {
+  width: 99%;
+}
+
+header {
+  color: white;
+  background: black;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  width: 785px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  height: 50px;
+  display: block;
+  aside {
+    background: black;
+    float: right;
+    ul li {
+      display: inline; 
+      list-style-type: none; 
+      padding: 2px;
+      a {
+        color: #fff;
+        font-weight: bold; 
+        text-decoration: none;
+      }
+      a:visited {
+        color: #fff;
+      }
+      a:hover {
+        color: $yellow;
+      }
+    }
+  }
+}
+
+#sidebar {
+  color: white;
+  background: black;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  width: 785px;
+  margin: 0 auto;
+  padding: 0px;
+  display: block;
+  ul li {
+    display: inline; 
+    list-style-type: none; 
+    padding: 2px;
+    a {
+      color: #fff;
+      font-weight: bold; 
+      text-decoration: none;
+    }
+    a:visited {
+      color: #fff;
+    }
+    a:hover {
+      color: $yellow;
+    }
+  }
+}
+
+#stories_list {
+  list-style-type:none; 
+  font-size: 1.2em;
+}
+
+footer {
+  display: block;
+  text-align: center;
+  color: white;
+}
+
+.tab-window {
+  background: white;
+  color: black;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  padding: 1em;
+}
+
+#container {
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  width: 785px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  border: solid 1px black;
+  background: white;
+  min-height: 400px;
+}
+
+.post {
+  border: 2px solid #dddddd;
+  padding: 0.5em;
+  a {
+    text-decoration: none;
+  }
+  img {
+    border: 0px;
+  }
+  .avatar {
+    float: right;
+  }
+  h2 {
+    display: inline;
+  }
+ .post_tags {
+    padding-left: 0px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    li {
+      display: inline;
+      list-style-type:none;
+      a {
+        font-size: 0.75em;    
+      }
+    }
+  }
+  .post_body {
+    padding-top: 1.0em;
+  }
+}
+*/
+

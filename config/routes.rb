@@ -1,5 +1,4 @@
 GameMaster::Application.routes.draw do
-
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
       resources :campaigns, only: [:index, :show]
@@ -9,11 +8,11 @@ GameMaster::Application.routes.draw do
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  devise_for :users, :path_names => { :sign_in => 'login',
-                                      :sign_out => 'logout',
-                                      :sign_up => 'register' }
+  devise_for :users, path_names: { sign_in: 'login',
+                                   sign_out: 'logout',
+                                   sign_up: 'register' }
 
-  resources :users, only: [:show]
+  resources :users, only: [:show, :edit]
 
   resources :campaigns do
     resources :stories, only: [:index, :new, :create]
@@ -23,7 +22,7 @@ GameMaster::Application.routes.draw do
     resources :campaign_invites
   end
 
-  resources :stories, except: [:index,:new] do
+  resources :stories, except: [:index, :new] do
     resources :chapters do
       collection do
         post :sort
@@ -31,7 +30,7 @@ GameMaster::Application.routes.draw do
     end
   end
 
-  #resources :campaign_invites
+  # resources :campaign_invites
 
   #  resources :campaign_resources
   #  resources :characters
@@ -39,10 +38,9 @@ GameMaster::Application.routes.draw do
     resources :posts
   end
 
-
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root :to => "campaigns#index"
+  root to: 'campaigns#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

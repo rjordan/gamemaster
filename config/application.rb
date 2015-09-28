@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-#TODO Remove when default
+# TODO: Remove when default
 I18n.enforce_available_locales = true
 
 module GameMaster
@@ -23,6 +23,6 @@ module GameMaster
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.action_mailer.default_url_options = { :host => 'localhost' }
+    config.action_mailer.default_url_options = { host: 'localhost' }
   end
 end

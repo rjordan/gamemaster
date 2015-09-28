@@ -36,9 +36,9 @@ class CampaignResourcesController < ApplicationController
     @resource = CampaignResource.find(params[:id])
     @resource.destroy
     respond_with @resource do |format|
-      format.html {
+      format.html do
         redirect_to campaign_path(@resource.campaign)
-      }
+      end
     end
   end
 

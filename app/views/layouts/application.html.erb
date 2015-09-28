@@ -10,13 +10,13 @@
 </head>
 <body class='<%= "#{controller_name}" %>'>
 
-<header class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<header class="header-nav" role="navigation">
   <%= link_to 'GameMaster', root_url, class: 'navbar-brand' %>
-  <aside class="collapse navbar-collapse"><%= render :partial => 'shared/header_nav' %></aside>
+  <aside class="collapse navbar-collapse"><%= render :partial => 'header_nav' %></aside>
 </header>
 
 <!-- sidebar -->
-<aside id="sidebar"><%= render :partial => 'shared/left_nav' %></aside>
+<aside id="sidebar"><%= render :partial => 'left_nav' %></aside>
 
   <div id="container" class="container">
 
@@ -37,7 +37,7 @@
   </div>
 
   <footer>
-    <p>Copyright 2008-<%= Time.now.year %> Richard Kent Jordan</p>
+    <p>Copyright <%= Time.now.year %> Richard Kent Jordan</p>
   </footer>
   </body>
 </html>

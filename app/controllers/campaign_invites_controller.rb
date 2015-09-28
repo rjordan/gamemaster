@@ -10,6 +10,7 @@ class CampaignInvitesController < ApplicationController
   def create
     @invite = @campaign.invites.build(invite_params)
     if @invite.save
+      flash[:notice] = 'Invitation sent.'
       respond_with @invite do |format|
         format.html { redirect_to @campaign }
       end

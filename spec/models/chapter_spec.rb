@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Chapter, type: :model do
   it { expect(subject).to have_db_column :name }

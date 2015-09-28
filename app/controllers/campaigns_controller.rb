@@ -1,7 +1,6 @@
 class CampaignsController < ApplicationController
-
   def index
-    @campaigns = Campaign.where(:public => true).order('name')
+    @campaigns = Campaign.where(public: true).order('name')
   end
 
   def show
@@ -11,7 +10,7 @@ class CampaignsController < ApplicationController
   end
 
   def new
-    @campaign = Campaign.new()
+    @campaign = Campaign.new
   end
 
   def create

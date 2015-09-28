@@ -1,7 +1,10 @@
 class Story < ActiveRecord::Base
-  validates_presence_of :name, :public_description, :campaign_id
-  validates_numericality_of :campaign_id
   belongs_to :campaign
-  has_many :chapters #, -> { order: 'position' }
-  #default_scope -> { order(:name) }
+  has_many :chapters # , -> { order: 'position' }
+
+  validates :name, presence: true
+  validates :public_description, presence: true
+  validates :campaign_id, presence: true
+
+  # default_scope -> { order(:name) }
 end

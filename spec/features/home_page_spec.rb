@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'The home page', type: :feature do
   context 'when a user is not logged in' do

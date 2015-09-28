@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   respond_to :html, :xml, :json
 
   def index
-    @forum = Forum.find(params[:forum_id], :include => :posts)
+    @forum = Forum.find(params[:forum_id], include: :posts)
     @posts = @forum.posts
     respond_with @posts
   end
@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new(:forum => Forum.find(params[:forum_id]), :user => current_user)
+    @post = Post.new(forum: Forum.find(params[:forum_id]), user: current_user)
     respond_with @post
   end
 
@@ -44,5 +44,4 @@ class PostsController < ApplicationController
       format.html { redirect_to forum_posts_path(@post.forum) }
     end
   end
-
 end

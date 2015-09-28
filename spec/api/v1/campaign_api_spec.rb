@@ -1,37 +1,23 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Api::V1::CampaignsController, type: :controller do
   before do
-    @full_schema = {
-        type: 'object',
-        required: [:id, :name, :max_players, :description, :public, :owner, :system],
-        properties: {
-            id: { type: :string },
-            name: { type: :string },
-            max_players: { type: :integer },
-            description: { type: :string },
-            public: { type: :boolean },
-            owner: { type: :integer },
-            system: { type: :string }
-        }
-    }
+    @user = FactoryGirl.create(:user)
+    sign_in @user
   end
+  let(:campaign) { FactoryGirl.create(:campaign, public: true) }
 
   describe 'index' do
     before do
-      @public_campaign = create(:campaign, public: true)
-      @nonpublic_campaign = create(:campaign, public: false)
-      get '/api/v1/campaigns', nil, { Accept: 'application/json' }
+      xhr :get, :index
     end
-    it { expect_valid_json_list(@full_schema) }
+    it { expect(response.status).to eq(200) }
   end
 
   describe 'show' do
     before do
-      @campaign = create(:campaign)
-      get "/api/v1/campaigns/#{@campaign.id}", nil, { Accept: 'application/json' }
+      xhr :get, :show, id: campaign.id
     end
-    it { expect_valid_json_document(@full_schema) }
+    it { expect(response.status).to eq(200) }
   end
 end
-

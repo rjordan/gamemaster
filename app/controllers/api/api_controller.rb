@@ -1,3 +1,4 @@
-class Api::ApiController < ApplicationController
-  #skip_before_filter :authenticate_user!
+module Api
+  class ApiController < ApplicationController
+  end
 end

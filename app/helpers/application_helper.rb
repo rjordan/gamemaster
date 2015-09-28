@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   def markdown
-    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::XHTML, :autolink => true, :space_after_headers => true)
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::XHTML, autolink: true, space_after_headers: true)
   end
 
   def render_markdown(content)

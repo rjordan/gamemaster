@@ -1,7 +1,7 @@
 class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
-      t.string :nickname, :null => false
+      t.string :nickname, null: false
 
       ## Database authenticatable
       t.string :email, null: false, default: ''

@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Campaign, type: :model do
-  #The value of these tests is questionable
+  # The value of these tests is questionable
   it { expect(subject).to have_db_column(:name).of_type(:string).with_options(null: false) }
   it { expect(subject).to have_db_column(:user_id).of_type(:integer).with_options(null: false) }
   it { expect(subject).to have_db_column(:system_id).of_type(:integer).with_options(null: false) }
@@ -11,7 +11,7 @@ describe Campaign, type: :model do
   it { expect(subject).to have_db_column(:updated_at).of_type(:datetime) }
   it { expect(subject).to have_db_column(:version).of_type(:integer) }
 
-  #Associations
+  # Associations
   it { expect(subject).to belong_to :user }
   it { expect(subject).to belong_to :system }
   it { expect(subject).to have_many(:forums).dependent(:destroy) }
@@ -23,7 +23,7 @@ describe Campaign, type: :model do
   it { expect(subject).to have_many :invites }
   it { expect(subject).to have_many :resources }
 
-  #Validations
+  # Validations
   it { expect(subject).to validate_presence_of :name }
   it { expect(subject).to validate_presence_of :user_id }
   it { expect(subject).to validate_presence_of :system_id }
@@ -42,68 +42,54 @@ describe Campaign, type: :model do
     # end
   end
 
-  #BDD
+  # BDD
 
   context 'a user is running' do
-    before do
-      @user = create(:user)
-      @campaign = create(:campaign, user: @user)
-    end
+    let(:user) { FactoryGirl.create(:user) }
+    let(:campaign) { FactoryGirl.create(:campaign, user: user) }
     describe '#game_master?' do
-      it { expect(@campaign.game_master?(@user)).to be_truthy }
+      it { expect(campaign.game_master?(user)).to be_truthy }
     end
     describe '#player?' do
-      it { expect(@campaign.player?(@user)).to be_falsey }
+      it { expect(campaign.player?(user)).to be_falsey }
     end
   end
 
   context 'a user is playing' do
-    before do
-      @user = create(:user)
-      @character = create(:character, user: @user)
-      @campaign = create(:campaign, characters: [@character])
-    end
+    let(:user) { FactoryGirl.create(:user) }
+    let(:character) { FactoryGirl.create(:character, user: user) }
+    let(:campaign) { FactoryGirl.create(:campaign, characters: [character]) }
     describe '#game_master?' do
-      it { expect(@campaign.game_master?(@user)).to be_falsey }
+      it { expect(campaign.game_master?(user)).to be_falsey }
     end
     describe '#player?' do
-      it { expect(@campaign.player?(@user)).to be_truthy }
+      it { expect(campaign.player?(user)).to be_truthy }
     end
   end
 
-
-  #TDD
-
   describe '#game_master?' do
+    let(:user) { FactoryGirl.create(:user) }
     context 'when false' do
-      before do
-        @user = create(:user)
-        @campaign = create(:campaign)
-      end
-      it { expect(@campaign.game_master?(@user)).to be_falsey }
+      let(:campaign) { FactoryGirl.create(:campaign) }
+      it { expect(campaign.game_master?(user)).to be_falsey }
     end
     context 'when true' do
-      before do
-        @user = create(:user)
-        @campaign = create(:campaign, user: @user)
-      end
-      it { expect(@campaign.game_master?(@user)).to be_truthy }
+      let(:campaign) { FactoryGirl.create(:campaign, user: user) }
+      it { expect(campaign.game_master?(user)).to be_truthy }
     end
   end
 
   describe '#player?' do
-    before do
-      @user = create(:user)
-      @campaign = create(:campaign, characters: [])
-    end
+    let(:user) { FactoryGirl.create(:user) }
+    let(:campaign) { FactoryGirl.create(:campaign, characters: []) }
     context 'when false' do
-      it { expect(@campaign.player?(@user)).to be_falsey }
+      it { expect(campaign.player?(user)).to be_falsey }
     end
     context 'when true' do
       before do
-        create(:character, campaign: @campaign, user: @user)
+        FactoryGirl.create(:character, campaign: campaign, user: user)
       end
-      it { expect(@campaign.player?(@user)).to be_truthy }
+      it { expect(campaign.player?(user)).to be_truthy }
     end
   end
 end

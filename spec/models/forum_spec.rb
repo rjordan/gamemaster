@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Forum, type: :model do
   it { expect(subject).to have_db_column :name }
@@ -10,5 +10,5 @@ describe Forum, type: :model do
   it { expect(subject).to validate_presence_of :name }
   it { expect(subject).to belong_to :campaign }
   it { expect(subject).to have_many :posts }
-  #subscribers?
+  # subscribers?
 end

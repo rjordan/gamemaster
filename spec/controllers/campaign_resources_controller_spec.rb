@@ -1,7 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe CampaignResourcesController, type: :controller do
-
   # context "A CampaignResourcesController" do
   #   setup do
   #     sign_in users(:rjordan)
@@ -14,7 +13,7 @@ describe CampaignResourcesController, type: :controller do
   #       get :index, :campaign_id => @resource.campaign
   #     end
   #     should respond_with :success
-  #     should_not set_the_flash
+  #     should_not set_flash
   #     #should_assign_to 'resources'
   #     should render_template :index
   #   end
@@ -25,7 +24,7 @@ describe CampaignResourcesController, type: :controller do
   #       get :show, :id => @resource
   #     end
   #     #should_assign_to :resource
-  #     should_not set_the_flash
+  #     should_not set_flash
   #     should render_template :show
   #     should respond_with :success
   #   end
@@ -36,7 +35,7 @@ describe CampaignResourcesController, type: :controller do
   #       get :new, :campaign_id => @resource.campaign
   #     end
   #     #should_assign_to :resource
-  #     should_not set_the_flash
+  #     should_not set_flash
   #     should render_template :new
   #     should respond_with :success
   #   end
@@ -47,7 +46,7 @@ describe CampaignResourcesController, type: :controller do
   #       get :edit, :id => @resource
   #     end
   #     #should_assign_to :resource
-  #     should_not set_the_flash
+  #     should_not set_flash
   #     should render_template :edit
   #     should respond_with :success
   #   end
@@ -62,7 +61,7 @@ describe CampaignResourcesController, type: :controller do
   #            :campaign_id => @resource.campaign.id
   #     end
   #     #should_assign_to :resource
-  #     should set_the_flash.to(/created/i)
+  #     should set_flash.to(/created/i)
   #     should redirect_to("the resource view") { campaign_resource_path(assigns(:resource)) }
   #   end
   #
@@ -72,7 +71,7 @@ describe CampaignResourcesController, type: :controller do
   #       put :update, :campaign_resource => { :name => 'Unknown' }, :id => @resource
   #     end
   #     #should_assign_to :location
-  #     should set_the_flash.to(/updated/i)
+  #     should set_flash.to(/updated/i)
   #     should redirect_to("the resource view") { campaign_resource_path(@resource) }
   #   end
   #
@@ -81,9 +80,9 @@ describe CampaignResourcesController, type: :controller do
   #     setup do
   #       delete :destroy, :id => @resource
   #     end
-  #     should set_the_flash.to(/successfully destroyed/i)
+  #     should set_flash.to(/successfully destroyed/i)
   #     should redirect_to("the campaign view") { campaign_path(@resource.campaign) }
   #   end
 
-  #end
+  # end
 end

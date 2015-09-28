@@ -1,23 +1,11 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Api::V1::ProfilesController, type: :controller do
-  before do
-    @full_schema = {
-        type: 'object',
-        required: [:id, :nickname],
-        properties: {
-            id: { type: :string },
-            nickname: { type: :string },
-            campaigns: { type: :array }
-        }
-    }
-  end
-
+  let(:user) { FactoryGirl.create(:user) }
   describe 'show' do
     before do
-      @profile = create(:user)
-      get "/api/v1/profiles/#{@profile.id}", nil, { Accept: 'application/json' }
+      xhr :get, :show, id: user.id
     end
-    it { expect_valid_json_document(@full_schema) }
+    it { expect(response.status).to eq(200) }
   end
 end
