@@ -15,14 +15,13 @@ gem 'active_model_serializers', '~> 0.10.0.rc3'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 1.2'
-gem 'responders'
 gem 'bcrypt'
-gem 'warden'
 gem 'redcarpet'
 gem 'acts_as_list'
 gem 'will_paginate'
 gem 'cancancan'
 
+# gem 'warden'
 # gem 'html5'
 # gem 'therubyracer'
 # gem 'unicorn-rails'

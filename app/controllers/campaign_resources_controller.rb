@@ -1,48 +1,44 @@
 class CampaignResourcesController < ApplicationController
-  respond_to :html, :xml, :json
+  before_action :find_campaign, only: [:index, :new, :create]
+  before_action :find_resource, only: [:show, :edit, :update]
 
   def index
-    @resources = Campaign.find(params[:campaign_id]).resources
-    respond_with @resources
+    @resources = @campaign.resources
   end
 
   def show
-    @resource = CampaignResource.find(params[:id])
-    respond_with @resource
   end
 
   def new
-    @resource = Campaign.find(params[:campaign_id]).resources.build
-    respond_with @resource
+    @resource = @campaign.resources.build
   end
 
   def edit
-    @resource = CampaignResource.find(params[:id])
-    respond_with @resource
   end
 
   def create
-    @resource = Campaign.find(params[:campaign_id]).resources.create(campaign_resource_params)
-    respond_with @resource
+    @resource = @campaign.resources.create(campaign_resource_params)
   end
 
   def update
-    @resource = CampaignResource.find(params[:id])
     @resource.update_attributes(campaign_resource_params)
-    respond_with @resource
   end
 
   def destroy
-    @resource = CampaignResource.find(params[:id])
-    @resource.destroy
-    respond_with @resource do |format|
-      format.html do
-        redirect_to campaign_path(@resource.campaign)
-      end
-    end
+    @resource = CampaignResource.find_by(id: params[:id])
+    @resource.destroy if @resource
+    redirect_to campaign_path(@resource.campaign)
   end
 
   private
+
+  def find_campaign
+    @campaign = Campaign.find(params[:campaign_id])
+  end
+
+  def find_resource
+    @resource = CampaignResource.find(params[:id])
+  end
 
   def campaign_resource_params
     params.require(:campaign_resource).permit(:name, :campaign_id, :resource_type,

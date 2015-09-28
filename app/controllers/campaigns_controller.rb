@@ -1,11 +1,11 @@
 class CampaignsController < ApplicationController
+  before_action :find_campaign, only: [:show, :edit, :update]
+
   def index
     @campaigns = Campaign.where(public: true).order('name')
   end
 
   def show
-    @campaign = Campaign.includes(:resources, :characters).find(params[:id])
-    # @npcs = @campaign.nonplayer_characters
     @invite = @campaign.invites.build
   end
 
@@ -20,21 +20,23 @@ class CampaignsController < ApplicationController
   end
 
   def edit
-    @campaign = Campaign.find(params[:id])
   end
 
   def update
-    @campaign = Campaign.find(params[:id])
     @campaign.update_attributes(campaign_params)
     redirect_to @campaign
   end
 
   def destroy
-    @campaign = Campaign.find(params[:id])
-    @campaign.destroy
+    @campaign = Campaign.find_by(id: params[:id])
+    @campaign.destroy if @campaign
   end
 
   private
+
+  def find_campaign
+    @campaign = Campaign.find(params[:id])
+  end
 
   def campaign_params
     params.require(:campaign).permit(:name, :system_id, :max_players, :description)
