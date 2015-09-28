@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -p 8001:80 -d --name gamemaster gamemaster:0.1

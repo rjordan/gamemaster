@@ -6,30 +6,30 @@
 </div>
 
 <p>
-<% if @story.revealed %>
-  <span style="color:green">This storyline has been revealed.</span>
-<% else %>
-  <span style="color:red">This storyline is for the GM's eyes only!</span>
-<% end %>
+  <% if @story.revealed %>
+    <span style="color:green">This storyline has been revealed.</span>
+  <% else %>
+    <span style="color:red">This storyline is for the GM's eyes only!</span>
+  <% end %>
 </p>
 
-<%= link_to 'Edit', edit_story_path(@story), :class=>'button' %>
+<%= link_to 'Edit', edit_campaign_story_path(@campaign, @story), :class => 'button' %>
 <div id="tabs">
   <ul>
-	  <li><a href="#tabs-1">Public Description</a></li>
-    <% if @story.campaign.user == current_user %>
-  	  <li><a href="#tabs-2">GM's Description</a></li>
-  	<% end %>
+    <li><a href="#tabs-1">Public Description</a></li>
+    <% if @story.campaign.game_master?(current_user) %>
+      <li><a href="#tabs-2">GM's Description</a></li>
+    <% end %>
   </ul>
   <div id="tabs-1">
     <div class="tab-window">
-      <p><%= textilize(@story.public_description).html_safe %></p>
+      <p><%= render_markdown(@story.public_description) %></p>
     </div>
-	</div>
-  <% if @story.campaign.user == current_user %>
+  </div>
+  <% if @story.campaign.game_master?(current_user) %>
     <div id="tabs-2">
       <div class="tab-window">
-        <p><%= textilize(@story.private_description).html_safe %></p>
+        <p><%= render_markdown(@story.private_description) %></p>
       </div>
     </div>
   <% end %>
@@ -38,14 +38,14 @@
 <p>
 <div id="section_heading">
   <span>Chapters</span>
-  <%= link_to "New", new_story_chapter_path(@story), :class=>'button' %>
-<hr/>
+  <%= link_to "New", new_campaign_story_chapter_path(@campaign, @story), :class => 'button' %>
+  <hr/>
 </div>
-  <ul id="stories_list">
-    <% for chapter in @story.chapters.find(:all, :order=>:position) %>
-      <li id="chapter_<%=chapter.id%>"><%= link_to chapter.name, chapter_path(chapter) %></li>
-    <% end %>
-  </ul>
+<ul id="stories_list">
+  <% for chapter in @story.chapters.order(:position) %>
+    <li id="chapter_<%= chapter.id %>"><%= link_to chapter.name, chapter_path(chapter) %></li>
+  <% end %>
+</ul>
 </p>
 
 <div id="resource_list">

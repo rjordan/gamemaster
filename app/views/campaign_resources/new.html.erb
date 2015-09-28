@@ -2,8 +2,13 @@
 
 
 <%= form_for([@resource.campaign, @resource]) do |form| %>
-  <%= form.error_messages %>
-  <%= render :partial=>'form', :object=>form %>
-  <%= form.submit 'Submit' %>
+  <%# form.error_messages %>
+  <%= render :partial => 'form', :object => form %>
+  <br/>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= form.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
+  </div>
 <% end %>
 

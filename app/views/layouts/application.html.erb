@@ -1,54 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title><%= yield(:title) || "Untitled" %></title>
-    <meta charset="utf-8" />
-    <%= javascript_include_tag 'markitup-1.1.7/jquery.markitup.pack', 'markitup-1.1.7/sets/textile/set' %>
-    <%= javascript_include_tag 'application' %>
-    <%= stylesheet_link_tag 'eggplant2/jquery-ui-1.8.1.custom' %>
-    <%= stylesheet_link_tag 'markitup-1.1.7/skins/markitup/style', 'markitup-1.1.7/sets/textile/style' %>
-    <%= stylesheet_link_tag 'application' %>
-    <%= csrf_meta_tag %>
-  </head>
-  <body id="<%= "#{controller_name}_#{action_name}" %>">
+<head>
+  <title><%= yield(:title) || 'GameMaster' %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8"/>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tag %>
+</head>
+<body class='<%= "#{controller_name}-#{action_name}" %>'>
 
-  <header>
-     <h1 style="display:inline;"><%= link_to 'GameMaster', root_url %></h1>
-    <aside><%= render :partial=>'shared/header_nav' %></aside>
-  </header>
+<header class="header-nav" role="navigation">
+  <%= link_to 'GameMaster', root_url, class: 'navbar-brand' %>
+  <aside class="collapse navbar-collapse"><%= render :partial => 'header_nav' %></aside>
+</header>
 
-  <!-- sidebar -->
-  <aside id="sidebar""><%= render :partial=>'shared/left_nav' %></aside> 
+<!-- sidebar -->
+<aside><%= render :partial => 'left_nav' %></aside>
 
-  <div id="container">
-  
-    <% 
-      flash.each do |name, msg|
-        unless name.to_s == 'alert' || name.to_s == 'notice'
-          throw "ERROR: Bad Flash header! (#{name})"
-        end
-      end
-    %>
+<div class="container">
 
-    <% if flash.notice %>
-      <div style="padding: 0pt 0.7em;", id="flash_notice", class="ui-state-highlight ui-corner-all">
-        <p><span style="float: left; margin-right: 0.3em;" class="ui-icon ui-icon-info"></span> <%= flash[:notice] %></p>
+  <% if flash.notice %>
+      <div id="flash_notice" class="alert alert-warning">
+        <p><span class="ui-icon ui-icon-info"></span> <%= flash[:notice] %></p>
       </div>
-    <% end %>
-    
-    <% if flash.alert %>
-      <div style="padding: 0pt 0.7em;", id="flash_alert", class="ui-state-error ui-corner-all" >
-        <p><span style="float: left; margin-right: 0.3em;" class="ui-icon ui-icon-alert"></span> <%= flash[:alert] %></p>
+  <% end %>
+  <% if flash.alert %>
+      <div id="flash_alert" class="alert alert-danger">
+        <p><span class="ui-icon ui-icon-alert"></span> <%= flash[:alert] %></p>
       </div>
-    <% end %>
-    
-    <article>
-      <%= yield %>
-    </article>
-  </div>
+  <% end %>
 
-  <footer>
-    <p>Copyright 2008-<%= Time.now.year %> Richard Kent Jordan</p>
-  </footer>
-  </body>
+  <%= yield %>
+</div>
+
+<footer>
+  <p>Copyright <%= Time.now.year %> Richard Kent Jordan</p>
+</footer>
+</body>
 </html>

@@ -1,6 +1,10 @@
 class Chapter < ActiveRecord::Base
-  validates_presence_of :name, :public_description, :story_id, :position
-  validates_numericality_of :position, :story_id
   belongs_to :story
-  acts_as_list :scope=>:story
+
+  validates :name, presence: true
+  validates :public_description, presence: true
+  validates :story_id, presence: true
+  validates :position, presence: true, numericality: :only_integer
+
+  acts_as_list scope: :story
 end

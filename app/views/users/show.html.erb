@@ -1,60 +1,65 @@
-
-<div id="content">
- <%= render_gravatar @user %>
+<div class="user-profile">
+  <%= render_gravatar @user %>
   <h1><%= @user.nickname %></h1>
+
   <p>
+    <label>User ID:</label> <%= @user.id %><br/>
+    <label>Signup Date:</label> <%= l(@user.created_at, format: :date) %>
   </p>
-  <table class="show_form">
-    <tr>
-      <td class="show_label">ID:</td>
-      <td class="show_value"><%= @user.id %></td>
-    </tr>
-    <tr>
-      <td class="show_label">Signup Date:</td>
-      <td class="show_value"><%= l(@user.created_at) %></td>
-    </tr>
-  </table>
+
   <br/>
-  
-  <div id="section_heading">
-    <span>Running Campaigns</span>
+
+  <div>
+    <h2>Running Campaigns</h2>
     <% if current_user==@user %>
-      <%= link_to "New Campaign", new_campaign_path, :class=>'button' %>
+        <%= link_to 'New Campaign', new_campaign_path, :class => 'btn' %>
     <% end %>
-    <hr/>
+    <% if @user.campaigns.any? %>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Campaign Name</th>
+            <th>System</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% for campaign in @user.campaigns %>
+              <tr>
+                <td><%= link_to campaign.name, campaign_path(campaign) %></td>
+                <td><%= campaign.system.name %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+    <% end %>
   </div>
-  <table class="show_form">
-    <% if @user.campaigns %>
-      <% for campaign in @user.campaigns %>
-        <tr>
-          <td><%= link_to campaign.name, campaign_path(campaign) %></td>
-          <td><%= campaign.system.name %></td>
-        </tr>
-      <% end %>
+
+  <div>
+    <h2>Playing Games</h2>
+    <% if current_user==@user %>
+        <%= link_to "Find Game", campaigns_path, :class => 'btn' %>
     <% end %>
-  </table>
-  <br/>
-  
-  <div id="section_heading">
-    <span>Playing Games</span>
-    <% if session[:user_id]==@user %>
-    <%= link_to "Find Game", campaigns_path, :class=>'button' %>
+    <% if @user.games.any? %>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Campaign Name</th>
+            <th>System</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% for game in @user.games %>
+              <tr>
+                <td><%= link_to game.name, campaign_path(game) %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
     <% end %>
-    <hr/>
   </div>
-  <table class="show_form">
-    <% if @user.games %>
-      <% for game in @user.games %>
-        <tr>
-          <td><%= link_to game.name, campaign_path(game) %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  </table>
-  <br/>
-  
+
 </div>
 
-<% if session[:user_id]==@user %>
-  <%= link_to 'Edit', edit_user_path(@user) %>
+<% if current_user==@user %>
+    <%= link_to 'Edit', edit_user_path(@user) %>
 <% end %>

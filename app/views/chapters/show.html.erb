@@ -2,34 +2,35 @@
 <h2><%= @chapter.name %></h2>
 
 <div id='breadcrumbs'>
-  <%= link_to @chapter.story.campaign.name, campaign_path(@chapter.story.campaign) %> > <%= link_to @chapter.story.name, story_path(@chapter.story) %> > <%= @chapter.name %>
+  <%= link_to @chapter.story.campaign.name, campaign_path(@chapter.story.campaign) %>
+  > <%= link_to @chapter.story.name, story_path(@chapter.story) %> > <%= @chapter.name %>
 </div>
 
 <p>
-<% if @chapter.revealed %>
-  <span style="color:green">This chapter has been revealed.</span>
-<% else %>
-  <span style="color:red">This chapter is for the GM's eyes only!</span>
-<% end %>
+  <% if @chapter.revealed %>
+    <span style="color:green">This chapter has been revealed.</span>
+  <% else %>
+    <span style="color:red">This chapter is for the GM's eyes only!</span>
+  <% end %>
 </p>
 
-<%= link_to 'Edit', edit_chapter_path(@chapter), :class=>'button' %>
+<%= link_to 'Edit', edit_chapter_path(@chapter), :class => 'button' %>
 <div id="tabs">
   <ul>
-	  <li><a href="#tabs-1">Public Description</a></li>
+    <li><a href="#tabs-1">Public Description</a></li>
     <% if @chapter.story.campaign.user == current_user %>
-  	  <li><a href="#tabs-2">GM's Description</a></li>
-  	<% end %>
+      <li><a href="#tabs-2">GM's Description</a></li>
+    <% end %>
   </ul>
   <div id="tabs-1">
     <div class="tab-window">
-      <p><%= textilize(@chapter.public_description).html_safe %></p>
+      <p><%= render_markdown(@chapter.public_description) %></p>
     </div>
-	</div>
-  <% if @chapter.story.campaign.user == current_user %>
+  </div>
+  <% if @chapter.story.campaign.game_master?(current_user) %>
     <div id="tabs-2">
       <div class="tab-window">
-        <p><%= textilize(@chapter.private_description).html_safe %></p>
+        <p><%= render_markdown(@chapter.private_description) %></p>
       </div>
     </div>
   <% end %>

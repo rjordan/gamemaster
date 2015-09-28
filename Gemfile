@@ -1,40 +1,66 @@
 source 'https://rubygems.org'
+ruby '2.2.3'
 
-gem 'rails', '~> 3.1.0'
-gem 'sqlite3'
+gem 'rails', '~> 4.2.4'
+gem 'sass-rails', '~> 5.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
+gem 'turbolinks'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.1.4'
-  gem 'coffee-rails', '~> 3.1.1'
-  gem 'uglifier', '>= 1.0.3'
+gem 'autoprefixer-rails'
+gem 'bootstrap-sass'
+gem 'devise'
+gem 'active_model_serializers', '~> 0.10.0.rc3'
+
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+# gem 'jbuilder', '~> 1.2'
+gem 'bcrypt'
+gem 'redcarpet'
+gem 'acts_as_list'
+gem 'will_paginate'
+gem 'cancancan'
+
+# gem 'warden'
+# gem 'html5'
+# gem 'therubyracer'
+# gem 'unicorn-rails'
+
+group :doc do
+  gem 'sdoc', require: false
 end
-gem 'therubyracer'
 
-gem "postgres-pr", :group=>[:production]
-#gem "mongoid"
-#gem "bson_ext"
+gem 'pg', group: :production
 
-gem 'responders'
-gem 'shoulda', :require=>false
-gem 'mocha'
-gem 'bcrypt-ruby'
-gem 'warden'
-gem 'devise', '~>1.5.0'
-gem 'RedCloth'
-gem 'html5'
-
-## Bundle gems used only in certain environments:
-# gem "rspec", :group => :test
-# group :test do
-#   gem "webrat"
-# end
+group :development, :test do
+  gem 'thin'
+  gem 'database_cleaner'
+  gem 'sqlite3'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'teaspoon-jasmine'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'guard-rspec', require: false
+  gem 'guard-teaspoon', require: false
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'rails-footnotes'
+  gem 'rails_best_practices'
+  gem 'json-schema'
+  gem 'timecop'
+  gem 'memory_test_fix'
+  gem 'launchy'
+  gem 'mailcatcher', require: false
+  gem 'simplecov', require: false
+end
 
 group :development do
-  #These are just for console debugging
-  gem 'hirb', :require=>false
-  gem 'wirble', :require=>false
-  gem 'less'
+  gem 'web-console', '~> 2.0'
+  gem 'spring'
+  gem 'rubocop', require: false
+  gem 'metric_fu', require: false
+  gem 'overcommit', require: false
+  gem 'scss_lint', require: false
+  gem 'brakeman', require: false
 end

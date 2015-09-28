@@ -3,14 +3,15 @@
 <%= form_for(@user) do |form| %>
   <fieldset>
     <p>
-      <%= form.label :nickname, :class=>'required' %>
+      <%= form.label :nickname, :class => 'required' %>
       <%= form.text_field :nickname %>
     </p>
+
     <p>
-      <%= form.label :email, :class=>'required' %>
+      <%= form.label :email, :class => 'required' %>
       <%= form.text_field :email %>
     </p>
-    </fieldset>
-    <%= form.submit 'Submit' %>
+  </fieldset>
+  <%= form.submit 'Submit' %>
 <% end %>
 

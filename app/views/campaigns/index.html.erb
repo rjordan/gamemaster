@@ -1,33 +1,31 @@
 <h2>Public Campaigns</h2>
-<div id="list_view">
-  <table>
-    <thead>
-      <tr>
-        <td>Name</td>
-        <td>System</td>
-        <td>Game Master</td>
-        <td>Players</td>
-        </tr>
-      </thead>
-      <tbody>
-        <% if @campaigns.empty? %>
-          <tr class="odd">
-            <td colspan="3">
-              <div class="list_empty_message">
-                No records to display!
-              </div>
-            </td>
-          </tr>
-        <% end %>
-        <% for campaign in @campaigns %>
-          <tr class="<%= cycle "even", "odd" -%>">
-            <td><%= link_to campaign.name, campaign_path(campaign) %></td>
-            <td><%= campaign.system.name %></td>
-            <td><%= campaign.user.nickname %></td>
-            <td><%= campaign.players.count %> / <%= campaign.max_players %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  
+
+<% if @campaigns.empty? %>
+  <div class="alert alert-warning">
+    No records to display!
   </div>
+<% else %>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>System</th>
+      <th>Game Master</th>
+      <th>Players</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% for campaign in @campaigns %>
+      <tr>
+        <td><%= link_to campaign.name, campaign_path(campaign) %></td>
+        <td><%= campaign.system.name %></td>
+        <td><%= campaign.user.nickname %></td>
+        <td><%= campaign.characters.player.count %> / <%= campaign.max_players %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+
+

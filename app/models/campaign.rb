@@ -1,57 +1,55 @@
 class Campaign < ActiveRecord::Base
-  validates_presence_of :name, :user_id, :system_id, :max_players, :description
-  validates_numericality_of :max_players, :interger=>true #, :greater_than_or_equal_to => self.players.count
-  
   belongs_to :user
   belongs_to :system
-  
-  has_one :public_forum, :class_name=>'Forum', :conditions=>{:public=>true}, :dependent=>:destroy
-  has_one :private_forum, :class_name=>'Forum', :conditions=>{:public=>false}, :dependent=>:destroy
-  has_many :stories
-  
-  has_many :player_characters, :conditions=>"user_id is not null", :class_name=>'Character'
-  has_many :nonplayer_characters, :conditions=>"user_id is null", :class_name=>'Character'
-  has_many :players, :through=>:player_characters, :source=>:user
-  
-  has_many :invites, :class_name=>'CampaignInvite'
-  
-  has_many :resources, :class_name=>'CampaignResource', :dependent=>:destroy
-  delegate :characters, :locations, :items, :to=>:resources
+  has_many :forums, dependent: :destroy
+  has_many :stories, dependent: :destroy
+  has_many :characters, dependent: :destroy
+  has_many :invites, class_name: 'CampaignInvite', dependent: :destroy
+  has_many :resources, class_name: 'CampaignResource', dependent: :destroy
 
-  #def players
-  #  characters.find(:all, :conditions=>'user_id is not null')
-  #end
-  
-  before_save :create_forums
-  
-  def is_game_master?(user)
-    self.user==user
-  end
-  
-  def is_player?(user)
-    self.players.include?(user)
+  validates :name, presence: true
+  validates :user_id, presence: true
+  validates :system_id, presence: true
+  validates :max_players, presence: true, numericality: :only_integer
+  validates :description, presence: true
+
+  after_initialize :build_forums
+
+  def game_master?(user)
+    self.user == user
   end
 
-private
-
-  def create_forums
-    public_forum ||= Forum.new(:name=>'Public Forum')
-    private_forum ||= Forum.new(:name=>'Private Forum')
+  def player?(user)
+    characters.player.where(user: user).any?
   end
-  
+
+  def public_forum
+    forums.open.first
+  end
+
+  def private_forum
+    forums.closed.first
+  end
+
+  private
+
+  def build_forums
+    forums.build(name: 'Public Forum', public: true)
+    forums.build(name: 'Private Forum', public: false)
+  end
 end
 
 ############################
 
-#class Campaign
+# class Campaign
 #  include Mongoid::Document
 
 #  field :name, type: String
-  #embeds_many :instruments
-#end
+# embeds_many :instruments
+# end
 
-#class Instrument
+# class Instrument
 #  include Mongoid::Document
 #  field :name, type: String
 #  embedded_in :artist
-#end
+# end

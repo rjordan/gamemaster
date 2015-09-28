@@ -1,19 +1,41 @@
 <fieldset>
-    <%= form.hidden_field :user_id %>
-    <p>
-      <label for="name" class="required" >Name</label>
-      <%= form.text_field :name %>
-    </p>
-    <p>
-      <%= form.label :system_id, 'System', :class=>'required' %>
-      <%= form.collection_select(:system_id, System.find(:all, :order => "name"), :id, :name )  %>
-    </p>
-    <p>
-      <%= form.label :max_players, 'Max Players', :class=>'required' %>
-      <%= form.text_field :max_players %>
-    </p>
-    <p>
-      <%= form.label :description, 'Description', :class=>'required' %>
-      <%= form.text_field :description %>
-    </p>
+  <%= form.hidden_field :user_id %>
+  <div class="form-group">
+    <%= form.label :name, class: 'control-label col-sm-2 required' %>
+    <div class="col-sm-10">
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <%= form.check_box :public %>
+          <%= Campaign.human_attribute_name :public %>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :system, class: 'control-label col-sm-2 required' %>
+    <div class="col-sm-10">
+      <%= form.collection_select(:system_id, System.order(:name), :id, :name, {}, class: 'form-control') %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :max_players, class: 'control-label col-sm-2 required' %>
+    <div class="col-sm-10">
+      <%= form.text_field :max_players, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description, class: 'control-label col-sm-2 required' %>
+    <div class="col-sm-10">
+      <%= form.text_area :description, class: 'form-control' %>
+    </div>
+  </div>
 </fieldset>

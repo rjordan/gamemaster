@@ -1,43 +1,44 @@
 class CampaignsController < ApplicationController
-  respond_to :html, :xml, :json
-  
+  before_action :find_campaign, only: [:show, :edit, :update]
+
   def index
-    @campaigns = Campaign.where(:public=>true).order('name').all
-    respond_with @campaigns 
+    @campaigns = Campaign.where(public: true).order('name')
   end
-  
+
   def show
-    @campaign = Campaign.includes(:resources).find(params[:id]) #, :include=>[:players, :stories, :player_characters, :nonplayer_characters])
-    @npcs = @campaign.nonplayer_characters
     @invite = @campaign.invites.build
-    respond_with @campaign
   end
-  
+
   def new
-    respond_with @campaign = Campaign.new(:user=>current_user)
+    @campaign = Campaign.new
   end
-  
-  def edit
-    respond_with @campaign = Campaign.find(params[:id])
-  end
-  
-  def destroy
-    @campaign = Campaign.find(params[:id])
-    @campaign.destroy
-    respond_with @campaign
-  end
-  
-  def update
-    @campaign = Campaign.find(params[:id])
-    @campaign.update_attributes(params[:campaign])
-    respond_with @campaign
-  end
-  
+
   def create
     @campaign = Campaign.new(params[:campaign])
     validate_user @campaign
     @campaign.save
-    respond_with @campaign
   end
-   
+
+  def edit
+  end
+
+  def update
+    @campaign.update_attributes(campaign_params)
+    redirect_to @campaign
+  end
+
+  def destroy
+    @campaign = Campaign.find_by(id: params[:id])
+    @campaign.destroy if @campaign
+  end
+
+  private
+
+  def find_campaign
+    @campaign = Campaign.find(params[:id])
+  end
+
+  def campaign_params
+    params.require(:campaign).permit(:name, :system_id, :max_players, :description)
+  end
 end

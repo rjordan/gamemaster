@@ -1,0 +1,12 @@
+AllCops:
+  RunRailsCops: true
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+Style/Documentation:
+  Enabled: false
+Style/HashSyntax:
+  Enabled: true
+  EnforcedStyle: ruby19
+Metrics/LineLength:
+  Enabled: false

@@ -1,0 +1,156 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #330022;
+  margin: 0 auto;
+  padding: 0;
+}
+
+textarea {
+  width: 99%;
+}
+
+header {
+  color: white;
+  background: black;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  width: 785px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  height: 50px;
+  display: block;
+}
+
+header aside {
+  background: black;
+  float: right;
+}
+
+header aside ul li {
+  display: inline;
+  list-style-type: none;
+  padding: 2px;
+}
+
+header aside ul li a {
+  color: #FFFFFF;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+header aside ul li a:visited {
+  color: #FFFFFF;
+}
+
+header aside ul li a:hover {
+  color: #FFDF00;
+}
+
+#sidebar {
+  color: white;
+  background: black;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  width: 785px;
+  margin: 0 auto;
+  padding: 0px;
+  display: block;
+}
+
+#sidebar ul li {
+  display: inline;
+  list-style-type: none;
+  padding: 2px;
+}
+
+#sidebar ul li a {
+  color: #FFFFFF;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#sidebar ul li a:visited {
+  color: #FFFFFF;
+}
+
+#sidebar ul li a:hover {
+  color: #FFDF00;
+}
+
+#stories_list {
+  list-style-type: none;
+  font-size: 1.2em;
+}
+
+footer {
+  display: block;
+  text-align: center;
+  color: white;
+}
+
+.tab-window {
+  background: white;
+  color: black;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  padding: 1em;
+}
+
+#container {
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  width: 785px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  border: solid 1px black;
+  background: white;
+  min-height: 400px;
+}
+
+.post {
+  border: 2px solid #DDDDDD;
+  padding: 0.5em;
+}
+
+.post a {
+  text-decoration: none;
+}
+
+.post img {
+  border: 0px;
+}
+
+.post .avatar {
+  float: right;
+}
+
+.post h2 {
+  display: inline;
+}
+
+.post .post_tags {
+  padding-left: 0px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.post .post_tags li {
+  display: inline;
+  list-style-type: none;
+}
+
+.post .post_tags li a {
+  font-size: 0.75em;
+}
+
+.post .post_body {
+  padding-top: 1em;
+}

@@ -1,4 +1,10 @@
 en:
+  system: Game System
+  game_master: Game Master
+  created_at: Created At
+  players: Players
+  revealed: Revealed
   time:
     formats:
-      post_date: "%B %d, %Y %l:%M%p"
+      date: "%B %d, %Y"
+      post_time: "%B %d, %Y %l:%M%p"

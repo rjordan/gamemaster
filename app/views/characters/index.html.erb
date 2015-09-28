@@ -1,26 +1,26 @@
 <div id="streamlined_list">
   <table class="sl_list">
     <thead>
-      <tr>
-        <td>Name</td>
-        </tr>
-      </thead>
-      <tbody>
-        <% if @characters.empty? %>
-          <tr class="odd">
-            <td colspan="1">
-              <div class="list_empty_message">
-                No records to display!
-              </div>
-            </td>
-          </tr>
-        <% end %>
-        <% for character in @characters %>
-          <tr class="<%= cycle "even", "odd" -%>">
-            <td><%= link_to character.name, character_path(character) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  
-  </div>
+    <tr>
+      <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @characters.empty? %>
+      <tr class="odd">
+        <td colspan="1">
+          <div class="list_empty_message">
+            No records to display!
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    <% for character in @characters %>
+      <tr class="<%= cycle "even", "odd" -%>">
+        <td><%= link_to character.name, character_path(character) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+</div>
