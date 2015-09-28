@@ -8,12 +8,12 @@ table {
 }
 
 footer {
-  margin-top: 1.5em;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  text-align: center;
   background: $eggplant;
-  color: white;
+  color: $white;
+  margin-top: 1.5em;
+  padding-bottom: 1em;
+  padding-top: 1em;
+  text-align: center;
 }
 
 .header-nav {
@@ -22,8 +22,8 @@ footer {
   @extend .navbar-fixed-top;
 }
 
-#container {
-  background: white;
+.container {
+  background: $white;
   margin-left: 2em;
   margin-right: 2em;
   min-height: 480px;

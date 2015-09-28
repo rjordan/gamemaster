@@ -21,6 +21,7 @@ gem 'warden'
 gem 'redcarpet'
 gem 'acts_as_list'
 gem 'will_paginate'
+gem 'cancancan'
 
 # gem 'html5'
 # gem 'therubyracer'
@@ -60,4 +61,6 @@ group :development do
   gem 'rubocop', require: false
   gem 'metric_fu', require: false
   gem 'overcommit', require: false
+  gem 'scss_lint', require: false
+  gem 'brakeman', require: false
 end

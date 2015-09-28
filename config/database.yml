@@ -25,7 +25,7 @@ test:
 
 production:
   adapter: postgresql
-  host: 192.168.0.100
-  username: rails
-  password: rails  
+  host: <%= ENV.fetch('DB_HOSTNAME','') %>
+  username: <%= ENV.fetch('DB_USER','') %>
+  password: <%= ENV.fetch('DB_PASSWORD','') %>
   database: gamemaster

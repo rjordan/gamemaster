@@ -9,4 +9,8 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-GameMaster::Application.config.secret_key_base = '88f2d31d7173d71598bc7545c562333ed7aeca36909947e1a7e1db3e9024972720d241162f2b76eb2fbaebcd31001f14aa2446459ce843aed06c382105f976af'
+if Rails.env.production?
+  GameMaster::Application.config.secret_key_base = ENV.fetch('SECRET_KEY_BASE')
+else
+  GameMaster::Application.config.secret_key_base = '88f2d31d7173d71598bc7545c562333ed7aeca36909947e1a7e1db3e9024972720d241162f2b76eb2fbaebcd31001f14aa2446459ce843aed06c382105f976af'
+end

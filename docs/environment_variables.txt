@@ -1,0 +1,5 @@
+RAILS_ENV = {{Bet you can guess this one}}
+SECRET_KEY_BASE = {{Case value for rails secrets}}
+DB_HOSTNAME = {{Database server hostname}}
+DB_USER = {{Database username}}
+DB_PASSWORD = {{Database password}}
