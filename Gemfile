@@ -52,6 +52,7 @@ group :development, :test do
   gem 'memory_test_fix'
   gem 'launchy'
   gem 'mailcatcher', require: false
+  gem 'simplecov', require: false
 end
 
 group :development do
