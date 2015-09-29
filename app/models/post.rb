@@ -6,4 +6,8 @@ class Post < ActiveRecord::Base
   validates :user_id, presence: true
   validates :forum_id, presence: true
   validates :contents, presence: true
+
+  def author
+    user.nickname
+  end
 end

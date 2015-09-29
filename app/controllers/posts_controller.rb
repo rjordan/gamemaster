@@ -1,10 +1,9 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update]
-  before_action :find_forum, only: [:new, :create]
+  before_action :find_forum, only: [:index, :new, :create]
 
   def index
-    @forum = Forum.find(params[:forum_id], include: :posts)
-    @posts = @forum.posts
+    @posts = Post.where(forum: @forum).order(:created_at)
   end
 
   def show

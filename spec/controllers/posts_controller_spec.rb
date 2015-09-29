@@ -7,15 +7,16 @@ describe PostsController, type: :controller do
     login_as user
   end
 
-  # #INDEX TESTS
-  # context "on GET to :index" do
-  #   setup do
-  #     get :index, :forum_id => @post.forum
-  #   end
-  #   should_not set_flash
-  #   should render_template :index
-  #   should respond_with :success
-  # end
+  # INDEX TESTS
+  describe 'on GET to :index' do
+    before do
+      get :index, forum_id: article.forum
+    end
+    it { expect(response.status).to eq(200) }
+    it { expect(assigns(:posts)).to respond_to(:each) }
+    it { expect(subject).to_not set_flash }
+    it { expect(subject).to render_template(:index) }
+  end
 
   # SHOW TESTS
   describe 'on GET to :show' do

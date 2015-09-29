@@ -7,7 +7,7 @@
     <% end %>
     <%= link_to "New Post", new_forum_post_path(@forum) %>
 
-    <% for post in @posts.find(:all, :order => :created_at) %>
+    <% for post in @posts %>
       <p>
         <%= render :partial => 'posts/show_short', :object => post %>
       </p>

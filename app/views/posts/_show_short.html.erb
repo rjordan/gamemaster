@@ -6,7 +6,7 @@
     <div class="post_byline">
       <h2><%= link_to show_short.title, post_path(show_short) %></h2><br/>
       <span>
-        <%= link_to show_short.user.nickname, user_path(show_short.user) %> said <time datetime="<%= show_short.created_at %>"><%= distance_of_time_in_words Time.now-show_short.created_at %></time> ago.
+        <%= link_to show_short.author, user_path(show_short.user) %> said <time datetime="<%= show_short.created_at %>"><%= distance_of_time_in_words Time.now-show_short.created_at %></time> ago.
       </span>
       <% if current_user == show_short.user %>
         <span>
