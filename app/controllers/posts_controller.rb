@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update]
+  before_action :find_forum, only: [:new, :create]
 
   def index
     @forum = Forum.find(params[:forum_id], include: :posts)
@@ -10,31 +11,49 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new(forum: Forum.find(params[:forum_id]), user: current_user)
+    @post = @forum.posts.build(user: current_user)
   end
 
   def create
-    @post = Post.new(params[:post])
-    validate_user @post
-    @post.save
+    @post = @forum.posts.build(post_params)
+    @post.user = current_user
+    if @post.save
+      flash[:notice] = 'Post created.'
+      redirect_to(post_path(@post))
+    else
+      render :new
+    end
   end
 
   def edit
   end
 
   def update
-    @post.update_attributes(params[:post])
-    validate_user @post
-    @post.save
+    @post.update_attributes(post_params)
+    if @post.save
+      flash[:notice] = 'Post updated successfully.'
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
   end
 
   def destroy
     @post = Post.find_by(id: params[:id])
     @post.destroy if @post
+    flash[:notice] = 'Post deleted successfully.'
     redirect_to forum_posts_path(@post.forum)
   end
 
   private
+
+  def post_params
+    params.require(:post).permit(:title, :contents)
+  end
+
+  def find_forum
+    @forum = Forum.find(params[:forum_id])
+  end
 
   def find_post
     @post = Post.find(params[:id])

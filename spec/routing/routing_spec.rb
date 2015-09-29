@@ -127,23 +127,24 @@ describe 'Application routing', type: :routing do
       it 'handles the index route' do
         expect(get: '/forums/1/posts').to route_to('posts#index', forum_id: '1')
       end
-      it 'handles the show route' do
-        expect(get: '/forums/1/posts/1').to route_to('posts#show', forum_id: '1', id: '1')
-      end
       it 'handles the new route' do
         expect(get: '/forums/1/posts/new').to route_to('posts#new', forum_id: '1')
       end
       it 'handles the create route' do
         expect(post: '/forums/1/posts').to route_to('posts#create', forum_id: '1')
       end
+
+      it 'handles the show route' do
+        expect(get: '/posts/1').to route_to('posts#show', id: '1')
+      end
       it 'handles the edit route' do
-        expect(get: '/forums/1/posts/1/edit').to route_to('posts#edit', id: '1', forum_id: '1')
+        expect(get: '/posts/1/edit').to route_to('posts#edit', id: '1')
       end
       it 'handles the update route' do
-        expect(put: '/forums/1/posts/1').to route_to('posts#update', id: '1', forum_id: '1')
+        expect(put: '/posts/1').to route_to('posts#update', id: '1')
       end
       it 'handles the delete route' do
-        expect(delete: '/forums/1/posts/1').to route_to('posts#destroy', id: '1', forum_id: '1')
+        expect(delete: '/posts/1').to route_to('posts#destroy', id: '1')
       end
     end
   end
