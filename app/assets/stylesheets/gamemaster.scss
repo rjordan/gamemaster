@@ -22,7 +22,29 @@ footer {
   @extend .navbar-fixed-top;
 }
 
-.container {
+.post {
+  @extend .panel;
+  @extend .panel-default;
+
+  .post-header {
+    @extend .panel-heading;
+
+    .avatar {
+      @extend .pull-left;
+      margin-right: 1.5em;
+    }
+
+    .actions {
+      @extend .pull-right;
+    }
+  }
+
+  .post-body {
+    @extend .panel-body;
+  }
+}
+
+.container-fluid {
   background: $white;
   margin-left: 2em;
   margin-right: 2em;

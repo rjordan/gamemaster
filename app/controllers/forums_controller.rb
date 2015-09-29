@@ -7,6 +7,7 @@ class ForumsController < ApplicationController
   end
 
   def show
+    @posts = Post.where(forum: @forum).order('created_at desc')
   end
 
   def new

@@ -20,6 +20,7 @@ gem 'redcarpet'
 gem 'acts_as_list'
 gem 'will_paginate'
 gem 'cancancan'
+gem 'font-awesome-rails'
 
 # gem 'warden'
 # gem 'html5'

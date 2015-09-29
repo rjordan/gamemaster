@@ -1,29 +1,31 @@
+<% user = post.user %>
 <div class="post">
-  <div class="post_header">
+  <div class="post-header">
     <div class="avatar">
-      <%= render_gravatar show_short.user %>
+      <%= render_gravatar post.user %>
     </div>
     <div class="post_byline">
-      <h2><%= link_to show_short.title, post_path(show_short) %></h2><br/>
+      <h2><%= link_to post.title, post_path(post) %></h2>
       <span>
-        <%= link_to show_short.author, user_path(show_short.user) %> said <time datetime="<%= show_short.created_at %>"><%= distance_of_time_in_words Time.now-show_short.created_at %></time> ago.
+        <%= link_to post.author, user_path(user) %> said
+        <time datetime="<%= post.created_at.utc.iso8601 %>">
+          <%= distance_of_time_in_words Time.now-post.created_at %>
+        </time> ago.
       </span>
-      <% if current_user == show_short.user %>
-        <span>
-          <%= link_to image_tag("page_edit.png"), edit_post_path(show_short) %>
-          <%= link_to image_tag("page_remove.png"), post_path(show_short), :confirm => "You are about to delete your post. Are you sure?", :method => :delete %>
-        </span>
-      <% end %>
+      <span class="actions">
+        <%= link_to fa_icon('pencil', text: "Edit"), edit_post_path(post) if can?(:edit, post) %>
+        <%= link_to fa_icon('trash', text: "Delete"), post_path(post), data: {confirm: "You are about to delete your post. Are you sure?"}, method: :delete if can?(:destroy, post) %>
+      </span>
     </div>
-    <% if show_short.respond_to?(:tags) && show_short.tags.length>0 %>
-      <ul class="post_tags">
-        <% show_short.tags.each do |tag| %>
-          <li><%= link_to tag, tag_path(tag) %></li>
-        <% end %>
-      </ul>
+    <% if post.respond_to?(:tags) && post.tags.length>0 %>
+        <ul class="post_tags">
+          <% post.tags.each do |tag| %>
+              <li><%= link_to tag, tag_path(tag) %></li>
+          <% end %>
+        </ul>
     <% end %>
   </div>
-  <div class="post_body">
-    <%= render_markdown(show_short.contents) %>
+  <div class="post-body">
+    <%= render_markdown(post.contents) %>
   </div>
 </div>
