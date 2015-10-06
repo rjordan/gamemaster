@@ -15,21 +15,10 @@
   <aside class="collapse navbar-collapse"><%= render :partial => 'header_nav' %></aside>
 </header>
 
-<!-- sidebar -->
-<aside><%= render :partial => 'left_nav' %></aside>
-
 <div class="container-fluid">
-
-  <% if flash.notice %>
-      <div id="flash_notice" class="alert alert-warning">
-        <p><span class="ui-icon ui-icon-info"></span> <%= flash[:notice] %></p>
-      </div>
-  <% end %>
-  <% if flash.alert %>
-      <div id="flash_alert" class="alert alert-danger">
-        <p><span class="ui-icon ui-icon-alert"></span> <%= flash[:alert] %></p>
-      </div>
-  <% end %>
+  <div class="flash">
+    <%= render 'flash' %>
+  </div>
 
   <%= yield %>
 </div>

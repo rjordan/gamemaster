@@ -16,6 +16,26 @@ footer {
   text-align: center;
 }
 
+.flash {
+  .flash-notice {
+    @extend .alert;
+    @extend .alert-warning;
+    //.flash-icon {
+    //  @extend .ui-icon;
+    //  @extend .ui-icon-info;
+    //}
+  }
+
+  .flash-alert {
+    @extend .alert;
+    @extend .alert-danger;
+    //.flash-icon {
+    //  @extend .ui-icon;
+    //  @extend .ui-icon-alert;
+    //}
+  }
+}
+
 .header-nav {
   @extend .navbar;
   @extend .navbar-inverse;
@@ -50,7 +70,3 @@ footer {
   margin-right: 2em;
   min-height: 480px;
 }
-
-
-
-
