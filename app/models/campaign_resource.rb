@@ -1,13 +1,14 @@
 class CampaignResource < ActiveRecord::Base
   include ActionView::Helpers
+
   belongs_to :campaign
+  validates :campaign, presence: true
 
   RESOURCE_TYPES = %w(Character Item Location).freeze
+  validates :resource_type, presence: true, inclusion: RESOURCE_TYPES
 
   validates :name, presence: true
   validates :public_description, presence: true
-  validates :campaign_id, presence: true
-  validates :resource_type, presence: true, inclusion: RESOURCE_TYPES
 
   # default_scope -> { order(:name) }
   scope :characters, -> { where(resource_type: 'Character') }

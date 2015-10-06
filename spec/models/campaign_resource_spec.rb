@@ -13,6 +13,6 @@ describe CampaignResource, type: :model do
   it { expect(subject).to belong_to :campaign } # , :parent
 
   it { expect(subject).to validate_presence_of :name }
-  it { expect(subject).to validate_presence_of :campaign_id }
+  it { expect(subject).to validate_presence_of :campaign }
   it { expect(subject).to validate_presence_of :public_description }
 end
